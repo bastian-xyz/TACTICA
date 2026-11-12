@@ -1,0 +1,1028 @@
+[
+ {
+  "v": "0.72.0 BETA",
+  "d": "12-11-2026",
+  "items": [
+   "Modo horizontal para computador: en pantallas anchas la vista 3D ocupa toda la ventana, con el mapa de navegación flotando abajo a la izquierda y los poderes, las cartas y el panel de selección abajo a la derecha. En el celular en vertical todo sigue igual.",
+   "Inicio en horizontal: el planeta al centro, Jugador · Especie · Tropas a la izquierda y Batalla · Amigos · Configuración a la derecha.",
+   "Teclado: WASD o flechas mueven la cámara, Q y E (o + y −) hacen zoom, 1–8 eligen las tropas del mazo, Z X C V B N los edificios, Espacio vuelve a tu base y Esc suelta la selección o abre la pausa. Cada carta muestra su tecla.",
+   "Mouse: clic derecho suelta la selección o la carta elegida; la rueda sigue haciendo zoom.",
+   "Configuración → Pantalla: Auto (según el tamaño de la ventana), Vertical u Horizontal."
+  ]
+ },
+ {
+  "v": "0.71.6 BETA",
+  "d": "11-11-2026",
+  "items": [
+   "Los reactores ya no brotan del suelo: llegan en una cápsula que cae del cielo como un misil, se clava en el campo, abre sus cuatro paneles y el reactor se arma dentro mientras se construye.",
+   "Estado a la vista: mientras extrae, el núcleo, el anillo y las luces son del color de tu bando y emiten un halo que late. Cuando el campo se queda sin mineral, todo pasa a rojo, se apaga el halo y los anillos se detienen. Además avisa: Reactor sin mineral."
+  ]
+ },
+ {
+  "v": "0.71.5 BETA",
+  "d": "11-11-2026",
+  "items": [
+   "Al recibir una orden nueva en plena marcha, la tropa toma el camino más corto desde donde está: si conviene volver, da la vuelta ahí mismo en vez de terminar primero el paso que llevaba."
+  ]
+ },
+ {
+  "v": "0.71.4 BETA",
+  "d": "11-11-2026",
+  "items": [
+   "Centro de Control rover rediseñado con lógica de máquina real. De proa a popa: sensores y brazo de trabajo, puente de mando escalonado con visera y cúpula, lanzadores en los flancos con campo de tiro libre, y atrás lo pesado (silo y generador) sobre los bogies.",
+   "Tren de rodaje con balancín y bogie de verdad: los brazos pivotan y se recolocan según la altura de cada rueda. Ruedas más anchas, de llanta abierta y con garras.",
+   "Bastidor a la vista bajo el casco, radiadores con lamas en los costados y generador trasero con aletas y soportes.",
+   "Escala humana para que se lea colosal: barandas en la cubierta, escalera plegable, puerta y ojos de buey."
+  ]
+ },
+ {
+  "v": "0.71.3 BETA",
+  "d": "11-11-2026",
+  "items": [
+   "Las tropas ya no arman rutas con paradas: con tropas elegidas, cada toque en el mapa es una orden nueva y recalculan el camino desde donde están.",
+   "El Centro de Control humano se mueve como una unidad: tócalo para elegirlo y toca el mapa o el minimapa para mandarlo. Otro toque cambia el destino. El botón del panel queda solo para DETENER."
+  ]
+ },
+ {
+  "v": "0.71.2 BETA",
+  "d": "11-11-2026",
+  "items": [
+   "Selección más precisa: una tropa se elige solo si tocas su modelo, es decir, el espacio que ocupa en la pantalla (en los pelotones, cada soldado). Ya no se elige la tropa más cercana al dedo ni la que está en la casilla tocada.",
+   "Las tropas chicas o lejanas conservan un tamaño mínimo de toque para que se puedan elegir con el dedo.",
+   "Atacar: toca el modelo de la tropa enemiga. Tocar el suelo junto a ella es una orden de movimiento."
+  ]
+ },
+ {
+  "v": "0.71.1 BETA",
+  "d": "11-11-2026",
+  "items": [
+   "Zoom con inclinación: al acercar, la cámara baja y mira más de costado, así se ven mejor los modelos y el relieve. Al alejar vuelve a la vista táctica desde arriba."
+  ]
+ },
+ {
+  "v": "0.71.0 BETA",
+  "d": "11-11-2026",
+  "items": [
+   "El Centro de Control humano ahora es un rover colosal de seis ruedas: chasis alto, puente de mando, mástil con cámaras, generador trasero y el silo del misil sobre la cubierta.",
+   "Se puede mover: toca tu Centro de Control, aprieta MOVER y toca el destino en el mapa o el minimapa. Avanza muy lento (unos 8 s por casilla) y sube cualquier desnivel sin rampa; las ruedas se acomodan al terreno.",
+   "Lleva consigo su territorio, sus misiles, el radio de intercepción y el silo. Vadea el río y pisa las rocas con las ruedas; no pasa sobre campos de cristal, aldeas ni edificios. Si hay tropas tuyas en el camino les pide paso.",
+   "Los edificios que deja atrás siguen funcionando. El Árbol de la Vida Micelian no se mueve: está enraizado.",
+   "En 1v1 el movimiento se ve en las dos pantallas."
+  ]
+ },
+ {
+  "v": "0.70.1 BETA",
+  "d": "11-11-2026",
+  "items": [
+   "El Droper ya no aterriza encima de edificios ni de tropas: si lo mandas a una casilla ocupada, recalcula y baja en la casilla libre más cercana (despliegue, recolección y Droper libre)."
+  ]
+ },
+ {
+  "v": "0.70.0 BETA",
+  "d": "11-11-2026",
+  "items": [
+   "Selección múltiple: mantén el dedo apretado sobre el mapa hasta que vibre y aparezca el recuadro, arrastra para abarcar tus tropas y suelta. Se eligen todas las tuyas visibles dentro del recuadro.",
+   "Sigue igual: tocar una tropa la elige y tocarla otra vez elige todas las del mismo tipo."
+  ]
+ },
+ {
+  "v": "0.69.1 BETA",
+  "d": "11-11-2026",
+  "items": [
+   "La barra del Droper libre (Recolectar · Soltar · Volver) se cierra deslizándola hacia los lados."
+  ]
+ },
+ {
+  "v": "0.69.0 BETA",
+  "d": "11-11-2026",
+  "items": [
+   "El Droper ahora es una unidad libre: después de recoger tropas se queda en el aire donde lo dejaste, en vez de volver solo a la torre. Tócalo (ícono sobre la nave) para darle órdenes.",
+   "Botones de recolección: Recolectar, Soltar y Volver. Elige uno y toca el mapa o el minimapa; el Droper vuela hasta ahí, aterriza y hace la maniobra. Con solo tocar el mapa se mueve sin aterrizar.",
+   "Puede llevar cualquier unidad de tierra: 4 de infantería, 2 vehículos o 1 Titán (un Mecha cuenta como vehículo). Las unidades que van a bordo se curan solo al volver a la torre.",
+   "Si lo derriban con carga, la tropa cae con el 65 % de vida como antes. La torre recibe su reemplazo a los 25 s."
+  ]
+ },
+ {
+  "v": "0.68.0 BETA",
+  "d": "11-11-2026",
+  "items": [
+   "El Titán ya no sale caminando del Laboratorio: se arma en el lugar. Las piezas bajan una a una, de las piernas a las armas, y se acoplan con chispas mientras un anillo de escaneo sube con el avance. Tarda unos 4 segundos y mientras se arma no dispara ni se mueve, pero sí recibe daño."
+  ]
+ },
+ {
+  "v": "0.67.0 BETA",
+  "d": "11-11-2026",
+  "items": [
+   "Recolección con el Droper: cuando el Droper está guardado en la torre del Cuartel aparece un ícono encima. Tócalo, toca el mapa y el Droper vuela vacío, recoge hasta 4 pelotones de tu infantería a 2 casillas del punto y los trae de vuelta a la base con la vida llena.",
+   "Si derriban al Droper con tropas a bordo en el regreso, los soldados saltan como en el despliegue.",
+   "Funciona también en el 1v1 con un amigo."
+  ]
+ },
+ {
+  "v": "0.66.0 BETA",
+  "d": "08-11-2026",
+  "items": [
+   "Versión web propia: el juego también vive en una página pública. El 1v1 con un amigo funciona sin cuenta: creas la partida, compartes el enlace o el código y tu amigo entra desde cualquier navegador.",
+   "La conexión del 1v1 en la web es directa entre los dos equipos.",
+   "En la web, el juego avisa cuando hay una versión nueva: toca el aviso para actualizar."
+  ]
+ },
+ {
+  "v": "0.65.0 BETA",
+  "d": "05-11-2026",
+  "items": [
+   "Multijugador 1v1 con un amigo (beta): Versus → Amigo, o Amigos en el inicio. Uno crea la partida y el otro la elige en su lista o escribe el código de 4 letras.",
+   "Quien crea la partida corre la simulación y elige el planeta; el otro manda sus órdenes y ve el estado de la partida varias veces por segundo. Cada uno juega con su especie, su mazo y su niebla.",
+   "El invitado ve el mapa girado: su base queda abajo, igual que para el anfitrión.",
+   "Si alguien se desconecta la partida se detiene y espera; al volver a entrar con el mismo código se sincroniza sola. Salir al menú cuenta como abandono.",
+   "En partidas con amigo no hay pausa ni se guarda la partida local, y la CPU queda apagada."
+  ]
+ },
+ {
+  "v": "0.64.1 BETA",
+  "d": "04-11-2026",
+  "items": [
+   "Fuera los cuadritos amarillos de nivel sobre los edificios. El nivel se va a leer en la forma de cada edificio, según el atlas."
+  ]
+ },
+ {
+  "v": "0.64.0 BETA",
+  "d": "04-11-2026",
+  "items": [
+   "Torreta a ⚡250 (cada torreta extra sigue sumando ⚡75).",
+   "Con la base en nivel 3, las torretas ganan radar: una antena giratoria en las humanas y dos antenas de luz en la Flor Lanzadora. El radar marca en el mapa de navegación el movimiento enemigo a 7 casillas, incluso bajo la niebla, pero no da visión: solo ves que algo se mueve, no qué es."
+  ]
+ },
+ {
+  "v": "0.63.1 BETA",
+  "d": "04-11-2026",
+  "items": [
+   "Cámara de seguimiento: si tocas el botón Dropper mientras tus Droper están en vuelo, la cámara sigue a la nave (y si cae, la sigue hasta el suelo). Tócalo otra vez para pasar al siguiente Droper en vuelo. Arrastrar el mapa o el mapa de navegación suelta la cámara.",
+   "Mapa de navegación: tus Droper muestran su ruta con línea punteada hasta el punto de desembarco y la marca del destino; de vuelta, la ruta a su torre."
+  ]
+ },
+ {
+  "v": "0.63.0 BETA",
+  "d": "04-11-2026",
+  "items": [
+   "El Droper se puede derribar. Mientras vuela o está posado en el punto de desembarco, los antiaéreos, Centinelas, Torretas, Centros de Control y cualquier tropa que dispare al aire le pegan. Tiene 550 de vida; El Relevo, 900 por su blindaje.",
+   "Al caer gira con humo y estalla en el suelo. Si iba cargado, los soldados saltan uno por uno y llegan heridos. El Cuartel recibe un Droper nuevo a los 25 s, que llega volando a la torre.",
+   "El Droper muestra su barra de vida cuando lo dañan.",
+   "Visión: el Droper revela el terreno a su alrededor mientras vuela. El Droper rival solo se ve si está dentro de tu visión.",
+   "Mapa de navegación: los Droper aparecen como un rombo del color de su bando (el rival, solo dentro de tu visión)."
+  ]
+ },
+ {
+  "v": "0.62.0 BETA",
+  "d": "04-11-2026",
+  "items": [
+   "Nueva línea visual de la interfaz: malla técnica de fondo en los menús, viñeta, línea de escaneo, paneles de cristal esmerilado y títulos y botones en Montserrat. La barra de batalla mantiene su letra compacta.",
+   "Configuración → Tema de interfaz: elige entre Especie (los colores de tu especie, como hasta ahora) y 14 paletas: Petróleo, Grafito, Arena, Neón, Óxido, Magenta, Ártico, Índigo, Olivo, Esmeralda, Alquimia, Cobalto, Cobre y Ámbar.",
+   "Paneles, cartas, bordes y botones toman los tonos de la paleta elegida. Las tropas y edificios siguen con el color de tu bando."
+  ]
+ },
+ {
+  "v": "0.61.1 BETA",
+  "d": "04-11-2026",
+  "items": [
+   "Dropper: con varios Cuarteles puedes lanzar otro Droper aunque uno ya esté en vuelo (antes había que esperar a que volviera). El botón muestra cuántos Droper tienes listos en sus torres y cuántos en total (uno por Cuartel), y al tocarlo sin ninguno disponible te dice cuántos van en vuelo o llegando.",
+   "Torretas más caras y sin avance de territorio: la primera cuesta ⚡200 y cada torreta extra que tengas suma ⚡75. Tardan 9 s en construirse (antes 6) y ya no amplían tu territorio, así que no se pueden encadenar hacia la base rival."
+  ]
+ },
+ {
+  "v": "0.61.0 BETA",
+  "d": "04-11-2026",
+  "items": [
+   "Nivel de base: al mejorar el Centro de Control sube toda la base de una vez, con precio fijo (⚡650 a nivel 2 y ⚡1150 a nivel 3). Los edificios nuevos nacen en el nivel de la base. Reparar sigue siendo por edificio.",
+   "Población por nivel de base: 10 tropas en nivel 1, 15 en nivel 2 y 20 en nivel 3.",
+   "Cuando la base sube a nivel 2, el Droper llega volando a la torre de cada Cuartel, aterriza en el montacargas y baja a su hangar.",
+   "Nivel 3: llega El Relevo, el Droper pesado. Cuatro góndolas basculantes en las puntas de sus dos pares de alas, cabina cian encendida, blindaje lateral con franjas del bando y rampa trasera.",
+   "Misil: uno por partida. Después de lanzarlo el poder queda como usado.",
+   "Silo del misil junto al Centro de Control nivel 3: se arma a la vista según la carga. Primero se marcan las compuertas, después se abren con vapor y luces de trabajo, el misil sube por el riel, se pone vertical mientras se retiran los brazos de servicio y al 100 % queda con la punta encendida. Micelian: una vaina crece en una copa del Árbol de la Vida, se hincha, madura, late y suelta luciérnagas.",
+   "Intercepción: si un misil cae a 6 casillas o menos de un Centro de Control cuyo misil está cargado, ese misil sale solo a interceptarlo. Ambos se gastan y solo cae la metralla. Fuera de ese radio el golpe entra entero.",
+   "En el mapa de navegación se ve tu radio de intercepción cuando tu misil supera el 75 %; el del rival se ve mientras el Satélite revela el mapa.",
+   "La CPU sube la base completa, respeta la población y no lanza su misil dentro de tu radio si puedes interceptarlo."
+  ]
+ },
+ {
+  "v": "0.60.2 BETA",
+  "d": "02-11-2026",
+  "items": [
+   "Dropper pasivo: siempre listo, no se carga. Mientras el Droper está en misión el anillo muestra el avance del viaje (ida, desembarco y vuelta) y queda listo al aterrizar en su torre."
+  ]
+ },
+ {
+  "v": "0.60.1 BETA",
+  "d": "02-11-2026",
+  "items": [
+   "Barra reordenada: las 8 cartas a la izquierda (4 × 2), los 4 poderes en círculo a la derecha (2 × 2) y los edificios abajo."
+  ]
+ },
+ {
+  "v": "0.60.0 BETA",
+  "d": "02-11-2026",
+  "items": [
+   "Mazo de 8 cartas y 4 poderes por especie sobre la fila de edificios.",
+   "Poderes nuevos que se activan al mejorar el Centro de Control: Satélite (nivel 1), Dropper (nivel 2, con un Cuartel nivel 2) y Misil (nivel 3). Extracción aparece bloqueada hasta definirla. Salen Cañones y Patrulla.",
+   "Los poderes cargan solos con el tiempo. El control de zonas queda apagado por ahora.",
+   "Misil: quita 2500 de vida al Centro de Control (la mitad de uno nivel 3).",
+   "Cuartel humano rediseñado: tres volúmenes de hormigón de búnker sobre sus tres casillas, portón con cortina, antena satelital, paneles solares con atiesadores y, desde nivel 2, torre de mando con compuerta y luces de aterrizaje. Cambia de forma en cada nivel.",
+   "Dropper: toca el poder y luego el mapa. La nave sube por el montacargas de la torre, despliega alas, levanta polvo, embarca hasta 4 pelotones de infantería que estén junto al Cuartel, vuela alto y los deja en el punto; luego vuelve a su torre. Un Dropper por Cuartel.",
+   "Al elegir un poder, un trazo de luz recorre el borde del botón."
+  ]
+ },
+ {
+  "v": "0.58.1 BETA",
+  "d": "02-11-2026",
+  "items": [
+   "Titán: los pies quedaban hundidos bajo el hexágono del bando; ahora pisa sobre él."
+  ]
+ },
+ {
+  "v": "0.58.0 BETA",
+  "d": "02-11-2026",
+  "items": [
+   "Torreta humana rediseñada: cabezal blindado que gira sobre un pedestal hexagonal, con cañón doble al centro, dos módulos lanzadores a los costados y sensor con antena. Dispara alternando los cañones desde la punta, con retroceso en cada tiro.",
+   "Micelian tiene su propia torreta: la Flor Lanzadora. Una flor gruesa sobre un tallo con hojas en la base, que gira hacia el enemigo, se infla y escupe semillas brillantes en parábola. El daño entra cuando la semilla cae y revienta en una nube de esporas."
+  ]
+ },
+ {
+  "v": "0.57.0 BETA",
+  "d": "02-11-2026",
+  "items": [
+   "Arrebatar animado: la Avispa o la Libélula baja en picada, agarra al soldado y se lo lleva volando en giros y zigzag de insecto, ganando altura. Lo suelta en pleno vuelo: el soldado sale lanzado con la inercia del vuelo, cae en otra casilla, rueda y se desliza al tocar suelo.",
+   "Después de soltarlo, el volador vuelve solo a su casilla.",
+   "Avispa, Libélula y Polilla vuelan alto y bajan cuando atacan, así se nota cuando entran en picada."
+  ]
+ },
+ {
+  "v": "0.56.0 BETA",
+  "d": "02-11-2026",
+  "items": [
+   "Micelian, Avispa y Libélula: nueva habilidad Arrebatar. Bajan en picada sobre la infantería enemiga cercana, la levantan por los aires y la sueltan desde lo alto: el golpe al caer hace mucho daño y levanta polvo. Recarga de 9 s por unidad.",
+   "Avispa, Libélula y Polilla son esquivas: al atacar o moverse esquivan el 35 % de los disparos (15 % quietas) y vuelan un 35 % más rápido cuando tienen un objetivo."
+  ]
+ },
+ {
+  "v": "0.55.0 BETA",
+  "d": "02-11-2026",
+  "items": [
+   "Disparos congruentes: cada tiro sale desde el modelo que se ve (no desde el centro de la casilla), a la altura de su arma: cañón del tanque, brazos del Mecha, hombros del Titán. En los pelotones dispara un soldado a la vez desde su propia posición y el impacto cae sobre un miembro del pelotón enemigo.",
+   "Torretas, torsos y cabezas apuntan a donde está el enemigo en pantalla.",
+   "Polvo al avanzar: Titanes, Guardianes, Ancianos, tanques y demás unidades grandes levantan nubes de polvo con el color del suelo del planeta; vehículos y monturas un rastro más liviano, y la infantería pequeñas pisadas de polvo."
+  ]
+ },
+ {
+  "v": "0.54.0 BETA",
+  "d": "02-11-2026",
+  "items": [
+   "Tropas más juntas: las unidades vecinas del mismo bando se arriman entre sí y el grupo se ve compacto en vez de una tropa por casilla al centro.",
+   "La infantería quieta deja pasar: los vehículos y unidades más rápidas cruzan por su casilla sin detenerse y los soldados se hacen a un lado dentro del mismo hexágono.",
+   "Giros naturales: vehículos y aéreos trazan curvas suaves en las esquinas y orientan el cuerpo según su avance, con giro limitado según su tamaño. Se acabaron los saltitos de casilla en casilla.",
+   "Terreno: las unidades muy grandes y las monturas pueden subir y bajar un nivel de terreno sin rampa (más lento); las montañas siguen siendo infranqueables. Humanos: Titán, Mecha y Buggy. Micelian: Escarabajo, Ciempiés, Bombardero, Guardián, Arbóreo y Anciano."
+  ]
+ },
+ {
+  "v": "0.53.0 BETA",
+  "d": "02-11-2026",
+  "items": [
+   "Recorrido de entrada: al empezar una partida nueva, la cámara vuela como dron sobre el mapa. Parte alta sobre la base enemiga, baja en picada, pasa rasante sobre la zona en disputa y los campos de energía girando y ladeándose en las curvas, y aterriza en tu Centro de Control en la vista de juego. Ahí arranca la partida.",
+   "Durante el recorrido: franjas de cine con el nombre del planeta y el enfrentamiento de especies. Toca la pantalla para saltarlo."
+  ]
+ },
+ {
+  "v": "0.52.2 BETA",
+  "d": "02-11-2026",
+  "items": [
+   "Al cambiar de especie todo se actualiza al tiro: color de tus tropas en la vista previa de Tropas, cartas y la escena de fondo.",
+   "Continuar indica con qué especie quedó guardada la partida (la partida guardada sigue con su especie; para jugar con la nueva, usa Nueva).",
+   "Inicio sin traslapes en pantallas bajas: los cuadros de Jugador, Especie y Tropas se achican según el alto, y el planeta y su ficha ocupan su propio espacio sin quedar debajo de los botones ni del texto."
+  ]
+ },
+ {
+  "v": "0.52.1 BETA",
+  "d": "02-11-2026",
+  "items": [
+   "Inicio: con una partida guardada, Continuar y Nueva partida quedan como dos botones grandes lado a lado."
+  ]
+ },
+ {
+  "v": "0.52.0 BETA",
+  "d": "02-11-2026",
+  "items": [
+   "La CPU aprende de ti entre partidas: recuerda qué tipo de tropas usas más (infantería, blindados, aéreos o mechas), si atacas temprano y con qué doctrina te ha ganado o perdido. Arma su mazo para contrarrestarte y prueba doctrinas nuevas cuando una le falla.",
+   "Dentro de la partida mide cuánto rinde cada una de sus tropas contra ti y deja de producir las que mueren sin hacer daño.",
+   "Más expansiva: pone Extractores en todos los campos de su territorio, sale antes a tomar campos nuevos (desde 3 tropas) y, si atacas temprano, levanta una torreta al inicio.",
+   "No se rinde: si pierdes una oleada suya, se rearma con oleadas más cortas y baja la exigencia para volver a atacar; si no ataca en mucho rato, hostiga tu economía; y si rechaza tu ataque, contraataca de inmediato.",
+   "Al final de la partida verás qué aprendió la CPU de tu forma de jugar."
+  ]
+ },
+ {
+  "v": "0.51.0 BETA",
+  "d": "02-11-2026",
+  "items": [
+   "Versus: elige la especie rival de la CPU (Humanos, Micelian o Azar). La CPU usa los edificios y tropas de esa especie, con su color propio si contrasta con el tuyo.",
+   "La partida guardada recuerda la especie rival."
+  ]
+ },
+ {
+  "v": "0.50.0 BETA",
+  "d": "02-11-2026",
+  "items": [
+   "Micelian vuelve a sus colores originales (sombreros violeta, luces turquesa) con la franja del bando.",
+   "Para que las tropas no se pierdan en ningún terreno: luz de contorno en el borde de tropas y edificios que despega su silueta del suelo, y sombra de contacto oscura bajo cada tropa además del hexágono del bando.",
+   "Movimiento orgánico: las tropas ya no avanzan en fila perfecta. Cada una se desvía un poco de la ruta, tiene su propio ritmo (±8 % de velocidad) y en reposo no queda clavada al centro de la casilla.",
+   "Pelotones sin formación rígida: cada soldado o fungi parte en una posición distinta y al correr se adelanta, se atrasa y se abre por su cuenta, con su propio tranco."
+  ]
+ },
+ {
+  "v": "0.49.1 BETA",
+  "d": "02-11-2026",
+  "items": [
+   "Las tropas se distinguen mejor del terreno, sobre todo Micelian en su propio planeta: cada tropa lleva bajo sus pies un hexágono del color de su bando (en los aéreos, como sombra en el suelo).",
+   "Micelian: sombreros, caparazones y luces de las tropas toman el color de tu bando en vez del violeta y turquesa del planeta."
+  ]
+ },
+ {
+  "v": "0.49.0 BETA",
+  "d": "01-11-2026",
+  "items": [
+   "Micelian tiene sus propias 13 tropas con modelo y carta: Brotes, Esporero, Enredador y Sembrador (infantería fungi de la Seta Madre); Escarabajo, Ciempiés y Bombardero (bichos montados por fungi de la Colmena); Libélula, Avispa y Polilla (voladores con jinete del Nido Alado); Guardián, Arbóreo y Anciano (seres árbol de la Arboleda).",
+   "Cada especie tiene su propio mazo guardado: al cambiar de especie cambian las cartas disponibles y el mazo armado. La Escuadra solo muestra las tropas de tu especie.",
+   "Por ahora cada tropa Micelian usa las estadísticas de su equivalente humano."
+  ]
+ },
+ {
+  "v": "0.48.0 BETA",
+  "d": "01-11-2026",
+  "items": [
+   "Edificios Micelian: Seta Madre (reemplaza al Cuartel: hongo gigante con láminas que brillan, hongos menores y esporas flotando), Colmena (reemplaza a la Fábrica: montículo de quitina en hexágonos escalonados con celdas encendidas), Nido Alado (reemplaza al Helipuerto: rama curva con un panal colgante y hojas de aterrizaje) y Arboleda (reemplaza al Lab: tres árboles antiguos que se inclinan sobre un corazón de luz que gira; uno de ellos abre los ojos).",
+   "Los edificios Micelian laten con su luz y la plataforma pasa a tierra orgánica."
+  ]
+ },
+ {
+  "v": "0.47.1 BETA",
+  "d": "01-11-2026",
+  "items": [
+   "Árbol de la Vida más compacto: tronco a la vista y tres copas separadas sobre ramas, con lianas de luz en cada una.",
+   "Luciérnagas: los árboles Micelian sueltan partículas de luz que giran alrededor y parpadean."
+  ]
+ },
+ {
+  "v": "0.47.0 BETA",
+  "d": "01-11-2026",
+  "items": [
+   "Micelian: el Centro de Control es ahora el Árbol de la Vida, un árbol gigante que ocupa sus 7 casillas: raíces enormes que se abren sobre el terreno, tronco trenzado, ramas que se extienden y una copa luminosa con lianas de luz colgando que respira y se mece.",
+   "Sus misiles salen desde la copa y los drones kamikaze desde las raíces."
+  ]
+ },
+ {
+  "v": "0.46.0 BETA",
+  "d": "01-11-2026",
+  "items": [
+   "Las tropas de tierra ya no caminan sobre los campos de energía: los rodean. El mapa se valida para que todo siga conectado.",
+   "El edificio de energía cambia según tu especie: los Humanos construyen un Reactor (núcleo de energía que late dentro de una cápsula, anillos que giran y pilones del color del bando) y los Micelian un Árbol de Luz (tronco retorcido, raíces que abrazan el cristal y copa que brilla y respira).",
+   "Las demás especies usan el Reactor mientras se diseña su propio edificio."
+  ]
+ },
+ {
+  "v": "0.45.0 BETA",
+  "d": "01-11-2026",
+  "items": [
+   "Continuar partida: la batalla se guarda sola cada pocos segundos y al salir. Si cierras y vuelves (o vas al menú), en el inicio aparece CONTINUAR con el mundo y el tiempo de la partida.",
+   "Se guardan el mapa, edificios (con su nivel y obra en curso), tropas, energía, zonas, poderes, niebla explorada, campos de energía y el plan de la CPU.",
+   "Al terminar una partida o empezar una nueva, el guardado anterior se borra."
+  ]
+ },
+ {
+  "v": "0.44.0 BETA",
+  "d": "01-11-2026",
+  "items": [
+   "Toda la interfaz toma la paleta de tu especie y su planeta: menús, botones, tarjetas, barra de juego y resaltados cambian al elegir otra especie.",
+   "Tus tropas y edificios usan el color de tu especie; la CPU toma automáticamente el color que más contrasta (preparado para partidas espejo y 2v2).",
+   "Perfil: elige el color preferido de tus tropas o déjalo en automático (color de la especie).",
+   "Por ahora todas las especies usan las mismas unidades."
+  ]
+ },
+ {
+  "v": "0.43.0 BETA",
+  "d": "01-11-2026",
+  "items": [
+   "Planetas del inicio generados para cada mundo, con celdas hexagonales: cada uno tiene su propia proporción de tierra y líquido, sus montañas y su relieve.",
+   "Kepler-442b: océanos, ríos, bosques de pinos y cumbres nevadas. LP 791-18 d: volcanes con cráteres encendidos, ríos y mares de lava, sin árboles. LHS 1140 b: hielo casi total con un solo océano circular en la cara que mira a su estrella y pinos solo en su orilla.",
+   "Kepler-186f: hongos que brillan sobre musgo violeta. TRAPPIST-1e: salares rosados y cristales. Proxima b: cara diurna quemada con pozas rojas y cara nocturna congelada. TOI-700 d: mesetas planas con antenas. Teegarden b: altiplanos blancos con agujas doradas y muchas nubes.",
+   "Nubes propias de cada mundo (ceniza, tormentas rojas, nubes doradas). El inicio carga mucho más rápido."
+  ]
+ },
+ {
+  "v": "0.42.0 BETA",
+  "d": "01-11-2026",
+  "items": [
+   "Nuevo inicio: el planeta de tu especie gira en 3D en el centro, con su atmósfera del color de la especie.",
+   "A la izquierda: tu perfil de jugador, el emblema de tu especie (tócalo para elegir entre las 8 tarjetas) y Tropas para armar tu mazo.",
+   "Abajo, tres botones grandes: Batalla, Amigos y Configuración. Modo Historia y Ayuda pasan a Configuración.",
+   "Cada mundo tiene su propia paleta: océanos de lava en LP 791-18 d, nieve en LHS 1140 b, selva violeta en Kepler-186f, cristal rosa en TRAPPIST-1e y más.",
+   "Perfil: elige tu nombre de jugador."
+  ]
+ },
+ {
+  "v": "0.41.0 BETA",
+  "d": "01-11-2026",
+  "items": [
+   "Nuevo menú principal con mapa estelar 3D: la Tierra al centro y los 8 mundos de origen de cada especie, todos exoplanetas reales en la zona habitable de su estrella, ubicados según su dirección real en el cielo.",
+   "Arrastra para girar el mapa y toca un mundo para ver su distancia, su estrella, su especie y su terreno; si ya tiene mapa, puedes jugar ahí directo.",
+   "Los planetas jugables pasan a sus nombres reales: Kepler-442b (Humanos), LP 791-18 d (Dracos), LHS 1140 b (Ferox) y Kepler-186f (Micelian).",
+   "Botones del menú en grilla de dos columnas."
+  ]
+ },
+ {
+  "v": "0.40.4 BETA",
+  "d": "01-11-2026",
+  "items": [
+   "Pantalla Especies rediseñada: panel de 8 tarjetas con el emblema y el nombre de cada especie, sin textos."
+  ]
+ },
+ {
+  "v": "0.40.3 BETA",
+  "d": "01-11-2026",
+  "items": [
+   "Nueva ficha de Crystal en Especies: colosos de cristal arcano cuyo brillo rosa es la última advertencia antes de que todo reviente."
+  ]
+ },
+ {
+  "v": "0.40.2 BETA",
+  "d": "01-11-2026",
+  "items": [
+   "Nueva especie en la pantalla Especies: Ferox, tribus de felinos, caninos y ursinos. Rasgo Manada: más fuertes mientras más juntos pelean.",
+   "La pantalla Especies indica cuáles forman el trío de lanzamiento: Humanos, Micelian y Crystal."
+  ]
+ },
+ {
+  "v": "0.40.1 BETA",
+  "d": "01-11-2026",
+  "items": [
+   "La especie planta/insecto pasa a llamarse Micelian: una red micelial consciente que conecta toda la vida, con plantas e insectos como sus cuerpos.",
+   "Su rasgo es Enraizar: los enemigos vencidos quedan cubiertos de micelio y atrapados en el mapa, estorbando el paso. Edificio insignia: Corazón Micelial."
+  ]
+ },
+ {
+  "v": "0.40.0 BETA",
+  "d": "01-11-2026",
+  "items": [
+   "TÁCTICA BETA: cuatro planetas, cada uno con su propio mapa. Verdea (templado, ríos y bosques), Kharon (volcánico, ríos de lava y más relieve), Nivalis (glacial, planicies nevadas y lagos de deshielo) y Xenthe (selva alienígena con hongos gigantes y pozas bioluminiscentes).",
+   "Cada planeta cambia la generación del mapa (relieve, lagos, cantidad de obstáculos), los colores, la luz, el cielo, la vegetación, el líquido (agua, lava o pozas que brillan), las cascadas y las partículas del ambiente (polen, brasas, nieve o esporas).",
+   "Elige el planeta en Versus o déjalo al azar.",
+   "Vida en el mapa: cada planeta tiene su fauna (ciervos, salamandras de fuego, mamuts lanudos o reptadores) y sus aves. Huyen de las tropas y de las explosiones; las bandadas se dispersan cuando estalla algo cerca.",
+   "Aldeas nativas: dos por lado, con casas según el planeta (cabañas, domos mineros, iglús o vainas). Sus habitantes salen a caminar, corren a esconderse cuando llega el combate y las casas se queman si les cae una explosión. Las aldeas bloquean el paso.",
+   "Daños animados en edificios y vehículos: chispas y sacudón con cada impacto, humo al perder vida y fuego con chispas cuando están graves.",
+   "Destrucción: los edificios se derrumban hundiéndose con polvo y escombros que quedan humeando; los vehículos quedan como chatarra calcinada que arde un rato, y los aéreos caen girando con estela de humo antes de estrellarse.",
+   "Nueva pantalla Especies con las siete especies del universo TÁCTICA: Humanos (jugable), Crystal, Micelian, Demonios, Netlink, Ángeles y Dracos.",
+   "El IA Lab pasa a llamarse Lab."
+  ]
+ },
+ {
+  "v": "0.33.1",
+  "d": "01-11-2026",
+  "items": [
+   "Lanzacohetes: lleva el tubo siempre al hombro (al correr y en reposo), sin atravesar la cabeza."
+  ]
+ },
+ {
+  "v": "0.33.0",
+  "d": "01-11-2026",
+  "items": [
+   "El arma va en las manos: los brazos se resuelven solos para que la mano derecha quede en la empuñadura y la izquierda en el guardamanos, en cualquier pose.",
+   "Al apuntar, el arma sube a la altura del hombro y apunta al objetivo junto con el torso, con retroceso en cada disparo.",
+   "Al correr, el arma va cruzada de lado con el cañón hacia abajo; quietos, la llevan baja en alerta."
+  ]
+ },
+ {
+  "v": "0.32.4",
+  "d": "01-11-2026",
+  "items": [
+   "Infantería al apuntar: la cadera gira hacia el objetivo y los hombros siguen con un poco más de giro.",
+   "Mano derecha al gatillo con el codo doblado y mano izquierda extendida por delante para sostener el arma."
+  ]
+ },
+ {
+  "v": "0.32.3",
+  "d": "01-11-2026",
+  "items": [
+   "Corrige un error al mover mechas con la nueva pose de la infantería."
+  ]
+ },
+ {
+  "v": "0.32.2",
+  "d": "01-11-2026",
+  "items": [
+   "Infantería con codos y rodillas: al correr las piernas flexionan la rodilla al adelantarse y los brazos doblan el codo; al apuntar el codo queda casi recto.",
+   "Balanceo del cuerpo al correr: leve inclinación hacia adelante y vaivén de hombros.",
+   "La vista previa del mazo usa la misma pose."
+  ]
+ },
+ {
+  "v": "0.32.1",
+  "d": "01-11-2026",
+  "items": [
+   "Escuadra: la vista previa de cada tropa muestra las mismas animaciones que en partida: marcha y apuntado alternados, ruedas, rotores, patas, torreta y estanques."
+  ]
+ },
+ {
+  "v": "0.32.0",
+  "d": "01-11-2026",
+  "items": [
+   "Infantería más esbelta: hombros, pecho y cintura más angostos, cabeza más chica y piernas y brazos cilíndricos con afinado. Menos aspecto de bloques.",
+   "Botas redondeadas y guantes más chicos."
+  ]
+ },
+ {
+  "v": "0.31.0",
+  "d": "01-11-2026",
+  "items": [
+   "Infantería rehecha con mejores proporciones: pelvis, abdomen y pecho separados, cuello, rodilleras, botas, hombreras y guantes; chaleco táctico con cargadores.",
+   "Cada soldado sale distinto: complexión, estatura, hombre o mujer, tono de piel, barba o pelo tomado, y variaciones de uniforme dentro de la paleta de su tipo.",
+   "Equipo al azar: casco, casco con antiparras, gorra o sombrero de selva; mochila, morral grande, radio con antena o nada; fusil o ametralladora liviana, con o sin mira.",
+   "Cada tipo con su sello: Granadero con canana cruzada, Lanzallamas con máscara antigás y estanques, Lanzacohetes con cohetes de repuesto, Francotirador con traje ghillie y observador con radio, Comando con boina, pasamontañas o visión nocturna, y Androides con tres tipos de cabeza.",
+   "Brazalete y franja del color del bando en todos para reconocerlos de lejos.",
+   "Soldados un 17 % más grandes y formaciones un poco más abiertas. Pelotones de 5 Fusileros, 4 Granaderos, 3 Lanzacohetes, Lanzallamas y Androides, y 2 en Comandos y Francotirador."
+  ]
+ },
+ {
+  "v": "0.30.0",
+  "d": "01-11-2026",
+  "items": [
+   "Fantasma de colocación: al elegir un edificio, las casillas que va a ocupar se marcan en el terreno (1 casilla, o las 3 del triángulo en Cuartel, Fábrica, Helipuerto e IA Lab). Del color de tu bando si se puede construir ahí; en rojo si no.",
+   "Arrastrar para ubicar: con la carta elegida, arrastra el dedo sobre el mapa y el fantasma sigue tu posición; al soltar se construye ahí. También puedes arrastrar la carta directo desde la barra al mapa.",
+   "En pantalla táctil el fantasma va un poco más arriba del dedo para que no lo tape. Tocar sin arrastrar sigue construyendo al tiro, y en computador el fantasma sigue al mouse."
+  ]
+ },
+ {
+  "v": "0.29.1",
+  "d": "01-11-2026",
+  "items": [
+   "Fábrica reorganizada en armonía hexagonal: el hexágono se divide en tres rombos que se leen como un cubo en perspectiva. Atrás, la nave principal de dos pisos con pilares en sus vértices; a la izquierda, el ala baja con el portón en la cara frontal; a la derecha, la planta de proceso.",
+   "Estanques y chimeneas de sección hexagonal, zócalo hexagonal escalonado, cañerías que unen los estanques con la nave y rejillas alineadas con los bordes del rombo."
+  ]
+ },
+ {
+  "v": "0.29.0",
+  "d": "01-11-2026",
+  "items": [
+   "Fábrica rediseñada: zócalo cuadrado, nave principal de dos pisos con pilares, faja intermedia y parapeto, y ala baja con portón enrollable y rejillas de ventilación en el techo.",
+   "Dos estanques del color del bando adosados al frente de la nave con chimeneas cónicas escalonadas encima, cilindros de gas junto al portón y equipos en el costado.",
+   "Techo plano con cajas de equipos (sin cubierta a dos aguas). La construcción animada la levanta por etapas: zócalo, ala, nave, estanques y chimeneas."
+  ]
+ },
+ {
+  "v": "0.28.0",
+  "d": "01-11-2026",
+  "items": [
+   "Construcción animada: cada edificio se levanta por etapas, como en obra. Primero la fundación, después la estructura y los volúmenes, y al final techos, antenas y detalles; cada pieza emerge del suelo con un pequeño rebote al asentarse.",
+   "Durante la obra se ve un andamio holográfico del color del bando con la silueta del edificio y un anillo de escaneo que sube con el avance; chispas de soldadura en el nivel que se está armando y polvo cuando asienta la fundación.",
+   "Al terminar, destello y nube de polvo alrededor de la base y el andamio se desvanece. Compuertas y antenas se activan recién con el edificio listo."
+  ]
+ },
+ {
+  "v": "0.27.0",
+  "d": "01-11-2026",
+  "items": [
+   "CPU táctica: arma su mazo para contrarrestar el tuyo (anti-infantería, antiblindaje, antiaéreo o anti-Mecha según tus cartas) y adopta la doctrina que mejor calza: Asalto, Blindado, Aéreo, Robótico o Económico.",
+   "Ataca cuando su ejército supera al tuyo en valor y se retira si la pelea se pone en contra; si tu base tiene defensas, divide el ataque y entra por un flanco.",
+   "Prioriza objetivos: concentra fuego en lo que está dañado y en lo que contrarresta, y golpea Extractores sin defensa cuando no puede ir al Centro de Control.",
+   "Usa sus cartas de apoyo con intención: Cañones y Misil sobre quien ataca su base, Patrulla a la zona disputada, y prioriza capturar la zona del Misil.",
+   "Pelea desde terreno alto al reunirse y retira tropas muy dañadas para repararlas.",
+   "Reparación en campo para ambos bandos: las tropas junto a su Centro de Control recuperan vida."
+  ]
+ },
+ {
+  "v": "0.26.3",
+  "d": "01-11-2026",
+  "items": [
+   "Altura más notoria: los niveles están un 50 % más separados y el terreno se aclara más con la altura y se oscurece en los valles.",
+   "Pendientes más amables: hay hasta 16 rampas extra por lado para cruzar entre niveles, se recorren casi a velocidad normal y las rutas las aprovechan sin rodeos."
+  ]
+ },
+ {
+  "v": "0.26.2",
+  "d": "01-11-2026",
+  "items": [
+   "Más contraste en los desniveles que no se pueden cruzar: paredes de acantilado más oscuras, borde superior iluminado y sombra al pie.",
+   "En el mapa de navegación los acantilados se marcan con una línea oscura gruesa; las pendientes quedan sin marca."
+  ]
+ },
+ {
+  "v": "0.26.1",
+  "d": "01-11-2026",
+  "items": [
+   "Rutas más inteligentes: búsqueda de caminos más rápida y sin límite práctico en el mapa grande, con preferencia por trayectos rectos y menos zigzag.",
+   "Si el destino no tiene camino, la tropa llega al punto alcanzable más cercano en vez de quedarse quieta.",
+   "Las tropas propias quietas se corren para dejar pasar, y las pendientes cuestan un poco más al planificar."
+  ]
+ },
+ {
+  "v": "0.26.0",
+  "d": "01-11-2026",
+  "items": [
+   "Cuartel, Fábrica, Helipuerto e IA Lab ocupan 3 casillas en triángulo y se ven más grandes. Necesitan 3 casillas planas y libres de tu territorio al mismo nivel.",
+   "El alcance, el daño de área y los ataques cuentan desde cualquiera de sus 3 casillas.",
+   "Corrige un error que podía detener la partida cuando una tropa perseguía a un enemigo sin camino posible."
+  ]
+ },
+ {
+  "v": "0.25.1",
+  "d": "01-11-2026",
+  "items": [
+   "Mazo de 6 cartas (antes 10). Los mazos guardados se recortan a las primeras 6."
+  ]
+ },
+ {
+  "v": "0.25.0",
+  "d": "01-11-2026",
+  "items": [
+   "Escuadra: con el mazo lleno, Agregar activa el reemplazo y los espacios del mazo brillan; tocas el que quieres cambiar.",
+   "Arrastrar y soltar: lleva una carta disponible a un espacio del mazo para ponerla o reemplazar, o arrastra entre espacios del mazo para reordenarlos."
+  ]
+ },
+ {
+  "v": "0.24.4",
+  "d": "01-11-2026",
+  "items": [
+   "Todas las unidades se mueven un 44 % más rápido.",
+   "La infantería va en pelotón: Fusileros 5 soldados, Granaderos 4, Lanzacohetes, Lanzallamas y Androides 3, Comandos 2 y Francotirador con observador."
+  ]
+ },
+ {
+  "v": "0.24.3",
+  "d": "01-11-2026",
+  "items": [
+   "Terreno llano y valles más suaves: transiciones más amplias y redondeadas en las zonas bajas, junto al agua y en pendientes; menos ondulación en el suelo plano.",
+   "Textura del césped con menos contraste para que los llanos se vean más parejos."
+  ]
+ },
+ {
+  "v": "0.24.2",
+  "d": "01-11-2026",
+  "items": [
+   "Corrige la CPU que no jugaba en el mapa apaisado: el campo de energía de la base quedaba fuera de su territorio y se quedaba esperando para construir el Extractor.",
+   "Cada base tiene ahora 3 cristales de energía a 2 casillas del Centro de Control.",
+   "Si la CPU no puede construir un Extractor, sigue con el Cuartel y el resto de su plan."
+  ]
+ },
+ {
+  "v": "0.24.1",
+  "d": "01-11-2026",
+  "items": [
+   "Titán más caro: ⚡520.",
+   "CPU en Difícil más dura: ×1,75 de energía, piensa el doble de rápido, despliega más tropas por turno, ataca antes (1:40) con oleadas desde 5 tropas y usa sus apoyos con menos espera.",
+   "La CPU contrarresta a los Mechas y Titanes con Mechas, Lanzamisiles y Lanzacohetes; en Difícil también usa Titán, Centinela y Lanzamisiles."
+  ]
+ },
+ {
+  "v": "0.24.0",
+  "d": "01-11-2026",
+  "items": [
+   "Mapa más grande y apaisado: 46×26 casillas, que llena todo el ancho del mapa de navegación. Las bases quedan en esquinas opuestas.",
+   "Seis campos de energía por lado: base, dos expansiones cercanas y tres en el medio del mapa.",
+   "Zoom alejado ampliado y búsqueda de caminos más larga para el mapa nuevo."
+  ]
+ },
+ {
+  "v": "0.23.0",
+  "d": "01-11-2026",
+  "items": [
+   "Acabado hardsurface en todas las unidades y edificios: una textura liviana compartida (128 px) con biseles pintados en luz y sombra, juntas de paneles, pernos, rejillas y rayones, que da relieve sin agregar polígonos.",
+   "Titán rediseñado: torso con visor y reactor, hombreras blindadas con lanzamisiles montados sobre soportes, y brazos con ametralladoras rotativas (giran al disparar); piernas de articulación invertida."
+  ]
+ },
+ {
+  "v": "0.22.0",
+  "d": "01-11-2026",
+  "items": [
+   "Titán con dos armas que disparan a la vez: lanzador vertical de misiles en el lomo (alcance 4, fuerte contra vehículos y aéreos; las compuertas se abren y sale humo al disparar) y ametralladora rotativa bajo el visor (fuerte contra infantería, los cañones giran al disparar).",
+   "Nueva clase Mecha (Mecha y Titán): el Mecha hace daño doble a esa clase, así que el Titán es débil contra los Mechas.",
+   "Titán más robusto: piernas, rodillas y pies más gruesos, blindaje lateral y 1500 de vida."
+  ]
+ },
+ {
+  "v": "0.21.2",
+  "d": "31-10-2026",
+  "items": [
+   "Nuevo diseño del Titán: coloso de asalto bípedo con piernas de articulación invertida, casco blindado con visor y reactor trasero, y torreta superior con cañón de riel que gira para apuntar.",
+   "Caminar pesado: cadera y rodilla animadas por separado y balanceo del casco al dar cada paso."
+  ]
+ },
+ {
+  "v": "0.21.1",
+  "d": "31-10-2026",
+  "items": [
+   "Todas las unidades con más polígonos: piezas con bordes biselados en lugar de cubos lisos, cilindros, esferas y conos mucho más redondos.",
+   "Infantería y androides con más detalle: botas, rodilleras, guantes, hombreras, mochila y cinturón."
+  ]
+ },
+ {
+  "v": "0.21.0",
+  "d": "31-10-2026",
+  "items": [
+   "El Bombardero pasa a ser un VTOL de transporte armado: fuselaje con cabina, alas cortas y cuatro turbinas basculantes que giran y se inclinan hacia adelante al avanzar y se ponen verticales al flotar.",
+   "Modelos rehechos: Tanque con orugas, ruedas de rodaje, casco inclinado y cañón con freno de boca; Buggy con jaula antivuelco y ametralladora; Antiaéreo y Artillería sobre orugas (radar giratorio en el Antiaéreo); Dron cuadricóptero; Helicóptero con cabina, patines y rotor de cola; Caza con ala delta, doble deriva y llama de motor.",
+   "Animaciones: rotores y hélices que giran, rotor de cola, radar, llama del motor, suspensión y cabeceo de vehículos en marcha y respiración de la infantería en reposo."
+  ]
+ },
+ {
+  "v": "0.20.0",
+  "d": "31-10-2026",
+  "items": [
+   "Nuevo edificio IA Lab con domo, anillo giratorio y compuerta: produce Androide, Araña (escala acantilados), Mecha, Centinela (láser antiaéreo de alcance 4), Enjambre de microdrones y Titán.",
+   "Seis tropas por edificio: se suman Lanzallamas y Comando (Cuartel), Blindado y Lanzamisiles (Fábrica), Cañonera y Avión espía con visión 8 (Helipuerto). 24 tropas en total.",
+   "Mazo de 10 cartas; la barra de partida pasa a 6 columnas.",
+   "Los poderes de apoyo van arriba en fila horizontal, cada uno con su círculo de carga.",
+   "Dinámica: retroceso del arma y fogonazo al disparar, ruedas que giran, patas animadas de la Araña y Mechas que caminan.",
+   "La CPU también construye el IA Lab y usa androides y mechas."
+  ]
+ },
+ {
+  "v": "0.19.1",
+  "d": "31-10-2026",
+  "items": [
+   "Onda expansiva afinada: solo sale volando la unidad que muere por la explosión; las que sobreviven ya no saltan ni quedan aturdidas.",
+   "En escuadras, cada soldado sale volando por separado, con su propia trayectoria.",
+   "Vuelo más corto y menos exagerado."
+  ]
+ },
+ {
+  "v": "0.19.0",
+  "d": "31-10-2026",
+  "items": [
+   "Bordes del relieve sin delineado: el césped se oscurece hacia el borde y aparece una franja de grava y vegetación al filo; al pie de las laderas se acumula pedregal.",
+   "Flores silvestres de varios colores en los prados.",
+   "Agua con corriente visible que fluye por los ríos.",
+   "Cascadas: en el nacimiento de cada río, desde un farallón en el borde del mapa, y donde el agua toca terreno alto; con espuma en la caída.",
+   "Fauna: bandadas de aves que planean sobre el mapa, ciervos que pastan y huyen de las tropas, y peces que saltan en ríos y lagos."
+  ]
+ },
+ {
+  "v": "0.18.0",
+  "d": "31-10-2026",
+  "items": [
+   "Onda expansiva: las explosiones lanzan por los aires a las unidades livianas (infantería, Buggy y Dron) según su cercanía al impacto.",
+   "Si sobreviven, dan una vuelta en el aire, caen y quedan aturdidas un momento; si mueren, el cuerpo sale volando y rebota antes de desaparecer.",
+   "Generan onda expansiva: Cañones, Misil, drones kamikaze, misiles del Centro de Control y los disparos de Tanque, Artillería, Granadero, Lanzacohetes y Bombardero."
+  ]
+ },
+ {
+  "v": "0.17.0",
+  "d": "31-10-2026",
+  "items": [
+   "Las tropas mantienen su posición: recuerdan el punto donde las dejaste.",
+   "Solo persiguen a enemigos muy cercanos (su alcance +1) y nunca se alejan más de 2 casillas de su puesto; después vuelven solas.",
+   "Detener fija el puesto donde la tropa está ahora."
+  ]
+ },
+ {
+  "v": "0.16.0",
+  "d": "31-10-2026",
+  "items": [
+   "Al tocar un edificio se muestra su alcance en el terreno con un contorno rojo suave (alcance de disparo en torres y Centro de Control, territorio en los demás).",
+   "Reparar: recupera la vida perdida en unos segundos por un costo según el daño.",
+   "Mejorar hasta nivel 3: +25 % de vida por nivel; torres y Centro +20 % de daño por nivel y +1 de alcance en nivel 3; Extractor +50 % de energía por nivel; Cuartel, Fábrica y Helipuerto despliegan tropas con +15 % de vida por nivel.",
+   "Indicadores de nivel sobre el edificio. La CPU también mejora sus edificios."
+  ]
+ },
+ {
+  "v": "0.15.0",
+  "d": "31-10-2026",
+  "items": [
+   "Rutas con paradas: con tropas elegidas, el primer toque traza la ruta y cada toque siguiente agrega otra parada; las tropas las recorren en orden.",
+   "La ruta se dibuja sobre el terreno con una línea y anillos en cada parada (la final en verde).",
+   "Elegir otras tropas, atacar o Detener empieza una ruta nueva."
+  ]
+ },
+ {
+  "v": "0.14.0",
+  "d": "31-10-2026",
+  "items": [
+   "Las órdenes de movimiento se obedecen siempre, aunque la unidad esté combatiendo.",
+   "Disparo en movimiento: las unidades siguen atacando a lo que tengan a su alcance mientras avanzan.",
+   "Infantería con piernas, brazos, casco y arma propia (fusil, lanzacohetes, rifle de precisión, lanzagranadas).",
+   "Animaciones: correr con braceo y rebote, apuntar con los brazos al disparar y girar el torso hacia el objetivo."
+  ]
+ },
+ {
+  "v": "0.13.0",
+  "d": "31-10-2026",
+  "items": [
+   "Despliegue desde el edificio: al jugar una tropa se abre la compuerta del edificio productor más cercano (persiana del Cuartel, portón de la Fábrica, luces de la plataforma del Helipuerto), la unidad sale de ahí y avanza sola hasta el punto elegido.",
+   "Las tropas se pueden enviar a cualquier casilla de tu territorio, no solo junto al edificio."
+  ]
+ },
+ {
+  "v": "0.12.3",
+  "d": "31-10-2026",
+  "items": [
+   "Con tropas elegidas, tocar una casilla vecina da la orden de moverse (ya no elige la tropa de al lado).",
+   "Con una carta activa, tocar una casilla válida despliega ahí aunque haya una tropa cerca.",
+   "El radio invisible amplio se usa solo para elegir cuando no hay nada seleccionado."
+  ]
+ },
+ {
+  "v": "0.12.2",
+  "d": "31-10-2026",
+  "items": [
+   "Corrige la selección: tocar una tropa propia la elige aunque haya una carta de tropa activa (la carta se suelta).",
+   "La tropa más cercana al toque tiene prioridad sobre edificios grandes como el Centro de Control."
+  ]
+ },
+ {
+  "v": "0.12.1",
+  "d": "31-10-2026",
+  "items": [
+   "Radio de selección invisible ampliado: la zona táctil de cada unidad es el doble de grande y, si el toque cae cerca, se elige la unidad más próxima (hasta ~52 px en pantalla).",
+   "Al tocar donde se cruzan una unidad y un edificio, se prioriza la unidad."
+  ]
+ },
+ {
+  "v": "0.12.0",
+  "d": "31-10-2026",
+  "items": [
+   "Selección inmediata: tocar una unidad la elige al tiro; tocarla otra vez elige todas las de su tipo.",
+   "Panel contextual en la barra inferior: con tropas elegidas muestra grupos por tipo, vida total, Todas mis tropas y Detener; con un edificio muestra su vida, estado y las tropas del mazo que despliega.",
+   "La ✕ cierra el panel y vuelven las cartas de construcción.",
+   "Se quitan los botones TODOS y ✕ que tapaban la vista.",
+   "Tocar un edificio enemigo visible muestra su información."
+  ]
+ },
+ {
+  "v": "0.11.0",
+  "d": "31-10-2026",
+  "items": [
+   "Nueva tarjeta de Escuadra: arriba la unidad en 3D girando, sus estadísticas en barras y sus habilidades; abajo los edificios a la izquierda y sus cartas disponibles a la derecha; al medio los 6 espacios del mazo.",
+   "El mazo admite hasta 6 cartas de cualquier edificio, incluso todas del mismo.",
+   "En partida las 6 cartas del mazo ocupan los espacios sobre los edificios y se activan al construir el edificio que las produce."
+  ]
+ },
+ {
+  "v": "0.10.0",
+  "d": "31-10-2026",
+  "items": [
+   "Menú principal: Modo Historia / Eventos, Escuadra, Versus y Configuración.",
+   "Escuadra: arma tu mazo de hasta 6 tropas (máximo 2 por edificio); se guarda en el dispositivo.",
+   "12 tropas, 4 por edificio. Nuevas: Francotirador y Granadero (Cuartel), Artillería (Fábrica), Helicóptero, Caza y Bombardero (Helipuerto). El Antiaéreo pasa a la Fábrica.",
+   "Versus Local contra la CPU; Online aparece apagado.",
+   "Configuración: dificultad de la CPU, calidad gráfica y grilla visible u oculta.",
+   "Menú de pausa con continuar, reiniciar y volver al menú principal.",
+   "Modo Historia y Eventos con capítulos marcados como próximamente."
+  ]
+ },
+ {
+  "v": "0.9.1",
+  "d": "31-10-2026",
+  "items": [
+   "Nombre provisional del proyecto: TÁCTICA."
+  ]
+ },
+ {
+  "v": "0.9.0",
+  "d": "31-10-2026",
+  "items": [
+   "Cada bando parte solo con su Centro de Control (se retiran los Bastiones). Destruirlo gana la partida.",
+   "Nuevo Centro de Control hexagonal escalonado que ocupa sus 7 casillas: antena satelital que gira lentamente, mástil de comunicaciones, 3 silos de misiles y 3 hangares de drones.",
+   "Defensa del Centro de Control: misiles visibles en arco (alcance 4) y despliegue de 3 drones kamikaze al recibir daño (recarga 12 s).",
+   "A los 3 minutos la energía generada se duplica (cuenta regresiva en pantalla).",
+   "Marcador superior con la vida de ambos Centros de Control."
+  ]
+ },
+ {
+  "v": "0.8.1",
+  "d": "31-10-2026",
+  "items": [
+   "Plataformas construidas con bordes rectos y biselados en las zonas de control y en las bases (Cuartel General y Bastiones), con contorno del color del dueño.",
+   "Terreno natural más definido: acantilados más marcados con borde orgánico y laderas suaves solo en pendientes y orillas.",
+   "Mayor resolución del relieve."
+  ]
+ },
+ {
+  "v": "0.8.0",
+  "d": "31-10-2026",
+  "items": [
+   "Terreno orgánico: superficie continua y suavizada en lugar de columnas, con bordes ondulados y laderas en vez de aristas.",
+   "Los acantilados se ven como laderas empinadas con estratos; las mesetas conservan su centro plano.",
+   "Ríos y lagos con superficie de agua propia y orillas naturales.",
+   "La grilla hexagonal se mantiene como líneas finas sobre el relieve; las reglas de casillas no cambian.",
+   "Transiciones suaves entre césped, tierra y roca."
+  ]
+ },
+ {
+  "v": "0.7.0",
+  "d": "31-10-2026",
+  "items": [
+   "Texturas procedurales continuas sobre todo el mapa: hojas de pasto en el césped, manchas y gravilla en la tierra, grietas celulares en la roca.",
+   "Agua con reflejos cáusticos animados.",
+   "Paredes de acantilado con estratos geológicos.",
+   "Variación de tono a gran escala para romper la repetición."
+  ]
+ },
+ {
+  "v": "0.6.0",
+  "d": "31-10-2026",
+  "items": [
+   "Terreno con superficies: césped, tierra y roca, repartidas por zonas y por altura (las cumbres son rocosas, las orillas verdes).",
+   "Vegetación y detalle: matas de pasto, arbustos, árboles, juncos en las orillas, piedras y guijarros.",
+   "Paredes de los acantilados sombreadas para leer mejor cada nivel.",
+   "Iluminación más cálida."
+  ]
+ },
+ {
+  "v": "0.5.0",
+  "d": "31-10-2026",
+  "items": [
+   "Acantilados: las tropas de tierra solo cambian de nivel por pendientes (rampas visibles, se recorren más lento). Los desniveles de 2 o más solo los cruza el aire.",
+   "Relieve más amplio con mesetas y valles.",
+   "Ríos: uno por lado, simétricos, con lago y un vado para cruzar. Bloquean a las tropas de tierra y bajan el terreno a su alrededor.",
+   "Ventaja de altura: más visión hacia abajo (hasta +2), +1 de alcance y +25 % de daño al disparar hacia abajo, −25 % al disparar hacia arriba.",
+   "Desde abajo no se ve lo que hay sobre una meseta salvo la casilla vecina.",
+   "No se construye en pendientes ni en agua."
+  ]
+ },
+ {
+  "v": "0.4.0",
+  "d": "31-10-2026",
+  "items": [
+   "Relieve en 5 niveles de altura sólidos, generado de forma simétrica para ambos lados.",
+   "Curvas de nivel en los bordes de cada terraza, en la vista 3D y en el mapa.",
+   "Bases y Bastiones sobre terreno plano. Las zonas laterales están en el nivel 3 y la central en el nivel 4.",
+   "Tropas, edificios, disparos y efectos se apoyan en la altura de su casilla. Las casillas se eligen tocando directamente el terreno."
+  ]
+ },
+ {
+  "v": "0.3.4",
+  "d": "31-10-2026",
+  "items": [
+   "El área de operación activa (casillas válidas al elegir una carta) ahora es una capa translúcida con solo su contorno exterior delineado en grueso, en la vista 3D y en el mapa."
+  ]
+ },
+ {
+  "v": "0.3.3",
+  "d": "31-10-2026",
+  "items": [
+   "Los edificios enemigos solo aparecen cuando los descubres con tus tropas o edificios (incluidos los que se construyen en zonas ya exploradas).",
+   "El recurso ahora es energía ⚡: cristales eléctricos amarillos en el mapa y costos con ⚡."
+  ]
+ },
+ {
+  "v": "0.3.2",
+  "d": "31-10-2026",
+  "items": [
+   "El Buggy lleva un cañón giratorio en el techo.",
+   "Buggy, Tanque y Antiaéreo giran solo la torreta para apuntar: el chasis sigue la dirección de marcha y la torreta vuelve al frente al dejar de disparar."
+  ]
+ },
+ {
+  "v": "0.3.1",
+  "d": "31-10-2026",
+  "items": [
+   "El Misil ahora se ve caer desde el cielo con estela de humo.",
+   "Los Cañones disparan proyectiles visibles que caen en arco antes de cada impacto."
+  ]
+ },
+ {
+  "v": "0.3.0",
+  "d": "31-10-2026",
+  "items": [
+   "Niebla de guerra: solo ves lo que tus tropas y edificios alcanzan a ver. Lo explorado queda en penumbra.",
+   "El Satélite ahora revela el mapa completo durante 15 segundos.",
+   "Mapa más grande: 20×32 casillas, con un cuarto campo de Litio por lado.",
+   "Tropas un 20 % más lentas."
+  ]
+ },
+ {
+  "v": "0.2.1",
+  "d": "31-10-2026",
+  "items": [
+   "Torretas, Bastiones y Cuartel General también atacan edificios enemigos a su alcance (priorizan tropas)."
+  ]
+ },
+ {
+  "v": "0.2.0",
+  "d": "31-10-2026",
+  "items": [
+   "Victoria por 3 puntos clave: Cuartel General y dos Bastiones con defensa propia.",
+   "Cartas en grilla: los edificios abajo, cada uno en su columna, y encima sus tropas, que aparecen al construirlo.",
+   "Nuevo edificio Helipuerto: produce el Dron y el Antiaéreo.",
+   "Edificios más grandes que llenan su casilla hexagonal.",
+   "La CPU apunta a tus puntos clave."
+  ]
+ },
+ {
+  "v": "0.1.0",
+  "d": "30-10-2026",
+  "items": [
+   "Primera versión jugable: melé 1v1 contra CPU en mapa hexagonal.",
+   "Pantalla vertical: vista isométrica en perspectiva arriba y mapa de navegación arrastrable abajo.",
+   "Cartas de construcción: Cuartel, Fábrica, Extractor y Torreta.",
+   "Cartas de tropas: Fusilero, Lanzacohetes, Buggy, Tanque, Antiaéreo y Dron, con ventajas entre ellas.",
+   "Recurso Litio con campos en la base, expansiones y territorio por cercanía.",
+   "Zonas de control con cartas de apoyo: Cañones, Patrulla, Misil y Satélite.",
+   "Victoria al destruir todos los edificios rivales."
+  ]
+ }
+]

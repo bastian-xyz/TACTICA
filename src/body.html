@@ -1,0 +1,137 @@
+<div id="app">
+  <div id="view">
+    <div class="hud">
+      <div><div id="res"><span style="color:#ffd84d">⚡</span><b>0</b> <span id="inc"></span></div><div id="zones"></div><div id="keys"></div></div>
+      <div style="text-align:right"><button class="btn" id="mbtn">☰</button><div id="clock" style="margin-top:4px;font-size:13px;color:#9fb0bf"></div><div id="ucount" style="font-size:12px;color:#9fb0bf"></div></div>
+    </div>
+    <div id="toast"></div><div id="mpBan"></div><div id="dropIcons"></div><div id="dropBar"></div><div id="selBox"></div><div id="kbHint">WASD / flechas: cámara · rueda: zoom · 1–8: tropas · Z X C V B N: edificios<br>Espacio: ir a la base · clic derecho: soltar selección · Esc: pausa</div>
+    <div id="intro"><div class="lb t"></div><div class="lb b"></div><div class="tt" id="introT"></div><div class="sk">TOCA PARA SALTAR ›</div></div>
+  </div>
+  <div id="bar"><div id="pwr"></div><div id="cards"></div><div id="ctx" class="hide"></div></div>
+  <div id="mapwrap"><canvas id="mini"></canvas><div id="mapLbl">MAPA · ARRASTRA PARA NAVEGAR</div></div>
+</div>
+
+<div class="ov scr" id="scrMain"><div class="home">
+  <canvas id="homePlanet"></canvas>
+  <div class="hlogo">TÁCTICA<small>BETA · <span id="ver"></span></small></div>
+  <div class="hworld" id="hWorld"></div>
+  <div class="hcol">
+   <button class="hsq hu" data-go="scrUser"><svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="7"/><path d="M6 36c1-8 7-12 14-12s13 4 14 12"/></svg><span id="hUserName">JUGADOR</span></button>
+   <button class="hsq hs" id="hSpecies"><svg viewBox="0 0 40 40" id="hSpGlyph"></svg><span id="hSpName">ESPECIE</span></button>
+   <button class="hsq ht" data-go="scrDeck"><svg viewBox="0 0 40 40"><rect x="7" y="9" width="17" height="23" rx="2"/><rect x="16" y="6" width="17" height="23" rx="2"/></svg><span>TROPAS</span><small id="deckCount"></small></button>
+  </div>
+  <div class="hbig">
+   <div class="hrow"><button class="hbar" id="hBattle">BATALLA<small id="hBattleSub">Contra la CPU · elige el mundo</small></button><button class="hbar hnew" id="hNew">NUEVA<small>Mundo y rival</small></button></div>
+   <button class="hbar" data-go="scrFriends">AMIGOS<small>1v1 en tiempo real (beta)</small></button>
+   <button class="hbar" data-go="scrSettings">CONFIGURACIÓN<small>Ajustes · historia · ayuda</small></button>
+  </div>
+</div></div>
+<div class="ov scr hide" id="scrUser"><div class="panel menu">
+  <h2>PERFIL</h2>
+  <div class="srow"><b>NOMBRE DE JUGADOR</b><input id="uName" maxlength="16" class="uin" placeholder="Tu nombre"></div>
+  <div class="srow"><b>COLOR DE TUS TROPAS</b><div class="swc" id="uCol"></div></div>
+  <p class="mu" style="margin-top:10px">Si el rival usa un color parecido, la CPU cambia al suyo para que siempre se distingan. Pronto: nivel, estadísticas, colección de figuras y skins.</p>
+  <button class="mbtn ghost" data-go="scrMain">‹ GUARDAR Y VOLVER</button>
+</div></div>
+<div class="ov scr hide" id="scrFriends"><div class="panel menu">
+  <h2>AMIGO · 1v1</h2>
+  <p id="mpSt" class="mu"></p>
+  <button class="mbtn" id="mpCreate">CREAR PARTIDA<small>En el planeta elegido en Versus · tu amigo la ve en su lista</small></button>
+  <div id="mpWait" class="hide"><div class="mu">Partida abierta · código</div><div id="mpCode"></div><div id="mpLinkRow"><input id="mpLink" readonly><button class="mbtn" id="mpCopy">COPIAR ENLACE</button></div><div class="mu">Esperando a tu amigo…</div><button class="mbtn ghost" id="mpCancel">CANCELAR</button></div>
+  <h3 id="mpListH">PARTIDAS ABIERTAS</h3>
+  <div id="mpList"></div>
+  <div id="mpJoinRow"><input id="mpIn" maxlength="4" placeholder="CÓDIGO" autocomplete="off"><button class="mbtn" id="mpJoinB">UNIRSE</button></div>
+  <p class="mu" id="mpNote" style="font-size:12px;margin-top:10px"></p>
+  <button class="mbtn ghost" id="mpBack">‹ VOLVER</button>
+</div></div>
+  <div id="wInfo" class="winfo"></div>
+  <div class="mgrid">
+   <button class="mbtn" data-go="scrVersus">VERSUS<small>Local · Amigo</small></button>
+   <button class="mbtn" data-go="scrDeck">ESCUADRA<small>Mazo · <span id="deckCount"></span></small></button>
+   <button class="mbtn" data-go="scrSpecies">ESPECIES<small>8 especies</small></button>
+   <button class="mbtn" data-go="scrStory">HISTORIA<small>Próximamente</small></button>
+   <button class="mbtn" data-go="scrSettings">AJUSTES<small>Dificultad y gráficos</small></button>
+   <button class="mbtn" data-go="scrHelp">AYUDA<small>Cómo jugar · cambios</small></button>
+  </div>
+</div></div>
+<div class="ov scr hide" id="scrStory"><div class="panel menu">
+  <h2>MODO HISTORIA</h2>
+  <h3>CAMPAÑA</h3>
+  <div class="item lock"><b>Cap. 1 · Operación Litoral</b><span>Próximamente</span></div>
+  <div class="item lock"><b>Cap. 2 · Valle Partido</b><span>Próximamente</span></div>
+  <div class="item lock"><b>Cap. 3 · Ojo en el Cielo</b><span>Próximamente</span></div>
+  <h3>EVENTOS</h3>
+  <div class="item lock"><b>Asedio de energía</b><span>Próximamente</span></div>
+  <div class="item lock"><b>Solo aire</b><span>Próximamente</span></div>
+  <button class="mbtn ghost" data-go="scrMain">‹ VOLVER</button>
+</div></div>
+<div class="ov scr hide" id="scrDeck"><div class="panel menu deckp">
+  <div class="dhead"><h2>ESCUADRA</h2><span id="deckN" class="mu"></span></div>
+  <div class="dtop">
+    <canvas id="pvCanvas"></canvas>
+    <div><div class="dname" id="dName"></div><div class="mu" id="dSub"></div><div id="dStats"></div></div>
+  </div>
+  <div id="dAbil" class="dabil"></div>
+  <button class="mbtn dtog" id="dToggle"></button>
+  <div class="dsec">MAZO</div>
+  <div class="dslots" id="dSlots"></div>
+  <div id="deckMsg" class="msg"></div>
+  <div class="dlist"><div class="dtabs" id="dTabs"></div><div class="dcards" id="dCards"></div></div>
+  <button class="mbtn ghost" data-go="scrMain">‹ GUARDAR Y VOLVER</button>
+</div></div>
+<div class="ov scr hide" id="scrVersus"><div class="panel menu">
+  <h2>VERSUS</h2>
+  <h3>PLANETA</h3>
+  <div id="plGrid" class="plgrid"></div>
+  <p id="plDesc" class="mu" style="margin-top:6px;min-height:34px"></p>
+  <h3>RIVAL</h3>
+  <div id="foeGrid" class="plgrid foeg"></div>
+  <button class="mbtn" id="bLocal" style="margin-top:8px">LOCAL<small>Contra la CPU · dificultad <span id="vsDiff"></span></small></button>
+  <button class="mbtn" data-go="scrFriends">AMIGO (BETA)<small>1v1 en tiempo real con alguien que tenga este enlace</small></button>
+  <button class="mbtn ghost" data-go="scrMain">‹ VOLVER</button>
+</div></div>
+<div class="ov scr hide" id="scrSpecies"><div class="panel menu">
+  <h2>ELIGE TU ESPECIE</h2>
+  <div id="spList" class="spgrid"></div>
+  <button class="mbtn ghost" data-go="scrMain">‹ VOLVER</button>
+</div></div>
+<div class="ov scr hide" id="scrSettings"><div class="panel menu">
+  <h2>CONFIGURACIÓN</h2>
+  <div id="setRows"></div>
+  <div class="row"><button class="btn" data-go="scrStory">MODO HISTORIA</button><button class="btn" data-go="scrHelp">AYUDA · CAMBIOS</button></div>
+  <button class="mbtn ghost" data-go="scrMain">‹ VOLVER</button>
+</div></div>
+<div class="ov scr hide" id="scrHelp"><div class="panel">
+  <h2>CÓMO SE JUEGA</h2>
+  <ul>
+    <li>Cada lado parte solo con su <b>Centro de Control</b>. Ganas al destruir el del rival.</li>
+    <li>A los <b>3 minutos</b> la energía que generas se duplica.</li>
+    <li>El Centro de Control se defiende con misiles a 4 casillas y, cuando lo atacan, suelta drones kamikaze (cada 12 s).</li>
+    <li>Toca una carta y luego una casilla iluminada para construir o desplegar. Las tropas salen por la compuerta del edificio más cercano y caminan solas hasta el punto.</li>
+    <li>Los edificios están en la fila de abajo y encima van las 6 cartas de tu mazo. Cada carta se activa cuando construyes su edificio: Cuartel → infantería, Fábrica → vehículos, Helipuerto → aire, Lab → androides y robots. Los poderes de apoyo van arriba, con su círculo de carga.</li>
+    <li>Los edificios van en tu territorio: cerca de tus edificios o al lado de tus tropas. El Extractor va sobre los campos de energía ⚡.</li>
+    <li>Toca una unidad y queda seleccionada al instante; tócala de nuevo para elegir todas las de su tipo. Luego toca una casilla para moverlas o un enemigo para atacarlo.</li>
+    <li>Con tropas elegidas, cada toque en el terreno es una orden nueva: recalculan el camino desde donde están.</li><li>El Centro de Control humano se mueve igual: tócalo y luego toca el destino. Avanza muy lento y sube cualquier desnivel.</li>
+    <li>Con algo seleccionado, la barra de abajo muestra su panel (unidades o edificio). La ✕ lo cierra y vuelven las cartas de construcción.</li>
+    <li>Las <b>zonas de control</b> cargan cartas de apoyo: Oeste → Cañones, Este → Patrulla, Centro → Misil. Con 2 o más zonas, el Satélite, que revela todo el mapa por 15 s.</li>
+    <li>Hay niebla de guerra: solo ves lo que alcanzan tus tropas y edificios.</li>
+    <li><b>Altura:</b> los niveles se cruzan solo por pendientes. Desde arriba ves más, disparas más lejos y haces más daño. Los ríos solo se cruzan por el vado.</li>
+    <li>Arrastra el mapa de abajo para mover la cámara. Arriba puedes arrastrar y pellizcar para hacer zoom.</li>
+    <li><b>En computador</b> el juego pasa solo a modo horizontal: la vista ocupa toda la ventana, con el mapa abajo a la izquierda y las cartas abajo a la derecha. Cámara con WASD o flechas, zoom con la rueda, 1–8 eligen tropas, Z X C V B N los edificios, Espacio vuelve a la base, clic derecho suelta la selección y Esc pausa. Se cambia en Configuración → Pantalla.</li>
+  </ul>
+  <h3>REGISTRO DE CAMBIOS</h3>
+  <div id="changelog" class="cl"></div>
+  <div class="row"><button class="btn" data-go="scrMain">‹ VOLVER</button></div>
+</div></div>
+<div class="ov hide" id="ovPause"><div class="panel menu">
+  <h2>PAUSA</h2>
+  <button class="mbtn" id="bResume">CONTINUAR</button>
+  <button class="mbtn" id="bRestart">REINICIAR PARTIDA</button>
+  <button class="mbtn ghost" id="bToMenu">MENÚ PRINCIPAL</button>
+</div></div>
+<div class="ov hide" id="ovEnd"><div class="panel" style="text-align:center">
+  <div class="big" id="endT">VICTORIA</div>
+  <p id="endS" style="margin-top:6px"></p>
+  <div class="row"><button class="btn" id="bagain">REVANCHA</button><button class="btn" id="bEndMenu">MENÚ</button></div>
+</div></div>
+<div id="updBan" class="hide"></div>

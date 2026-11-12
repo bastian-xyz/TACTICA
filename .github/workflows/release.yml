@@ -1,0 +1,21 @@
+name: Versión
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node tools/build.mjs
+      - run: |
+          cp dist/web/index.html tactica-web.html
+          cp dist/claude/index.html tactica-claude.html
+          gh release create "$GITHUB_REF_NAME" tactica-web.html tactica-claude.html --title "TÁCTICA $GITHUB_REF_NAME" --notes "Ver CHANGELOG.md"
+        env:
+          GH_TOKEN: ${{ github.token }}

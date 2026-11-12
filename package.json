@@ -1,0 +1,11 @@
+{
+  "name": "tactica",
+  "version": "0.72.0",
+  "private": true,
+  "description": "TÁCTICA — RTS táctico multiplataforma (celular y computador)",
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "bump": "node tools/bump.mjs"
+  }
+}
