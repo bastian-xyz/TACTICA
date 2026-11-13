@@ -273,3 +273,13 @@ body:not(.wide) #ctx .cchips button{flex:0 0 auto;padding:4px 7px;font-size:11.5
 body:not(.wide) #ctx .cact{margin-top:5px}body:not(.wide) #ctx .cact button{padding:7px;font-size:12px}
 .card .pb{position:absolute;top:2px;right:3px;min-width:13px;height:13px;border-radius:7px;background:#0b1016cc;border:1px solid var(--k-ln2);color:#c9d6e1;font:700 9px/12px Rajdhani,sans-serif;text-align:center}
 body.wide .card[data-k] .pb{top:auto;bottom:2px}
+/* v0.78: dos filas siempre abiertas (tropas y base) y mapa expandible */
+body:not(.wide) #bar{height:118px}
+#cards.cmp{grid-template-columns:repeat(8,minmax(0,1fr));grid-template-rows:52px 52px}
+#bar:not(.base) #cards.cmp .bmode{display:flex}
+#cards.cmp .card.bld,#cards.cmp .upc{background:linear-gradient(var(--k-pn3),var(--k-pn2))}
+#mmE{position:absolute;top:2px;left:2px;width:24px;height:22px;border:0;border-radius:5px;background:#0b1016b3;color:#c9d6e1;z-index:2;padding:3px}
+#mmE svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+body.wide #mmE{display:none}
+body.mmbig:not(.wide){--mmw:calc(100vw - 16px)}
+body.mmbig:not(.wide) #mapwrap{z-index:8}

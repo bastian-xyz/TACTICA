@@ -7,9 +7,6 @@ function buildCompact(){
  cardsEl.classList.add('cmp');
  const P=$('pwr');P.innerHTML='';P.style.display='';for(const k in pwrEls)delete pwrEls[k];
  for(const k of['sat','dropper','missile']){const b=mkPw(k);P.appendChild(b);pwrEls[k]=b}
- baseBtn=document.createElement('div');baseBtn.className='card basebt';
- baseBtn.innerHTML='<svg viewBox="0 0 24 24">'+ICON.barracks+'</svg><span class="ct">BASE</span>';
- baseBtn.addEventListener('click',()=>{if(!started||over)return;baseMode(!BASEM)});cardsEl.appendChild(baseBtn);
  const deck=DECK.filter(k=>UD[k]).slice(0,8);
  for(const k of deck){const el=mkCard(k);el.classList.add('unit');cardsEl.appendChild(el);cardEls[k]=el}
  for(let n=deck.length;n<8;n++){const sl=document.createElement('div');sl.className='slot unit';cardsEl.appendChild(sl)}
@@ -17,12 +14,11 @@ function buildCompact(){
  upCard=document.createElement('div');upCard.className='card bmode upc';
  upCard.innerHTML='<svg viewBox="0 0 24 24"><path d="M12 19V6M6 12l6-6 6 6"/><path d="M5 21h14"/></svg><span class="ct"></span>';
  upCard.addEventListener('click',()=>{if(!started||over)return;baseUp()});cardsEl.appendChild(upCard);
- const x=document.createElement('div');x.className='card bmode';x.innerHTML='<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>';
- x.addEventListener('click',()=>baseMode(false));cardsEl.appendChild(x);
+ const sl=document.createElement('div');sl.className='slot';cardsEl.appendChild(sl);
  $('bar').classList.toggle('base',BASEM);
 }
 function baseMode(on){
- if(isWide())on=false;BASEM=!!on;$('bar').classList.toggle('base',BASEM);
+ on=false;BASEM=false;$('bar').classList.toggle('base',BASEM);
  if(selCard&&((BASEM&&UD[selCard])||(!BASEM&&BD[selCard])))setCard(null);
  if(BASEM){sel.clear();selB=null;selFree=null;selDrop=null;dropBarSync();updSel()}
 }
@@ -41,6 +37,7 @@ function mmApply(){document.body.classList.toggle('mmoff',!MMON&&!isWide());if(M
 function mmSet(on,auto){MMON=!!on;if(!auto){mmAuto=0;CFG.mm=MMON?1:0;store.set('cfg',CFG)}mmApply()}
 $('mmX').addEventListener('click',e=>{e.stopPropagation();mmSet(false)});
 $('mmBtn').addEventListener('click',()=>mmSet(true));
+$('mmE').addEventListener('click',e=>{e.stopPropagation();document.body.classList.toggle('mmbig');mmAuto=0;requestAnimationFrame(()=>resizeMini())});
 // ---- aviso de ataque: flecha en el borde hacia donde te pegan, si no lo estás viendo ----
 const ALR={t:-1e9,x:0,z:0,bt:-1e9};const _av=new THREE.Vector3();
 function noteHit(e){if(!started||over||e.team!==0||e.dead)return;const p=entPos(e),now=performance.now();ALR.t=now;ALR.x=p.x;ALR.z=p.z;if(e.kind==='b')ALR.bt=now}
@@ -55,7 +52,7 @@ function uiTick(){
  A.classList.toggle('on',show);
  $('mmBtn').classList.toggle('alr',live&&!MMON&&now-ALR.t<3000);
  if(live&&!isWide()&&!MMON&&now-ALR.bt<400&&now-mmLastAuto>20000&&!selCard){mmLastAuto=now;mmAuto=now+4000;mmSet(true,true)}
- if(mmAuto&&now>mmAuto){mmAuto=0;mmSet(false,true)}
+ if(mmAuto&&now>mmAuto){mmAuto=0;if(!document.body.classList.contains('mmbig'))mmSet(false,true)}
 }
 // ---- gesto de volver (Android): cancelar → cerrar → pausa → continuar; en menús, pantalla anterior; solo en el inicio deja salir ----
 let bkArmed=false;
@@ -65,7 +62,8 @@ addEventListener('popstate',()=>{bkArmed=false;const o=ovOpen();
  if(started&&!over){
   if(INTRO)introEnd();
   else if(o){if(o.id==='ovPause')$('bResume').click()}
-  else if(selCard||sel.size||selB||selDrop||selFree||rovArm||BASEM){dropSel();baseMode(false)}
+  else if(document.body.classList.contains('mmbig')){document.body.classList.remove('mmbig');requestAnimationFrame(()=>resizeMini())}
+  else if(selCard||sel.size||selB||selDrop||selFree||rovArm){dropSel()}
   else $('mbtn').click();
   bkArm();return}
  if(o&&o.id!=='scrMain'&&o.id!=='ovEnd'){const g=o.querySelector('.mbtn.ghost,.btn[data-go="scrMain"]');if(g)g.click();else showScr('scrMain');bkArm()}

@@ -1,5 +1,9 @@
 # Registro de cambios
 
+## 0.78.0 BETA · 13-11-2026
+- Barra de abajo con las dos filas siempre abiertas: arriba las 8 tropas del mazo y abajo los edificios con la mejora de nivel de la base. Ya no hay botón BASE.
+- Mapa arriba con botón de expandir: lo agranda a todo el ancho y lo vuelve a achicar. El gesto de volver también lo achica.
+
 ## 0.77.0 BETA · 13-11-2026
 - Población por tamaño: cada carta ocupa 1, 2 o 3 de población (el número aparece en la esquina de la carta). Un Titán ya no ocupa lo mismo que un Fusilero.
 - Daño en área de verdad: Granadero (radio 1), Artillería, Lanzamisiles y VTOL (radio 1,5) dañan con la mitad del golpe a lo que rodea al objetivo.
