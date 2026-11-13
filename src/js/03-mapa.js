@@ -14,15 +14,24 @@ function genMap(seed){
   const cc=pick(t=>Math.abs(t.c-(W/2-0.5))+Math.abs(t.r-(H/2-0.5)));
   const mk=(type,cores)=>{const s=new Set();cores.forEach(ci=>{s.add(ci);tiles[ci].nb.forEach(n=>s.add(n))});const z={type,cores,tiles:[...s],own:-1,cap:0,mat:null,lmat:null};z.tiles.forEach(i=>{if(tiles[i].zone<0)tiles[i].zone=zones.length});zones.push(z)};
   mk('cannon',[wc.i]);mk('patrol',[mirror(wc.i)]);mk('missile',[cc.i,mirror(cc.i)]);
-  {const bl=[];const GP=PL.gen;for(let k=0;k<GP.blobs;k++){const bx=(R()*2-1)*CX,bz=(R()*2-1)*CZ,sg=GP.sg0+R()*GP.sgR,am=(R()<0.35?-1:1)*(0.7+R()*0.7);bl.push([bx,bz,sg,am],[-bx,-bz,sg,am])}
+  {const bl=[];const GP=PL.gen;for(let k=0;k<Math.round(GP.blobs*1.15);k++){const bx=(R()*2-1)*CX,bz=(R()*2-1)*CZ,sg=(GP.sg0+R()*GP.sgR)*1.6,am=(R()<0.35?-1:1)*(0.7+R()*0.7);bl.push([bx,bz,sg,am],[-bx,-bz,sg,am])}
    const f=tiles.map(t=>{let v=0;for(const[bx,bz,sg,am]of bl)v+=am*Math.exp(-((t.x-bx)**2+(t.z-bz)**2)/(sg*sg));return v});
-   const mn=Math.min(...f),mx=Math.max(...f);
-   tiles.forEach((t,i)=>{t.lv=clamp(Math.floor((f[i]-mn)/(mx-mn+1e-6)*5),0,4);t.ramp=false;t.rampMesh=null});
-   for(let it=0;it<GP.smooth;it++){const nl=tiles.map(t=>{const cnt=[0,0,0,0,0];cnt[t.lv]+=2;t.nb.forEach(n=>cnt[tiles[n].lv]++);let b=t.lv;for(let k=0;k<5;k++)if(cnt[k]>cnt[b])b=k;return b});tiles.forEach((t,i)=>t.lv=nl[i])}
+   // Niveles por proporción de área (no por altura pareja): los niveles 1 y 2 son las planicies anchas
+   // y el 0, 3 y 4 quedan como hondonadas, mesetas y cumbres que marcan el relieve.
+   {const Q=GP.q||[0.09,0.36,0.30,0.16,0.09],srt=[...f].sort((a,b)=>a-b),th=[];let acc=0;for(let k=0;k<4;k++){acc+=Q[k];th.push(srt[Math.min(srt.length-1,Math.floor(acc*srt.length))])}
+    tiles.forEach((t,i)=>{let l=0;while(l<4&&f[i]>=th[l])l++;t.lv=l;t.ramp=false;t.rampMesh=null})}
+   for(let it=0;it<GP.smooth+2;it++){const nl=tiles.map(t=>{const cnt=[0,0,0,0,0];cnt[t.lv]+=2;t.nb.forEach(n=>cnt[tiles[n].lv]++);let b=t.lv;for(let k=0;k<5;k++)if(cnt[k]>cnt[b])b=k;return b});tiles.forEach((t,i)=>t.lv=nl[i])}
+   // islas de nivel de menos de 12 casillas se funden con el nivel vecino dominante: terrazas limpias
+   for(let pass=0;pass<3;pass++){const seen=new Uint8Array(tiles.length);
+    for(const t0 of tiles){if(seen[t0.i])continue;const reg=[t0.i],cnt=[0,0,0,0,0];seen[t0.i]=1;
+     for(let k=0;k<reg.length;k++)for(const n of tiles[reg[k]].nb){if(tiles[n].lv===t0.lv){if(!seen[n]){seen[n]=1;reg.push(n)}}else cnt[tiles[n].lv]++}
+     if(reg.length<12){let b=-1;for(let k=0;k<5;k++)if(cnt[k]&&(b<0||cnt[k]>cnt[b]))b=k;if(b>=0)for(const i of reg)tiles[i].lv=b}}}
+   tiles.forEach(t=>{if(t.r>=H/2)tiles[mirror(t.i)].lv=t.lv});
    const flat=(c,r,lv)=>{for(const t of tiles)if(hd(t.i,c)<=r){t.lv=lv;tiles[mirror(t.i)].lv=lv}};
    flat(HQP,3,1);BASP.forEach(b=>flat(b,1,1));
    zones.forEach(z=>{const lv=z.type==='missile'?3:2;z.tiles.forEach(i=>{tiles[i].lv=lv;tiles[mirror(i)].lv=lv})});}
-  const LP=[[2,H-3],[3,H-3],[2,H-2],[14,H-3],[15,H-3],[15,H-4],[4,H-14],[5,H-14],[4,H-15],[19,H-11],[20,H-11],[19,H-12],[11,H-21],[12,H-21],[11,H-22],[29,H-5],[30,H-5],[29,H-4]];
+  const LP=[];{const sc=(a,k)=>Math.round(a*k),kx=W/46,kz=H/26; // grupos de 3 campos, ubicados en proporción al mapa (diseñados para 46 × 26)
+   for(const[c,d,sh]of[[2,3,[[0,0],[1,0],[0,1]]],[14,3,[[0,0],[1,0],[1,-1]]],[4,14,[[0,0],[1,0],[0,-1]]],[19,11,[[0,0],[1,0],[0,-1]]],[11,21,[[0,0],[1,0],[0,-1]]],[29,5,[[0,0],[1,0],[0,1]]],[24,18,[[0,0],[1,0],[0,-1]]]]){const c0=c<=2?c:sc(c,kx),r0=H-(d<=3?d:sc(d,kz));for(const[dc,dr]of sh)LP.push([c0+dc,r0+dr])}}
   {const near=tiles.filter(t=>hd(t.i,HQP)===2&&t.zone<0).sort((a,b)=>(a.c+(H-a.r))-(b.c+(H-b.r))).slice(0,3);for(const t of near)for(const i of[t.i,mirror(t.i)]){tiles[i].type='litio';tiles[i].amt=900}}
   for(const[c,r]of LP){const a=idx(c,r);for(const i of[a,mirror(a)]){const t=tiles[i];if(t.zone<0&&![HQP,HQC,...BASP,...BASC].includes(i)){t.type='litio';t.amt=900}}}
   const keyT=[HQP,HQC,...BASP,...BASC];
@@ -48,7 +57,8 @@ function genMap(seed){
   const setRock=i=>{for(const j of[i,mirror(i)])tiles[j].type='rock'};
   for(const t of tiles){
    if(t.r<H/2||!ok(t.i))continue;
-   if(R()<PL.gen.rocks){setRock(t.i);if(R()<PL.gen.rockPair){const n=t.nb[Math.floor(R()*t.nb.length)];if(ok(n))setRock(n)}}
+   if(R()<PL.gen.rocks*(t.lv>=3?1.7:t.lv===0?1:0.45)){setRock(t.i); // rocas sobre todo en mesetas y cumbres; las planicies quedan despejadas
+    if(R()<PL.gen.rockPair){const n=t.nb[Math.floor(R()*t.nb.length)];if(ok(n))setRock(n)}}
   }
   // ---- aldeas nativas: 2 casillas bloqueadas por aldea, simétricas
   VILS=[];
@@ -76,11 +86,11 @@ function genMap(seed){
    else break;
   }
   if(!okMap)continue;
-  for(let k=0;k<16;k++){
+  for(let k=0;k<26;k++){
    const c=[];for(const t of tiles){if(!goodRamp(t.i)||t.ramp)continue;if(t.nb.some(n=>walk(n)&&tiles[n].lv===t.lv+1))c.push(t.i)}
    if(c.length)setRamp(c[Math.floor(R()*c.length)]);
   }
-  {const bl=[];for(let k=0;k<9;k++){const bx=(R()*2-1)*CX,bz=(R()*2-1)*CZ,sg=2.5+R()*4,am=R()<0.5?-1:1;bl.push([bx,bz,sg,am],[-bx,-bz,sg,am])}
+  {const bl=[];for(let k=0;k<14;k++){const bx=(R()*2-1)*CX,bz=(R()*2-1)*CZ,sg=2.5+R()*4,am=R()<0.5?-1:1;bl.push([bx,bz,sg,am],[-bx,-bz,sg,am])}
    for(const t of tiles){let n=0;for(const[bx,bz,sg,am]of bl)n+=am*Math.exp(-((t.x-bx)**2+(t.z-bz)**2)/(sg*sg));
     const wet=t.nb.some(j=>tiles[j].type==='water'||tiles[j].type==='ford');
     t.surf=t.ramp?'dirt':wet?'grass':(t.lv>=4&&n>-0.2||(t.lv>=3&&n>0.55))?'stone':n<-0.35?'dirt':'grass';

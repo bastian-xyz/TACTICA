@@ -1,5 +1,12 @@
 # Registro de cambios
 
+## 0.73.0 BETA · 13-11-2026
+- Mapa más grande: pasa de 46 × 26 a 58 × 32 casillas (un 55 % más de terreno), con un grupo extra de campos de energía por lado y una aldea más.
+- Más planicies sin perder el relieve: los niveles 1 y 2 forman terrazas anchas para maniobrar, y las hondonadas, mesetas y cumbres quedan como accidentes que marcan el terreno. Las manchas chicas de desnivel se funden con la terraza vecina.
+- Las rocas se concentran en mesetas y cumbres; las planicies quedan despejadas.
+- Cada planeta conserva su carácter: LP 791-18 d con más cumbres, LHS 1140 b con las llanuras más amplias.
+- Las partidas guardadas en versiones anteriores no se pueden continuar porque el mapa cambió.
+
 ## 0.72.0 BETA · 12-11-2026
 - Modo horizontal para computador: en pantallas anchas la vista 3D ocupa toda la ventana, con el mapa de navegación flotando abajo a la izquierda y los poderes, las cartas y el panel de selección abajo a la derecha. En el celular en vertical todo sigue igual.
 - Inicio en horizontal: el planeta al centro, Jugador · Especie · Tropas a la izquierda y Batalla · Amigos · Configuración a la derecha.
