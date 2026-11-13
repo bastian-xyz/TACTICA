@@ -2,13 +2,14 @@
 const DROPS=[];
 const pwrHQ=tm=>ents.find(e=>!e.dead&&e.kind==='b'&&e.type==='hq'&&e.team===tm);
 const dropBarracks=tm=>ents.filter(e=>!e.dead&&e.kind==='b'&&e.type==='barracks'&&e.team===tm&&e.built&&(e.lvl||1)>=2&&teamSp(tm)!==2);
-function pwrUnlocked(tm,k){const S=SUP[k];if(!S||S.off)return false;const hq=pwrHQ(tm);if(!hq||(hq.lvl||1)<S.lv)return false;if(k==='dropper')return dropBarracks(tm).length>0;return true}
-function pwrLockMsg(k){const S=SUP[k];if(S.off)return S.n+': próximamente';return S.n+': se activa con el Centro de Control nivel '+S.lv+(k==='dropper'?' y un Cuartel':'')}
+function pwrUnlocked(tm,k){const S=SUP[k];if(!S||S.off)return false;const hq=pwrHQ(tm);if(!hq||(hq.lvl||1)<S.lv)return false;if(k==='dropper')return teamSp(tm)===2||dropBarracks(tm).length>0;return true}
+function pwrLockMsg(k){const S=SUP[k];if(S.off)return S.n+': próximamente';return S.n+': se activa con el Centro de Control nivel '+S.lv+(k==='dropper'&&teamSp(0)!==2?' y un Cuartel':'')}
 function hatchWorld(b){const H=b.mesh.userData.hatch;b.mesh.updateMatrixWorld(true);return{H,top:b.mesh.localToWorld(new THREE.Vector3(H.x,H.ty+0.2,H.z)),q:b.mesh.getWorldQuaternion(new THREE.Quaternion())}}
 // pick: Droper elegido que vuela vacío a recoger infantería propia y la trae a su Cuartel (recolección)
 // casilla de aterrizaje válida: sin edificio, sin roca/agua y sin tropa encima; si no, la libre más cercana
 function dropSpot(tile,team){const j=nearestFree(tile,false,null,null);if(j>=0&&j!==tile&&team===0)toast('Zona ocupada · el Droper aterriza en el punto libre más cercano');return j}
 function startDrop(team,tile,pick){
+ if(!pick&&exclZ(team,tile)){const j=exclOut(team,tile);if(j<0)return false;tile=j;if(team===0)toast('Zona protegida del enemigo · el Droper aterriza fuera')}
  {const j=dropSpot(tile,team);if(j<0){if(team===0)toast('No hay dónde aterrizar');return false}tile=j}
  const tgt=tiles[tile],bs=dropBarracks(team).filter(b=>!b.drop&&b.mesh&&b.mesh.userData.hatch&&(!pick||b===pick));
  if(!bs.length){if(team===0){const all=dropBarracks(team).length,ar=ARRIVE.filter(a=>a.b.team===team).length;toast(ar?'Droper llegando a su torre ('+ar+')':'Todos los Droper en vuelo ('+all+'/'+all+')')}return false}

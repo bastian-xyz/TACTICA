@@ -130,8 +130,8 @@ const armyVal=us=>us.reduce((a,u)=>a+UD[u.type].cost*(u.hp/u.max),0);
 function keyTarget(from){const k=aliveOf(0,'b').filter(b=>BD[b.type].key);const pool=k.length?k:aliveOf(0,'b');return pool.sort((a,b)=>hd(a.tile,from)-hd(b.tile,from))[0]}
 function aiPickUnit(){
  const me=1;
- const opts=AI.deck.filter(k=>producers(me,UD[k].req).length);
- if(!opts.length||unitCount(me)>=capOf(me))return null;
+ const opts=AI.deck.filter(k=>producers(me,UD[k].req).length&&unitCount(me)+UD[k].pob<=capOf(me));
+ if(!opts.length)return null;
  const comp={inf:0,veh:0,air:0,mec:0};
  aliveOf(0,'u').forEach(u=>comp[UD[u.type].cls]+=UD[u.type].cost);if(AI.mem&&AI.mem.n)for(const c in comp)comp[c]+=AI.mem.mix[c]*Math.max(0,300-gameTime);
  const w={android:0.7,mech:0.5,artillery:0.35,sniper:0.5,rifle:1,rocket:0.8,buggy:1,tank:1,aa:0.15,drone:0.6,heli:0.6,sniper:0.5,grenadier:0.6,artillery:0.4,fighter:0.2,bomber:0.3};

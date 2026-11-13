@@ -51,9 +51,9 @@ function orderMove(us,goal){
   u.path=pa||[];
  }
 }
-function orderAttack(us,t){for(const u of us){if(u.dead)continue;if(!UD[u.type].atk.vs[clsOf(t)]){orderMove([u],t.tile);continue}u.focus=t;u.auto=false;u.ordered=false;u.dest=-1;u.path=[];u.rp=0}}
+function orderAttack(us,t){for(const u of us){if(u.dead)continue;if(!udOf(u).atk.vs[clsOf(t)]){orderMove([u],t.tile);continue}u.focus=t;u.auto=false;u.ordered=false;u.dest=-1;u.path=[];u.rp=0}}
 function approachTile(u,t){
- const air=isAir(u),rng=UD[u.type].atk.rng;let best=-1,bd=1e9;
+ const air=isAir(u),rng=udOf(u).atk.rng;let best=-1,bd=1e9;
  for(const tl of tiles){const d=distTo(tl.i,t);if(d>rng||!passable(tl.i,air))continue;const o=occ(tl.i,air);if(o&&o!==u)continue;const du=hd(u.tile,tl.i);if(du<bd){bd=du;best=tl.i}}
  return best>=0?best:nearestFree(t.tile,air,u,null);
 }

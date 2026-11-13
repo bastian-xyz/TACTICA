@@ -4,7 +4,7 @@ const cardsEl=$('cards');const cardEls={};
 function makeLayout(){const L=[['barracks',1,3],['factory',2,3],['helipad',3,3],['ialab',4,3],['extractor',5,3],['turret',6,3]];const free=[];for(let r=1;r<=2;r++)for(let c=1;c<=4;c++)free.push([c,r]);const ord=[...DECK].sort((a,b)=>PRODS.indexOf(UD[a].req)-PRODS.indexOf(UD[b].req));for(const k of ord){const p=free.shift();if(p)L.push([k,p[0],p[1]])}for(const f of free)L.push(['_slot',f[0],f[1]]);return L}
 const pwrEls={};
 function mkPw(k){const b=document.createElement('button');b.className='pw';
- b.innerHTML='<svg class="ring" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" class="bg"/><circle cx="22" cy="22" r="19" class="rg" stroke-dasharray="119.4" stroke-dashoffset="119.4" transform="rotate(-90 22 22)"/></svg><svg class="ic" viewBox="0 0 24 24">'+ICON[k]+'</svg><span>'+SUP[k].n+'</span>';
+ b.innerHTML='<svg class="ring" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" class="bg"/><circle cx="22" cy="22" r="19" class="rg" stroke-dasharray="119.4" stroke-dashoffset="119.4" transform="rotate(-90 22 22)"/></svg><svg class="ic" viewBox="0 0 24 24">'+ICON[k]+'</svg><span>'+supName(k)+'</span>';
  b.onclick=()=>{if(!started||over)return;setCard(selCard===k?null:k)};return b}
 function buildPwr(){const P=$('pwr');P.innerHTML='';P.style.display='none';for(const k in pwrEls)delete pwrEls[k];const POS={missile:[5,1],sat:[6,1],dropper:[5,2],extract:[6,2]};for(const k of['missile','sat','dropper','extract']){const b=mkPw(k);b.style.gridColumn=POS[k][0];b.style.gridRow=POS[k][1];cardsEl.appendChild(b);pwrEls[k]=b}}
 // una carta (tropa, edificio o apoyo): toque = elegir; arrastre al mapa = desplegar o construir en un solo gesto
@@ -13,7 +13,7 @@ function mkCard(k){
  el.className='card'+(sup?' sup':'')+(BD[k]?' bld':'');
  const D=SUP[k]||BD[k]||UD[k];
  const tag=sup?'APOYO':BD[k]?'':({inf:'INF',veh:'VEH',air:'AIRE',mec:'MEC'})[UD[k].cls];
- el.innerHTML=(sup?'<div class="fill"></div>':'')+'<span class="tg">'+tag+'</span><svg viewBox="0 0 24 24">'+ICON[k]+'</svg><span class="nm">'+D.n+'</span><span class="ct">'+(sup?'0%':'⚡'+D.cost)+'</span>';
+ el.innerHTML=(sup?'<div class="fill"></div>':'')+'<span class="tg">'+tag+'</span><svg viewBox="0 0 24 24">'+ICON[k]+'</svg><span class="nm">'+D.n+'</span><span class="ct">'+(sup?'0%':'⚡'+D.cost)+'</span>'+(UD[k]&&D.pob>1?'<span class="pb">'+D.pob+'</span>':'');
  el.addEventListener('click',()=>{if(!started||over||performance.now()-cardDragT<350)return;setCard(selCard===k?null:k)});
  if(BD[k]||UD[k])el.addEventListener('pointerdown',e=>{if(!started||over)return;const sx=e.clientX,sy=e.clientY;let on=false;
   const end=()=>{window.removeEventListener('pointermove',mv);window.removeEventListener('pointerup',up);window.removeEventListener('pointercancel',cn)};

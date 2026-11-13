@@ -5,7 +5,7 @@ function usePower(team,k,tile){
  if(NET.on&&NET.role==='host')mpEvent({e:'pw',t:team,k,i:tile,ix:k==='missile'&&!pre&&mslUsed[d]?1:0});
 }
 function usePowerRaw(team,k,tile){
- if(!SUP[k]||SUP[k].off)return;if(k==='dropper'){startDrop(team,tile);return}
+ if(!SUP[k]||SUP[k].off)return;if(k==='dropper'){if(teamSp(team)===2)germinar(team,tile);else startDrop(team,tile);return}
  charge[team][k]=0;
  const t=tiles[tile];
  if(k==='cannon'){

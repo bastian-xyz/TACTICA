@@ -112,7 +112,7 @@ function addBuilding(team,type,i,built,foot){
  if((team===1)!==(FL<0))e.mesh.rotation.y=Math.PI;
  if(type==='hq'){e.big=true;e.kamiCd=0;for(const n of tiles[i].nb)tiles[n].bld=e;if(e.mesh.userData.rover&&tiles[HQP]&&tiles[HQC]){const o=tiles[hd(i,HQP)>hd(i,HQC)?HQP:HQC];e.hdg=Math.atan2(o.x-tiles[i].x,o.z-tiles[i].z);e.mesh.rotation.y=e.hdg}}
  if(foot){e.foot=foot;for(const f of foot)tiles[f].bld=e;e.cx=foot.reduce((a,f)=>a+tiles[f].x,0)/3;e.cz=foot.reduce((a,f)=>a+tiles[f].z,0)/3;e.mesh.position.x=e.cx;e.mesh.position.z=e.cz;e.mesh.scale.setScalar(1.55);if(type==='barracks'&&teamSp(team)!==2){e.mesh.scale.setScalar(1);let best=foot[0],bd=-1e9;for(const f of foot){const d=(tiles[f].z-e.cz)*FL;if(d>bd){bd=d;best=f}}e.mesh.rotation.y=Math.atan2(tiles[best].x-e.cx,tiles[best].z-e.cz)}if(DECO.length)paintDeco()}
- if(type!=='hq'){const L=baseLvl(team);if(L>1)applyLvl(e,L,true)}else addSilo(e);if(type==='turret')addRadar(e);
+ if(type==='cocoon'){}else if(type!=='hq'){const L=baseLvl(team);if(L>1)applyLvl(e,L,true)}else addSilo(e);if(type==='turret')addRadar(e);
  e.mesh.userData.hit.userData.ent=e;if(!built)setupBuild(e);if(!built&&e.mesh.userData.reactor)podStart(e);scene.add(e.mesh);e.bar=makeBar(TC[team]);ents.push(e);hitList.push(e.mesh.userData.hit);return e;
 }
 function spawnUnit(team,k,target){
@@ -129,7 +129,7 @@ function spawnUnit(team,k,target){
  return u;
 }
 function addUnit(team,type,i){
- const D=UD[type],air=D.cls==='air';
+ const D=teamSp(team)===2&&MUD[type]||UD[type],air=D.cls==='air';
  const e={id:nextId++,kind:'u',type,team,hp:D.hp,max:D.hp,tile:i,next:-1,mt:0,path:[],dest:-1,focus:null,cd:0,rp:0,wait:0,spawn:1.2,dead:false,face:null,auto:false};
  if(team===0&&started&&AI.obs)AI.obs.mix[D.cls]=(AI.obs.mix[D.cls]||0)+D.cost;
  setOcc(i,air,e);e.mesh=unitMesh(type,TC[team],team===0?(CFG.species||0):FOESP);e.mesh.position.set(tiles[i].x,tiles[i].h,tiles[i].z);
@@ -152,7 +152,8 @@ function kill(e){
  else scene.remove(e.mesh);
  if(e.flm){e.flm.forEach(g=>scene.remove(g));e.flm=[]}
  scene.remove(e.bar.g);sel.delete(e);hitList=hitList.filter(h=>h!==e.mesh.userData.hit);
- if(e.kind==='b'&&BD[e.type].key)toast((e.team?'Centro de Control enemigo destruido':'¡Perdiste tu Centro de Control!'));else if(e.kind==='b'&&e.team===0)toast(BD[e.type].n+' destruido');
+ if(e.kind==='b'&&BD[e.type].key)toast((e.team?'Centro de Control enemigo destruido':'¡Perdiste tu Centro de Control!'));else if(e.kind==='b'&&e.team===0&&e.type!=='cocoon')toast(BD[e.type].n+' destruido');
+ mycDeath(e);
 }
 function entPos(e){
  const a=tiles[e.tile];
@@ -163,7 +164,7 @@ function entPos(e){
 const aliveOf=(team,kind)=>ents.filter(e=>!e.dead&&e.team===team&&(!kind||e.kind===kind));
 const producers=(team,type)=>ents.filter(e=>!e.dead&&e.team===team&&e.kind==='b'&&e.type===type&&e.built);
 const costOf=(team,k)=>{const D=BD[k]||UD[k];if(k==='turret')return D.cost+75*ents.filter(e=>!e.dead&&e.kind==='b'&&e.team===team&&e.type==='turret').length;return D.cost};
-const unitCount=team=>ents.filter(e=>!e.dead&&e.team===team&&e.kind==='u'&&!e.free).length;
+const unitCount=team=>ents.reduce((a,e)=>a+(!e.dead&&e.team===team&&e.kind==='u'&&!e.free?UD[e.type].pob:0),0);
 
 // territory cache
 const terrC=[{t:-1,s:null},{t:-1,s:null}];
@@ -179,7 +180,7 @@ function terr(team){
 }
 function why(team,card,i){
  const t=tiles[i];if(!t)return'Casilla inválida';
- if(SUP[card])return card==='missile'&&mslUsed[team]?'Misil ya usado en esta partida':!pwrUnlocked(team,card)?pwrLockMsg(card):charge[team][card]>=1?null:card==='dropper'?'Droper en misión':'Apoyo sin cargar';
+ if(SUP[card])return card==='missile'&&mslUsed[team]?'Misil ya usado en esta partida':!pwrUnlocked(team,card)?pwrLockMsg(card):charge[team][card]>=1?(card==='dropper'?dropWhy(team,i):null):card==='dropper'?(teamSp(team)===2?'Germinar cargando':'Droper en misión'):'Apoyo sin cargar';
  const cost=costOf(team,card);
  if(money[team]<cost)return'Falta energía ⚡';
  if(BD[card]){
@@ -192,7 +193,7 @@ function why(team,card,i){
   return null;
  }
  const D=UD[card],air=D.cls==='air';
- if(unitCount(team)>=capOf(team))return baseLvl(team)<3?'Población llena: mejora el Centro de Control':'Población llena';
+ if(unitCount(team)+D.pob>capOf(team))return baseLvl(team)<3?'Población llena: mejora el Centro de Control':'Población llena';
  const pr=producers(team,D.req);if(!pr.length)return'Necesitas '+BD[D.req].n;
  if(air?t.au:(!passable(i,false)||t.gu))return'Casilla no disponible';
  return terr(team).has(i)||pr.some(b=>hd(b.tile,i)<=2)?null:'Fuera de tu territorio';
@@ -201,7 +202,7 @@ const canPlace=(team,card,i)=>!why(team,card,i);
 function cardUsable(team,card){
  if(SUP[card])return charge[team][card]>=1;
  const D=BD[card]||UD[card];if(money[team]<costOf(team,card))return false;
- if(UD[card])return producers(team,D.req).length>0&&unitCount(team)<capOf(team);
+ if(UD[card])return producers(team,D.req).length>0&&unitCount(team)+D.pob<=capOf(team);
  return true;
 }
 function place(team,card,i){

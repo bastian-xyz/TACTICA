@@ -268,6 +268,7 @@ function paintTiles(){
   const ti=vt[k];let r=vb[k*3],g=vb[k*3+1],b=vb[k*3+2],wr=wb.r,wg=wb.g,wbb=wb.b;
   if(ti>=0){const t=tiles[ti];
    if(t.zone>=0){const z=zc[t.zone];r+=(z.r-r)*0.16;g+=(z.g-g)*0.16;b+=(z.b-b)*0.16}
+   if(expl[ti]){const mt=mycTint(ti);if(mt>=0){const mc=MYCC[mt];r+=(mc[0]-r)*0.3;g+=(mc[1]-g)*0.3;b+=(mc[2]-b)*0.3}}
    if(!expl[ti]){r=0.035;g=0.045;b=0.06;wr=0.03;wg=0.04;wbb=0.055}else if(!vis[ti]){r*=0.42;g*=0.42;b*=0.42;wr*=0.42;wg*=0.42;wbb*=0.42}}
   col[k*3]=r;col[k*3+1]=g;col[k*3+2]=b;wcol[k*3]=wr;wcol[k*3+1]=wg;wcol[k*3+2]=wbb;
  }

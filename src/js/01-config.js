@@ -45,7 +45,8 @@ const BD={
  helipad:{n:'Helipuerto',hp:700,cost:200,bt:8,terr:2},
  ialab:{n:'Lab',hp:800,cost:300,bt:10,terr:2},
  extractor:{n:'Extractor',hp:450,cost:100,bt:6,inc:4,terr:2,onLitio:1},
- turret:{n:'Torreta',hp:550,cost:250,bt:9,terr:0,atk:{dmg:20,rng:3,cd:0.9,vs:{inf:1.2,veh:1,air:0.6,bld:0.6}}}
+ turret:{n:'Torreta',hp:550,cost:250,bt:9,terr:0,atk:{dmg:20,rng:3,cd:0.9,vs:{inf:1.2,veh:1,air:0.6,bld:0.6}}},
+ cocoon:{n:'Capullo',hp:220,cost:0,bt:0,terr:-1}
 };
 const UD={
  rifle:{n:'Fusilero',cls:'inf',hp:120,cost:50,spd:1.1,req:'barracks',atk:{dmg:12,rng:1,cd:0.8,vs:{inf:1.6,veh:0.5,air:0.4,bld:0.6}}},
@@ -54,7 +55,7 @@ const UD={
  tank:{n:'Tanque',cls:'veh',hp:520,cost:180,spd:0.9,req:'factory',atk:{dmg:42,rng:2,cd:1.6,vs:{inf:0.8,veh:1.5,air:0,bld:1.6}}},
  aa:{n:'Antiaéreo',cls:'veh',hp:320,cost:120,spd:1.2,req:'factory',atk:{dmg:30,rng:3,cd:1.0,vs:{inf:0.3,veh:0.3,air:2.0,bld:0.3}}},
  drone:{n:'Dron',cls:'air',hp:210,cost:150,spd:1.9,req:'helipad',atk:{dmg:28,rng:1,cd:1.0,vs:{inf:0.8,veh:1.6,air:0,bld:1}}},
- sniper:{n:'Francotir.',cls:'inf',hp:90,cost:90,spd:1.0,req:'barracks',atk:{dmg:40,rng:3,cd:2.0,vs:{inf:1.7,veh:0.3,air:0.2,bld:0.3}}},
+ sniper:{n:'Francotir.',cls:'inf',hp:90,cost:75,spd:1.0,req:'barracks',atk:{dmg:40,rng:3,cd:2.0,vs:{inf:1.7,veh:0.3,air:0.2,bld:0.3}}},
  grenadier:{n:'Granadero',cls:'inf',hp:130,cost:85,spd:0.95,req:'barracks',atk:{dmg:22,rng:2,cd:1.4,vs:{inf:1.3,veh:0.8,air:0,bld:1.4}}},
  artillery:{n:'Artillería',cls:'veh',hp:260,cost:200,spd:0.7,req:'factory',atk:{dmg:55,rng:4,cd:3.0,vs:{inf:1.3,veh:0.9,air:0,bld:1.5}}},
  heli:{n:'Helicóptero',cls:'air',hp:300,cost:190,spd:1.6,req:'helipad',atk:{dmg:30,rng:2,cd:1.0,vs:{inf:1.3,veh:1.3,air:0.3,bld:0.8}}},
@@ -81,6 +82,7 @@ const SUP={
 };
 const ZN=['O','E','C'];
 const BASEUP=[0,650,1150],POPCAP=[10,15,20],INTR=6;let mslUsed=[0,0];const ARRIVE=[];
+{const P2=['drone','commando','apc','fighter','tank','heli','artillery','mlrs','sentinel'],P3=['bomber','mech','gunship','titan'];for(const k in UD)UD[k].pob=P3.includes(k)?3:P2.includes(k)?2:1}
 for(const D of[...Object.values(UD),...Object.values(BD)])for(const A of[D.atk,D.atk2])if(A&&A.vs.mec===undefined)A.vs.mec=A.vs.veh;
 const CFG=(()=>{let c={};try{c=JSON.parse(localStorage.getItem('tactica.cfg')||'{}')}catch(e){}return Object.assign({diff:'normal',quality:'alta',grid:true,planet:'verdea',lay:'auto',size:'m',shape:'var'},c)})();
 let DECK=(()=>{let d=null;try{d=JSON.parse(localStorage.getItem('tactica.deck')||'null')}catch(e){}const D0=['rifle','rocket','grenadier','tank','drone','heli','android','mech'];d=(d||D0).filter(k=>UD[k]).slice(0,8);return d.length?d:D0})();

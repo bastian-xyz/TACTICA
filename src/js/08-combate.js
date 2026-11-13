@@ -60,12 +60,12 @@ function fire(a,t,atk){
 }
 function applyHit(a,t,atk){
  const ex=a.kind==='u'?EXPL[a.type]:a.type==='hq'?0.9:0;if(ex){const pt=entPos(t);blastAt(a.team,pt.x,pt.z,ex*0.7)}
- const adv=hAdv(a,t),dmg=atk.dmg*atk.vs[clsOf(t)]*(adv>0?1.25:adv<0?0.75:1)*(a.kind==='b'?1+0.2*((a.lvl||1)-1):1);
+ const adv=hAdv(a,t),dmg=atk.dmg*atk.vs[clsOf(t)]*(adv>0?1.25:adv<0?0.75:1)*(a.kind==='b'?1+0.2*((a.lvl||1)-1):1)*hitMods(a,t,atk);
  if(a.team===1&&a.kind==='u'&&AI.perf){const P=AI.perf[a.type]||(AI.perf[a.type]={d:0,l:0});P.d+=Math.min(dmg,Math.max(0,t.hp))/t.max*(t.kind==='u'?UD[t.type].cost:BD[t.type].cost)}
  t.hp-=dmg;hqHurt(t);hitFx(t,dmg);
- if(t.hp<=0){kill(t);if(ex)settleBlast();return}
+ if(t.hp<=0){t.killer=a;kill(t);if(ex)settleBlast();return}
  if(ex)settleBlast();
- if(t.kind==='u'&&!t.focus&&!t.path.length&&t.next<0&&UD[t.type].atk.vs[clsOf(a)]){t.focus=a;t.auto=true}
+ if(t.kind==='u'&&!t.focus&&!t.path.length&&t.next<0&&udOf(t).atk.vs[clsOf(a)]){t.focus=a;t.auto=true}
 }
 const hqHurt=t=>{if(t.type==='hq'&&!t.dead&&t.kamiCd<=0&&t.hp>0){t.kamiCd=12;launchKami(t)}};
 const LIGHTU={rifle:1,rocket:1,sniper:1,grenadier:1,flamer:1,commando:0.9,android:0.8,buggy:0.7,drone:0.6,swarm:0.7,scout:0.6};

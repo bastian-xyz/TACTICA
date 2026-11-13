@@ -4,7 +4,7 @@ function newGame(sv){
  for(const e of ents){scene.remove(e.mesh);scene.remove(e.bar.g);if(e.flm)e.flm.forEach(g=>scene.remove(g))}
  for(const f of fx){scene.remove(f.o);if(f.fl)scene.remove(f.fl)}BOOMS=[];for(const s of strikes){if(s.beam)scene.remove(s.beam);if(s.mesh)scene.remove(s.mesh);if(s.im)scene.remove(s.im)}for(const A of ARRIVE)scene.remove(A.ship);ARRIVE.length=0;for(const D of DROPS){scene.remove(D.ship);if(D.bar)scene.remove(D.bar.g)}DROPS.length=0;for(const C of CRASH)scene.remove(C.S);CRASH.length=0;for(const T of TRC)scene.remove(T.m);TRC.length=0;for(const p of proj)scene.remove(p.mesh);proj=[];
  ents=[];fx=[];strikes=[];hitList=[];sel.clear();selCard=null;hiSet=null;
- gameTime=0;over=false;x2=false;money=[400,400];charge=[{},{}];mslUsed=[0,0];
+ mycReset();gameTime=0;over=false;x2=false;money=[400,400];charge=[{},{}];mslUsed=[0,0];
  Object.assign(AI,{t:2,wave:HARD()?5:8,attacking:false,expT:-99,expU:new Set()});aiSetup();
  terrC.forEach(c=>c.t=-1);
  if(sv&&!sv.mp){CFG.planet=sv.pl;CFG.species=sv.sp}
@@ -221,7 +221,7 @@ function loop(now){
  zones.forEach(z=>(z.pyl||[]).forEach(g=>g.userData.spin.rotation.y+=dt*1.5));
  if(shake>0){shake=Math.max(0,shake-dt*1.5)}
  if(!started){const tt=now*0.00004;cam.x=Math.sin(tt)*CX*0.55;cam.z=Math.cos(tt*0.8)*CZ*0.6;cam.dist=30}
- updDust(dt);updDropIcons();uiTick();
+ updDust(dt);updDropIcons();uiTick();trackTick(dt);
  if(INTRO)introCam(dt);else{keyTick(dt);camFollowTick(dt);updCam()}
  if(started||$('scrMain').classList.contains('hide'))renderer.render(scene,camera);
  miniT-=dt;if(miniT<=0){miniT=1/30;drawMini()}

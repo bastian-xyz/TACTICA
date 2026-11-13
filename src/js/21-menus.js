@@ -55,7 +55,7 @@ function renderDeck(){
  $('dName').textContent=D.n.replace('.','').replace('Francotir','Francotirador').replace('Lanzacoh','Lanzacohetes');
  $('dSub').textContent=clsN[D.cls]+' · '+BD[D.req].n;
  const bar=(l,v,mx,t)=>'<div class="st">'+l+'<i><b style="width:'+Math.min(100,v/mx*100)+'%"></b></i><span>'+t+'</span></div>';
- $('dStats').innerHTML=bar('Vida',D.hp,520,D.hp)+bar('Daño',D.atk.dmg,90,D.atk.dmg)+bar('Cadencia',1/D.atk.cd,1.7,(1/D.atk.cd).toFixed(1)+'/s')+bar('Alcance',D.atk.rng,4,D.atk.rng)+bar('Velocidad',D.spd,2.6,D.spd)+bar('Costo',D.cost,260,'⚡'+D.cost);
+ {const X=(CFG.species||0)===2&&MUD[deckSel]||D;$('dStats').innerHTML=bar('Vida',X.hp,520,X.hp)+bar('Daño',X.atk.dmg,90,X.atk.dmg)+bar('Cadencia',1/X.atk.cd,1.7,(1/X.atk.cd).toFixed(1)+'/s')+bar('Alcance',X.atk.rng,4,X.atk.rng)+bar('Velocidad',X.spd,2.6,X.spd)+bar('Costo',D.cost,260,'⚡'+D.cost)+bar('Población',D.pob,3,D.pob)}
  const n={inf:'infantería',veh:'vehículos',air:'aire',mec:'mechas',bld:'edificios'};
  $('dAbil').innerHTML=((CFG.species||0)===2&&MICU[deckSel]?MICU[deckSel].slice(1):(ABIL[deckSel]||[])).map(a=>'<span>'+a+'</span>').join('')+Object.keys(n).filter(k=>D.atk.vs[k]>=1.3).map(k=>'<span class="str">Fuerte vs '+n[k]+'</span>').join('')+Object.keys(n).filter(k=>!D.atk.vs[k]).map(k=>'<span style="opacity:.6">No ataca '+n[k]+'</span>').join('');
  const tg=$('dToggle');tg.textContent=inD?'QUITAR DEL MAZO':'AGREGAR AL MAZO';tg.classList.toggle('rm',inD);

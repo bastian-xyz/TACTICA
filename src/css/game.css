@@ -271,3 +271,5 @@ body:not(.wide) #ctx .hpb{margin-top:4px;height:4px}
 body:not(.wide) #ctx .cchips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-top:5px}body:not(.wide) #ctx .cchips::-webkit-scrollbar{display:none}
 body:not(.wide) #ctx .cchips button{flex:0 0 auto;padding:4px 7px;font-size:11.5px}body:not(.wide) #ctx .cchips svg{width:17px;height:17px}
 body:not(.wide) #ctx .cact{margin-top:5px}body:not(.wide) #ctx .cact button{padding:7px;font-size:12px}
+.card .pb{position:absolute;top:2px;right:3px;min-width:13px;height:13px;border-radius:7px;background:#0b1016cc;border:1px solid var(--k-ln2);color:#c9d6e1;font:700 9px/12px Rajdhani,sans-serif;text-align:center}
+body.wide .card[data-k] .pb{top:auto;bottom:2px}

@@ -1,5 +1,21 @@
 [
  {
+  "v": "0.77.0 BETA",
+  "d": "13-11-2026",
+  "items": [
+   "Población por tamaño: cada carta ocupa 1, 2 o 3 de población (el número aparece en la esquina de la carta). Un Titán ya no ocupa lo mismo que un Fusilero.",
+   "Daño en área de verdad: Granadero (radio 1), Artillería, Lanzamisiles y VTOL (radio 1,5) dañan con la mitad del golpe a lo que rodea al objetivo.",
+   "Micelian con números propios: más vida y menos daño que sus equivalentes humanos. El Sembrador siembra micelio donde dispara, el Enredador inmoviliza 2 s, el Ciempiés trepa desniveles y el Arbóreo es su antiaéreo.",
+   "Micelio: cada edificio Micelian cubre el suelo a su alrededor (el Árbol de la Vida más con cada nivel). Sobre micelio sus tropas de tierra se mueven 15 % más rápido y se regeneran fuera de combate.",
+   "Enraizar: lo que los Micelian matan en tierra queda como Capullo que bloquea el paso 20 s (se puede destruir).",
+   "Germinar, el poder de nivel 2 Micelian: hunde hasta 4 tropas de tierra junto al Árbol y brotan 2,5 s después en cualquier casilla con micelio.",
+   "Fuego: el Lanzallamas hace 35 % más de daño a tropas Micelian, quema el micelio 10 s y destruye Capullos al doble de velocidad.",
+   "Droper: solo aterriza donde tienes visión, y nunca a menos de 3 casillas de un extractor enemigo ni a 5 de su Centro de Control (aterriza fuera). Vale igual para Germinar.",
+   "Huellas del Rover al moverse, que se borran en 6 s.",
+   "Francotirador baja a ⚡75. La ficha de Escuadra muestra los números de tu especie y la población."
+  ]
+ },
+ {
   "v": "0.76.0 BETA",
   "d": "13-11-2026",
   "items": [

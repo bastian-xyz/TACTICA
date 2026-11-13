@@ -16,7 +16,7 @@ const AI={t:2,wave:8,attacking:false,expT:-99,expU:new Set()};
 const ROUGH={0:['titan','mech','buggy'],2:['tank','buggy','artillery','mech','sentinel','titan']};
 const teamSp=t=>t===0?(CFG.species||0):FOESP;
 const rough=u=>!!(u&&u.kind==='u'&&(ROUGH[teamSp(u.team)]||ROUGH[0]).includes(u.type));
-function canStep(a,b,u){const A=tiles[a],B=tiles[b];if(A.lv===B.lv)return true;if(u&&UD[u.type]&&UD[u.type].climb)return true;if(rough(u)&&Math.abs(A.lv-B.lv)<=1)return true;if(B.lv===A.lv+1)return !!A.ramp;if(A.lv===B.lv+1)return !!B.ramp;return false}
+function canStep(a,b,u){const A=tiles[a],B=tiles[b];if(A.lv===B.lv)return true;if(u&&UD[u.type]&&udOf(u).climb)return true;if(rough(u)&&Math.abs(A.lv-B.lv)<=1)return true;if(B.lv===A.lv+1)return !!A.ramp;if(A.lv===B.lv+1)return !!B.ramp;return false}
 function hd(a,b){const A=tiles[a],B=tiles[b];const dq=A.q-B.q,dr=A.r-B.r;return(Math.abs(dq)+Math.abs(dr)+Math.abs(dq+dr))/2}
 const mirror=i=>{const t=tiles[i];return idx(W-1-t.c,H-1-t.r)};
 

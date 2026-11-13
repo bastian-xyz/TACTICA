@@ -1,7 +1,7 @@
 // ================= SIM =================
 function updUnit(u,dt){
  if(u.boarded)return;
- const D=UD[u.type],air=D.cls==='air';
+ const D=udOf(u),air=D.cls==='air';
  if(u.fly){u.fly.t+=dt;if(u.fly.t>=u.fly.S.tB)u.fly=null}
  if(u.carry){const C=u.carry,S=C.S;C.t+=dt;if(C.by.dead&&C.t<=S.tD){u.carry=null;u.stun=0.2}else{if(C.t<S.tR&&C.t>S.tD&&C.by.dead)snatchRelease(S,C.t);
   if(C.t>=S.tL){u.carry=null;let nt=hexAt(S.L.x,S.L.z);nt=nearestFree(nt>=0?nt:u.tile,false,u,null);if(nt<0)nt=u.tile;
@@ -26,8 +26,9 @@ function updUnit(u,dt){
  u.face=t;
  if(t&&u.cd<=0){fire(u,t,D.atk);u.cd=D.atk.cd;if(u.type==='titan')u.vls=0.5}
  if(D.atk2){u.cd2=(u.cd2||0)-dt;if(u.cd2<=0){const t2=enemyNear(u.team,u.tile,D.atk2,D.atk2.rng,u);if(t2){fire(u,t2,D.atk2);u.cd2=D.atk2.cd;u.gat=0.4}}}
+ mycRegen(u,dt);if(u.root>0){u.root-=dt;if(u.next<0)return}
  if(u.next>=0){
-  u.mt+=dt*D.spd*1.15*(u.sv||(u.sv=0.92+Math.random()*0.16))*(u.face&&evasive(u)?1.35:1)*((!air&&(tiles[u.tile].ramp||tiles[u.next].ramp))?0.88:1)*((!air&&tiles[u.tile].lv!==tiles[u.next].lv&&!tiles[u.tile].ramp&&!tiles[u.next].ramp)?0.7:1);
+  u.mt+=dt*D.spd*mycSpd(u)*1.15*(u.sv||(u.sv=0.92+Math.random()*0.16))*(u.face&&evasive(u)?1.35:1)*((!air&&(tiles[u.tile].ramp||tiles[u.next].ramp))?0.88:1)*((!air&&tiles[u.tile].lv!==tiles[u.next].lv&&!tiles[u.tile].ramp&&!tiles[u.next].ramp)?0.7:1);
   if(u.mt<1)return;
   if(occ(u.tile,air)===u)setOcc(u.tile,air,null);
   u.tile=u.next;u.next=-1;u.mt=0;
@@ -72,6 +73,7 @@ function updUnit(u,dt){
 const incMul=()=>gameTime>=180?2:1;let x2=false;
 function updBuilding(b,dt){
  const D=BD[b.type];
+ if(b.type==='cocoon'){b.life=(b.life==null?20:b.life)-dt;if(b.life<=0&&!(NET.on&&NET.role==='guest')){b.hp=0;kill(b)}return}
  if(b.repairLeft>0&&b.built){const h=Math.min(b.repairLeft,b.max*0.15*dt);b.hp=Math.min(b.max,b.hp+h);b.repairLeft-=h;if(b.hp>=b.max)b.repairLeft=0}
  if(!b.built){b.prog+=dt/D.bt;b.hp=Math.min(b.max,b.hp+dt*b.max*0.75/D.bt);if(b.prog>=1){b.prog=1;b.built=true;terrC[b.team].t=-1;if(b.team===0)toast(D.n+' listo');if(b.pendRef){b.pendRef=0;cuartelRefresh(b)}if(b.type==='barracks'&&(b.lvl||1)>=2&&teamSp(b.team)!==2)startArrive(b)}return}
  if(D.inc){
@@ -85,6 +87,7 @@ function updBuilding(b,dt){
  }
 }
 function updZones(dt){ // control de zonas apagado por ahora: los poderes cargan solos según el nivel del Centro de Control
- for(const tm of[0,1])for(const k in SUP){if(k==='missile'&&mslUsed[tm]){charge[tm][k]=0;continue}if(k==='dropper'){const free=dropBarracks(tm).some(b=>!b.drop);let best=0;for(const D of DROPS)if(D.team===tm)best=Math.max(best,Math.min(0.99,D.t/((D.T?D.T[9]:D.fly*2+3)+0.9)));charge[tm][k]=free?1:best;continue}if(pwrUnlocked(tm,k))charge[tm][k]=Math.min(1,(charge[tm][k]||0)+dt/SUP[k].time)}
+ updMyc(dt);
+ for(const tm of[0,1])for(const k in SUP){if(k==='missile'&&mslUsed[tm]){charge[tm][k]=0;continue}if(k==='dropper'&&teamSp(tm)!==2){const free=dropBarracks(tm).some(b=>!b.drop);let best=0;for(const D of DROPS)if(D.team===tm)best=Math.max(best,Math.min(0.99,D.t/((D.T?D.T[9]:D.fly*2+3)+0.9)));charge[tm][k]=free?1:best;continue}if(pwrUnlocked(tm,k))charge[tm][k]=Math.min(1,(charge[tm][k]||0)+dt/SUP[k].time)}
 }
 

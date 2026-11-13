@@ -121,7 +121,7 @@ const MICB={
   const mz=new THREE.Object3D();mz.position.z=0.45;tl.add(mz);
   inner.add(h);g.userData.head=h;g.userData.bulb=bl;g.userData.muz=[mz];g.userData.pulse=[{m:gm,c:gm.emissive.clone()}];g.userData.flies=makeFlies(gc,6,0.7,0.8,1.8,g)}
 };
-function buildingMesh(type,tc,sp){PANELON=true;if(sp!=null)MESHSP=sp;
+function buildingMesh(type,tc,sp){if(type==='cocoon')return cocoonMesh(tc);PANELON=true;if(sp!=null)MESHSP=sp;
  const g=new THREE.Group(),inner=new THREE.Group();g.add(inner);
  const NEWQ=type==='barracks'&&MESHSP!==2;if(type!=='hq'&&!NEWQ)inner.add(P(G.hex,MESHSP===2?0x2a2034:DARK,1.9,0.9,1.9,0,-0.23,0),P(G.hex,tc,1.94,0.05,1.94,0,0.2,0));
  if(NEWQ){const q=CQ.cuartelModel(1,tc);[...q.children].forEach(c=>inner.add(c));Object.assign(g.userData,q.userData)}else
