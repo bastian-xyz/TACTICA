@@ -83,9 +83,9 @@ function mpBegin(){
  const ks=Object.keys(PLANETS);NET.pl=PLANETS[CFG.planet]?CFG.planet:ks[Math.floor(Math.random()*ks.length)];
  NET.seed=Math.floor(Math.random()*1e9);NET.gid=1+Math.floor(Math.random()*1e9);
  NET.on=true;NET.wait=false;NET.frame=0;NET.evq=[];NET.evId=0;NET.done=[];NET.ak=[];FL=1;
- NET.sz=SIZES[CFG.size]?CFG.size:'m';NET.sh=shapeFor(NET.pl,CFG.shape);
+ NET.sz=SIZES[CFG.size]?CFG.size:'m';NET.sh=shapeFor(CFG.shape);
  showScr(null);buildCards();newGame({mp:1,seed:NET.seed,pl:NET.pl,sz:NET.sz,sh:NET.sh,fs:NET.oppSp});started=true;paused=false;over=false;last=performance.now();
- mpLobbyPres();toast('Partida contra '+NET.oppN+' · '+PL.n+' · '+shapeName(PLK,MSH)+' · '+SIZES[MSZ].n);mpBan('Esperando a '+NET.oppN+'…');
+ mpLobbyPres();toast('Partida contra '+NET.oppN+' · '+PL.n+' · '+shapeName(MSH)+' · '+SIZES[MSZ].n);mpBan('Esperando a '+NET.oppN+'…');
 }
 function mpOnStart(m){
  const d=m.data;if(!d||!Number.isInteger(d.seed)||!PLANETS[d.pl])return;
@@ -93,7 +93,7 @@ function mpOnStart(m){
  if(NET.on&&NET.gid===d.gid&&NET.host===m.peer){NET.R.presence({ready:d.gid}).catch(()=>{});return}
  NET.host=m.peer;NET.gid=d.gid;NET.oppN=mpSafe(d.hn)||'Rival';
  NET.on=true;NET.synced=false;NET.map.clear();NET.gone.clear();NET.buf={};NET.lastFull=0;NET.evSeen.clear();NET.pend=[];NET.lastSnap=0;NET.goneT=0;FL=-1;
- showScr(null);buildCards();newGame({mp:1,guest:1,seed:d.seed,pl:d.pl,sz:SIZES[d.sz]?d.sz:'m',sh:shapeFor(d.pl,d.sh),fs:mpSpOk(d.hs)});started=true;paused=false;over=false;last=performance.now();
+ showScr(null);buildCards();newGame({mp:1,guest:1,seed:d.seed,pl:d.pl,sz:SIZES[d.sz]?d.sz:'m',sh:shapeFor(d.sh),fs:mpSpOk(d.hs)});started=true;paused=false;over=false;last=performance.now();
  NET.R.presence({ready:d.gid}).catch(()=>{});mpBan('Sincronizando con '+NET.oppN+'…');toast('Partida contra '+NET.oppN+' · '+PL.n);
 }
 // ---------- instantáneas (anfitrión → invitado)

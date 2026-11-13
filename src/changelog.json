@@ -1,5 +1,15 @@
 [
  {
+  "v": "0.75.0 BETA",
+  "d": "13-11-2026",
+  "items": [
+   "Geografías: el menú de Versus ofrece nueve mapas de estructura distinta, en cualquier planeta y con miniatura de ejemplo. Continente (relieve libre), Llanura (estepa abierta), Islas (cada base en su isla, unidas por vados), Mar interior (hay que rodearlo por tierra o cruzarlo por aire), Dos orillas (un gran río con tres vados), Mesetas (base en alto con una sola rampa y terraza de expansión), Desfiladero (tres carriles entre murallas de montaña), Cordillera (cadena infranqueable con tres pasos) y Pantano (lagos y río).",
+   "Mares, murallas de montaña y mesetas se dibujan a escala de todo el mapa. Los vados y pasos quedan garantizados: ninguna tierra queda aislada y los campos de energía que caerían al mar se corren a tierra firme.",
+   "Todas las geografías son simétricas por lado, pensadas para sumar después 2v2 y 3v3.",
+   "Reemplazan a las formas por planeta de la versión anterior. Las partidas guardadas antes no se pueden continuar."
+  ]
+ },
+ {
   "v": "0.74.0 BETA",
   "d": "13-11-2026",
   "items": [

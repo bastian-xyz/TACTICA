@@ -17,6 +17,7 @@ function genMap(seed){
   mk('cannon',[wc.i]);mk('patrol',[mirror(wc.i)]);mk('missile',[cc.i,mirror(cc.i)]);
   {const bl=[];const GP=PL.gen;for(let k=0;k<Math.round(GP.blobs*1.15*AK*(SH.bk||1));k++){const bx=(R()*2-1)*CX,bz=(R()*2-1)*CZ,sg=(GP.sg0+R()*GP.sgR)*(W<50?1.3:1.6),am=(R()<0.35?-1:1)*(0.7+R()*0.7);bl.push([bx,bz,sg,am],[-bx,-bz,sg,am])}
    const f=tiles.map(t=>{let v=0;for(const[bx,bz,sg,am]of bl)v+=am*Math.exp(-((t.x-bx)**2+(t.z-bz)**2)/(sg*sg));return SH.m?v+SH.amp*SH.m(t.x/CX,t.z/CZ):v});
+   const mn0=Math.min(...f),mx0=Math.max(...f);
    // Niveles por proporción de área (no por altura pareja): los niveles 1 y 2 son las planicies anchas
    // y el 0, 3 y 4 quedan como hondonadas, mesetas y cumbres que marcan el relieve.
    {const Q=SH.q||GP.q||[0.09,0.36,0.30,0.16,0.09],srt=[...f].sort((a,b)=>a-b),th=[];let acc=0;for(let k=0;k<4;k++){acc+=Q[k];th.push(srt[Math.min(srt.length-1,Math.floor(acc*srt.length))])}
@@ -28,16 +29,25 @@ function genMap(seed){
      for(let k=0;k<reg.length;k++)for(const n of tiles[reg[k]].nb){if(tiles[n].lv===t0.lv){if(!seen[n]){seen[n]=1;reg.push(n)}}else cnt[tiles[n].lv]++}
      if(reg.length<12){let b=-1;for(let k=0;k<5;k++)if(cnt[k]&&(b<0||cnt[k]>cnt[b]))b=k;if(b>=0)for(const i of reg)tiles[i].lv=b}}}
    tiles.forEach(t=>{if(t.r>=H/2)tiles[mirror(t.i)].lv=t.lv});
+   const fN=f.map(x=>(x-mn0)/(mx0-mn0+1e-6)-0.5),GU=t=>[t.x/CX,t.z/CZ,fN[t.i],(t.z/CZ-t.x/CX)/2,(t.x/CX+t.z/CZ)/2];
+   if(SH.lvl)for(const t of tiles){const l=SH.lvl(...GU(t));if(l!==undefined)t.lv=l}
    const flat=(c,r,lv)=>{for(const t of tiles)if(hd(t.i,c)<=r){t.lv=lv;tiles[mirror(t.i)].lv=lv}};
-   flat(HQP,3,1);BASP.forEach(b=>flat(b,1,1));
-   zones.forEach(z=>{const lv=z.type==='missile'?3:2;z.tiles.forEach(i=>{tiles[i].lv=lv;tiles[mirror(i)].lv=lv})});}
+   flat(HQP,3,SH.hqLv||1);BASP.forEach(b=>flat(b,1,1));
+   zones.forEach(z=>{const lv=z.type==='missile'?3:2;z.tiles.forEach(i=>{tiles[i].lv=lv;tiles[mirror(i)].lv=lv})});
+   // mar y murallas de la geografía (no tocan las bases ni las zonas)
+   if(SH.water||SH.rock){const free=t=>t.zone<0&&hd(t.i,HQP)>4&&hd(t.i,HQC)>4;
+    for(const t of tiles){if(!free(t))continue;const g=GU(t);
+     if(SH.water&&SH.water(...g)){t.type='water';t.lv=0}else if(SH.rock&&SH.rock(...g)){t.type='rock';t.wall=true}}
+    for(const t of tiles)if(t.type==='water')for(const n of t.nb){const N=tiles[n];if(N.type==='grass'&&N.zone<0&&N.lv>1&&hd(n,HQP)>3&&hd(n,HQC)>3)N.lv=1}}}
   const LP=[];{const sc=(a,k)=>Math.round(a*k),kx=W/46,kz=H/26; // grupos de 3 campos, ubicados en proporción al mapa (diseñados para 46 × 26)
    for(const[c,d,sh]of[[2,3,[[0,0],[1,0],[0,1]]],[14,3,[[0,0],[1,0],[1,-1]]],[4,14,[[0,0],[1,0],[0,-1]]],[19,11,[[0,0],[1,0],[0,-1]]],[11,21,[[0,0],[1,0],[0,-1]]],[29,5,[[0,0],[1,0],[0,1]]],[24,18,[[0,0],[1,0],[0,-1]]]]){const c0=c<=2?c:sc(c,kx),r0=H-(d<=3?d:sc(d,kz));for(const[dc,dr]of sh)LP.push([c0+dc,r0+dr])}}
   {const near=tiles.filter(t=>hd(t.i,HQP)===2&&t.zone<0).sort((a,b)=>(a.c+(H-a.r))-(b.c+(H-b.r))).slice(0,3);for(const t of near)for(const i of[t.i,mirror(t.i)]){tiles[i].type='litio';tiles[i].amt=900}}
-  for(const[c,r]of LP){const a=idx(c,r);for(const i of[a,mirror(a)]){const t=tiles[i];if(t.zone<0&&![HQP,HQC,...BASP,...BASC].includes(i)){t.type='litio';t.amt=900}}}
+  for(const[c,r]of LP){let a=idx(c,r);if(a<0)continue; // si cae en mar o muralla se corre a la tierra firme más cercana
+   if(tiles[a].type!=='grass'||tiles[a].zone>=0){let b=-1,bd=1e9;for(const t of tiles)if(t.type==='grass'&&t.zone<0&&hd(t.i,HQP)>3&&hd(t.i,HQC)>3&&t.nb.length===6&&t.nb.every(n=>tiles[n].type==='grass')){const d=hd(t.i,a);if(d<bd){bd=d;b=t.i}}if(b<0)continue;a=b}
+   for(const i of[a,mirror(a)]){const t=tiles[i];if(t.zone<0&&![HQP,HQC,...BASP,...BASC].includes(i)){t.type='litio';t.amt=900}}}
   const keyT=[HQP,HQC,...BASP,...BASC];
   // ---- river + lake + ford (one per side, mirrored)
-  {const special=i=>{const t=tiles[i];return t.type!=='grass'||t.zone>=0||keyT.some(k=>hd(i,k)<=2)};
+  if(SH.river!==false){const special=i=>{const t=tiles[i];return t.type!=='grass'||t.zone>=0||keyT.some(k=>hd(i,k)<=2)};
    let c=0,r=Math.floor(H/2)+2+Math.floor(R()*4),g=0;const path=[];
    while(c<W/2-1&&g++<200){const i=idx(c,r);if(i<0||special(i))break;if(!path.includes(i))path.push(i);if(R()<0.7)c++;else r=clamp(r+(R()<0.5?-1:1),Math.floor(H/2)+1,H-7)}
    if(path.length>4){
@@ -47,7 +57,7 @@ function genMap(seed){
     for(const i of wat)for(const j of[i,mirror(i)])for(const n of tiles[j].nb){const t=tiles[n];if(t.type==='grass'&&t.zone<0&&t.lv>1&&!keyT.some(k=>hd(n,k)<=3))t.lv=1}
    }}
   // ---- lagos extra según el planeta (simétricos)
-  for(let L=0;L<Math.round((PL.gen.lakes||0)*AK*(SH.lk||1));L++){const sp=i=>{const t=tiles[i];return t.type!=='grass'||t.zone>=0||keyT.some(k=>hd(i,k)<=3)};
+  for(let L=0;L<Math.round((PL.gen.lakes||0)*AK*(SH.lk==null?1:SH.lk));L++){const sp=i=>{const t=tiles[i];return t.type!=='grass'||t.zone>=0||keyT.some(k=>hd(i,k)<=3)};
    const cs=tiles.filter(t=>t.r>=H/2&&t.r<H-2&&t.c>2&&t.c<W-3&&!sp(t.i)&&t.nb.every(n=>!sp(n)));if(!cs.length)break;
    const c0=cs[Math.floor(R()*cs.length)],set=[c0.i,...c0.nb.filter(()=>R()<0.55)];
    for(const i of set)for(const j of[i,mirror(i)]){tiles[j].type='water';tiles[j].lv=0}
@@ -58,7 +68,7 @@ function genMap(seed){
   const setRock=i=>{for(const j of[i,mirror(i)])tiles[j].type='rock'};
   for(const t of tiles){
    if(t.r<H/2||!ok(t.i))continue;
-   if(R()<PL.gen.rocks*(t.lv>=3?1.7:t.lv===0?1:0.45)){setRock(t.i); // rocas sobre todo en mesetas y cumbres; las planicies quedan despejadas
+   if(R()<PL.gen.rocks*(SH.rk==null?1:SH.rk)*(t.lv>=3?1.7:t.lv===0?1:0.45)){setRock(t.i); // rocas sobre todo en mesetas y cumbres; las planicies quedan despejadas
     if(R()<PL.gen.rockPair){const n=t.nb[Math.floor(R()*t.nb.length)];if(ok(n))setRock(n)}}
   }
   // ---- aldeas nativas: 2 casillas bloqueadas por aldea, simétricas
@@ -68,10 +78,25 @@ function genMap(seed){
     const n2=t.nb[Math.floor(R()*6)];for(const i of[t.i,n2])for(const j of[i,mirror(i)]){tiles[j].type='rock';tiles[j].vil=true}
     VILS.push({c:t.i,t:[t.i,n2]},{c:mirror(t.i),t:[mirror(t.i),mirror(n2)]})}}
   // ---- ramps until every walkable tile is reachable, then a few extra routes
-  const walk=i=>tiles[i].type!=='rock'&&tiles[i].type!=='water'&&tiles[i].type!=='litio';
   const comp=()=>{const S=new Set([HQP]),st=[HQP];while(st.length){const c=st.pop();for(const n of tiles[c].nb)if(!S.has(n)&&walk(n)&&canStep(c,n)){S.add(n);st.push(n)}}return S};
   const setRamp=i=>{for(const j of[i,mirror(i)])tiles[j].ramp=true};
   const goodRamp=i=>{const t=tiles[i];return t.type==='grass'&&t.zone<0&&!keyT.some(k=>hd(i,k)<=1)&&!t.nb.some(n=>tiles[n].ramp)};
+  const walk=i=>tiles[i].type!=='rock'&&tiles[i].type!=='water'&&tiles[i].type!=='litio';
+  // ---- geografía: vados y pasos garantizados, y que ninguna tierra quede aislada
+  {const open=i=>{for(const j of[i,mirror(i)]){const t=tiles[j];if(t.type==='water'){t.type='ford';t.lv=0}else if(t.type==='rock'&&!t.vil){t.type='grass';t.wall=false}}};
+   for(const[u1,v1,u2,v2]of SH.links||[]){const ax=u1*CX,az=v1*CZ,bx=u2*CX,bz=v2*CZ,L=(bx-ax)**2+(bz-az)**2;
+    for(const t of tiles){if(t.type!=='water'&&!t.wall)continue;const k=clamp(((t.x-ax)*(bx-ax)+(t.z-az)*(bz-az))/L,0,1);if(Math.hypot(t.x-ax-k*(bx-ax),t.z-az-k*(bz-az))<1.05)open(t.i)}}
+   if(SH.water||SH.rock)for(let it=0;it<60;it++){
+    const S=new Set([HQP]),st=[HQP];while(st.length){const c=st.pop();for(const n of tiles[c].nb)if(!S.has(n)&&walk(n)){S.add(n);st.push(n)}}
+    const out=tiles.filter(t=>walk(t.i)&&!S.has(t.i));if(!out.length)break;
+    // islotes de menos de 6 casillas se hunden (o se vuelven roca); al resto se le abre el camino más corto
+    const seen=new Set();let did=false;
+    for(const t0 of out){if(seen.has(t0.i))continue;const reg=[t0.i];seen.add(t0.i);for(let k=0;k<reg.length;k++)for(const n of tiles[reg[k]].nb)if(!seen.has(n)&&walk(n)&&!S.has(n)){seen.add(n);reg.push(n)}
+     const zn=reg.some(i=>tiles[i].zone>=0);if(SH.sink||(reg.length<6&&!zn)){const wet=!zn&&reg.some(i=>tiles[i].nb.some(n=>tiles[n].type==='water'));for(const i of reg)for(const j of[i,mirror(i)]){tiles[j].type=wet?'water':'rock';if(wet)tiles[j].lv=0}did=true}}
+    if(did)continue;
+    const prev=new Map(),q=[];for(const a of S)for(const n of tiles[a].nb)if(!S.has(n)&&!walk(n)&&tiles[n].type!=='litio'&&!tiles[n].vil&&!prev.has(n)){prev.set(n,-1);q.push(n)}
+    let hit=-1;for(let k=0;k<q.length&&hit<0;k++){const c=q[k];for(const n of tiles[c].nb){if(walk(n)&&!S.has(n)){hit=c;break}if(!walk(n)&&tiles[n].type!=='litio'&&!tiles[n].vil&&!prev.has(n)){prev.set(n,c);q.push(n)}}}
+    if(hit<0)break;for(let c=hit;c>=0;c=prev.get(c))open(c)}}
   let okMap=false;
   for(let it=0;it<400;it++){
    const S=comp();
@@ -87,7 +112,7 @@ function genMap(seed){
    else break;
   }
   if(!okMap)continue;
-  for(let k=0;k<Math.round(26*AK);k++){
+  for(let k=0;k<Math.round(26*AK*(SH.rampK==null?1:SH.rampK));k++){
    const c=[];for(const t of tiles){if(!goodRamp(t.i)||t.ramp)continue;if(t.nb.some(n=>walk(n)&&tiles[n].lv===t.lv+1))c.push(t.i)}
    if(c.length)setRamp(c[Math.floor(R()*c.length)]);
   }

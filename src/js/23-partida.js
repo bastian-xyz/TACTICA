@@ -11,7 +11,7 @@ function newGame(sv){
  {const pl=SPECIES.map((S,i)=>S.st?i:-1).filter(i=>i>=0),f=CFG.foe;FOESP=sv&&sv.fs!=null?sv.fs:(typeof f==='number'&&SPECIES[f]&&SPECIES[f].st?f:pl[Math.floor(Math.random()*pl.length)])}
  if(sv&&sv.mp){PLK=sv.pl;PL=PLANETS[PLK]}else pickPlanet();applyPlanet();
  teamColors();
- setMapSize(sv?sv.sz:CFG.size);MSH=shapeFor(PLK,sv?sv.sh:CFG.shape);
+ setMapSize(sv?sv.sz:CFG.size);MSH=shapeFor(sv?sv.sh:CFG.shape);
  SEED=sv?sv.seed:Math.floor(Math.random()*1e9);genMap(SEED);
  vis=new Uint8Array(tiles.length);expl=new Uint8Array(tiles.length);revealT=0;
  buildTerrain();buildZoneChips();

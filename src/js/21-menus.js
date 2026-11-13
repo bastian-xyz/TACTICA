@@ -97,20 +97,20 @@ function mapThumb(cv,pk,sh){
   // color por nivel (tinte del suelo del planeta, de oscuro a claro) para que se lea la forma; agua y campos de energía encima
   const g=parseInt(M.grass.slice(1),16),gr=g>>16,gg=g>>8&255,gb=g&255,K=[-0.5,-0.2,0.08,0.34,0.62],mix=(v,k)=>Math.round(k<0?v*(1+k):v+(255-v)*k);
   const LC=K.map(k=>'rgb('+mix(gr,k)+','+mix(gg,k)+','+mix(gb,k)+')');
-  for(const t of tiles){c.fillStyle=t.type==='water'?M.liq:t.type==='ford'?M.ford:t.type==='litio'?'#ffd21f':LC[t.lv];
+  for(const t of tiles){c.fillStyle=t.type==='water'?M.liq:t.type==='ford'?'#e8e2c8':t.type==='litio'?'#ffd21f':t.wall?'#0b0d10':LC[t.lv];
    c.fillRect((t.c+0.5*(t.r&1))*2*k,t.r*1.75*k,2*k,1.75*k+0.5)}
   for(const i of[HQP,HQC]){const t=tiles[i];c.fillStyle=i===HQP?'#2ad4ff':'#ff5a3a';c.fillRect((t.c+0.5*(t.r&1))*2*k-k,t.r*1.75*k-k,4*k,3.75*k)}
  }catch(e){}
  [tiles,zones,VILS,HQP,HQC,BASP,BASC,W,H,CX,CZ,PL,PLK,MSH,R]=keep;
 }
 function renderMapOpts(){
- const pk=PLANETS[CFG.planet]?CFG.planet:null,cur=pk?shapeFor(pk,CFG.shape):'var',sz=SIZES[CFG.size]?CFG.size:'m';
+ const pk=PLANETS[CFG.planet]?CFG.planet:'verdea',cur=shapeFor(CFG.shape),sz=SIZES[CFG.size]?CFG.size:'m';
  const bg=()=>{if(!started){newGame();revealT=1e9}};
  const g=$('shGrid');g.innerHTML='';
- for(const[k,n]of[['var','Variado'],...(pk?shapesOf(pk):[])]){const b=document.createElement('button');b.className=k===cur?'on':'';
-  if(pk){const cv=document.createElement('canvas');b.appendChild(cv);mapThumb(cv,pk,k)}else b.innerHTML='<i style="background:conic-gradient(#8fd16a,#ffb060,#ffffff,#c08aff,#8fd16a)"></i>';
-  b.appendChild(document.createTextNode(n));b.onclick=()=>{CFG.shape=k;store.set('cfg',CFG);renderMapOpts();bg()};g.appendChild(b)}
- $('shDesc').textContent=pk?SHAPES[cur].d:'Con el planeta al azar la forma es variada. Elige un planeta para ver sus formas de mapa.';
+ for(const k in SHAPES){const b=document.createElement('button');b.className=k===cur?'on':'';
+  const cv=document.createElement('canvas');b.appendChild(cv);mapThumb(cv,pk,k);
+  b.appendChild(document.createTextNode(SHAPES[k].n));b.onclick=()=>{CFG.shape=k;store.set('cfg',CFG);renderMapOpts();bg()};g.appendChild(b)}
+ $('shDesc').textContent=SHAPES[cur].d;
  const z=$('szGrid');z.innerHTML='';
  for(const k in SIZES){const S=SIZES[k],b=document.createElement('button');b.className=k===sz?'on':'';
   b.innerHTML='<span class="szb"><u style="width:'+Math.round(S.w/72*100)+'%;height:'+Math.round(S.h/40*100)+'%"></u></span>'+S.n+'<small>'+S.w+' × '+S.h+' · '+S.d+'</small>';

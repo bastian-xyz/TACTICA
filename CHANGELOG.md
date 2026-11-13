@@ -1,5 +1,11 @@
 # Registro de cambios
 
+## 0.75.0 BETA · 13-11-2026
+- Geografías: el menú de Versus ofrece nueve mapas de estructura distinta, en cualquier planeta y con miniatura de ejemplo. Continente (relieve libre), Llanura (estepa abierta), Islas (cada base en su isla, unidas por vados), Mar interior (hay que rodearlo por tierra o cruzarlo por aire), Dos orillas (un gran río con tres vados), Mesetas (base en alto con una sola rampa y terraza de expansión), Desfiladero (tres carriles entre murallas de montaña), Cordillera (cadena infranqueable con tres pasos) y Pantano (lagos y río).
+- Mares, murallas de montaña y mesetas se dibujan a escala de todo el mapa. Los vados y pasos quedan garantizados: ninguna tierra queda aislada y los campos de energía que caerían al mar se corren a tierra firme.
+- Todas las geografías son simétricas por lado, pensadas para sumar después 2v2 y 3v3.
+- Reemplazan a las formas por planeta de la versión anterior. Las partidas guardadas antes no se pueden continuar.
+
 ## 0.74.0 BETA · 13-11-2026
 - Versus: nuevo menú Forma del mapa. Cada planeta tiene sus propias formas, con una miniatura de ejemplo: Kepler-442b (Praderas, Valle, Altiplano), LP 791-18 d (Caldera, Cordillera, Mar de lava), LHS 1140 b (Tundra, Glaciar, Deshielo) y Kepler-186f (Cuenca, Cañón, Pozas). Variado mantiene el relieve libre de siempre.
 - Tamaño del mapa: Pequeño (46 × 26), Mediano (58 × 32) y Gigante (72 × 40). Lagos, aldeas, rampas y relieve se reparten según la superficie.
