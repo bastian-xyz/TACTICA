@@ -81,6 +81,7 @@ function sparkBurst(x,y,z,n,v){for(let q=0;q<n;q++){const m=new THREE.Mesh(G.box
 function debris(x,y,z,n,pw){for(let q=0;q<n;q++){const m=new THREE.Mesh(G.box,CHARM[q%3]);const s=0.05+Math.random()*0.08;m.scale.set(s,s*0.7,s*1.2);m.position.set(x,y,z);scene.add(m);const b=Math.random()*6.283,v=(0.8+Math.random()*2)*pw;
  fx.push({o:m,t:0,life:1.1+Math.random()*0.7,k:'chunk',vx:Math.cos(b)*v,vz:Math.sin(b)*v,vy:1.4+Math.random()*2.4*pw,spin:(Math.random()-.5)*14,shared:1})}}
 function hitFx(e,dmg){
+ noteHit(e);
  if(e.dead||!isMechE(e)||!e.mesh||!e.mesh.visible)return;e.hitT=0.16;
  const p=entPos(e),air=e.kind==='u'&&isAir(e),y=e.kind==='b'?p.y+0.4+Math.random()*(e.big?1.5:e.foot?1.1:0.7):(air?e.mesh.position.y+0.05:p.y+0.25);
  const r=e.kind==='b'?(e.big?1.3:e.foot?0.9:0.45):0.18,a=Math.random()*6.283,x=p.x+Math.cos(a)*r,z=p.z+Math.sin(a)*r;

@@ -1,5 +1,15 @@
 # Registro de cambios
 
+## 0.76.0 BETA · 13-11-2026
+- Pantalla de batalla en celular rediseñada: la vista ocupa casi toda la pantalla. El minimapa pasa a un recuadro arriba a la derecha que se puede cerrar (queda como botón) y se abre solo unos segundos si atacan tu base.
+- Aviso de ataque: si te pegan fuera de cámara aparece una flecha roja en el borde que apunta hacia el ataque; tocarla lleva la cámara ahí. Con el minimapa cerrado, su botón parpadea en rojo.
+- Cartas en una sola fila: las 8 tropas del mazo con ícono y costo; las que aún no tienen edificio se ven apagadas. El botón BASE cambia la fila a los edificios, la mejora de nivel de la base y cerrar.
+- Poderes (Satélite, Dropper, Misil) en un riel vertical al borde derecho de la vista. Energía, reloj, ×2 y población en una sola línea arriba.
+- Las tropas también se pueden arrastrar desde la carta directo al mapa, con su casilla fantasma, igual que los edificios.
+- Panel de selección y barra del Droper ocupan la barra de abajo sin achicar la vista.
+- Gesto de volver del celular: cancela lo que estés haciendo, cierra la selección o la barra de base, pone pausa y desde la pausa continúa; ya no saca de la partida. En los menús vuelve a la pantalla anterior.
+- Escuadra: el mazo admite 8 cartas (antes quedaba en 6) y se muestra en dos filas de cuatro.
+
 ## 0.75.0 BETA · 13-11-2026
 - Geografías: el menú de Versus ofrece nueve mapas de estructura distinta, en cualquier planeta y con miniatura de ejemplo. Continente (relieve libre), Llanura (estepa abierta), Islas (cada base en su isla, unidas por vados), Mar interior (hay que rodearlo por tierra o cruzarlo por aire), Dos orillas (un gran río con tres vados), Mesetas (base en alto con una sola rampa y terraza de expansión), Desfiladero (tres carriles entre murallas de montaña), Cordillera (cadena infranqueable con tres pasos) y Pantano (lagos y río).
 - Mares, murallas de montaña y mesetas se dibujan a escala de todo el mapa. Los vados y pasos quedan garantizados: ninguna tierra queda aislada y los campos de energía que caerían al mar se corren a tierra firme.

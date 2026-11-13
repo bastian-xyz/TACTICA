@@ -221,7 +221,7 @@ function loop(now){
  zones.forEach(z=>(z.pyl||[]).forEach(g=>g.userData.spin.rotation.y+=dt*1.5));
  if(shake>0){shake=Math.max(0,shake-dt*1.5)}
  if(!started){const tt=now*0.00004;cam.x=Math.sin(tt)*CX*0.55;cam.z=Math.cos(tt*0.8)*CZ*0.6;cam.dist=30}
- updDust(dt);updDropIcons();
+ updDust(dt);updDropIcons();uiTick();
  if(INTRO)introCam(dt);else{keyTick(dt);camFollowTick(dt);updCam()}
  if(started||$('scrMain').classList.contains('hide'))renderer.render(scene,camera);
  miniT-=dt;if(miniT<=0){miniT=1/30;drawMini()}
@@ -234,7 +234,7 @@ function loop(now){
 function resize(){const r=view.getBoundingClientRect();renderer.setSize(r.width,r.height,false);camera.aspect=r.width/Math.max(1,r.height);camera.updateProjectionMatrix();resizeMini()}
 addEventListener('resize',applyWide);applyWide();new ResizeObserver(resize).observe(view);new ResizeObserver(resizeMini).observe(mini);
 
-buildCards();newGame();revealT=1e9;applyCfg();showScr('scrMain');requestAnimationFrame(loop);
+buildCards();UIREADY=true;newGame();revealT=1e9;applyCfg();showScr('scrMain');requestAnimationFrame(loop);
 mpHashJoin();addEventListener('hashchange',mpHashJoin);
 // aviso de versión nueva (solo en la web: en Claude la página no puede pedir archivos)
 if(BUILD==='web'){const chk=()=>{fetch('version.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{if(!j||!j.version||j.version===VERSION)return;const b=$('updBan');b.textContent='Nueva versión v'+j.version+' disponible · toca para actualizar';b.classList.remove('hide');b.onclick=()=>{if(started&&!over&&!confirmUpd())return;location.reload()}}).catch(()=>{})};

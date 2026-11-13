@@ -110,7 +110,7 @@ function command(i,ent,strict){
   const w=why(0,selCard,i);
   if(w){toast(w);return}
   const k=selCard;place(0,k,i);ping(i);
-  if(BD[k]||SUP[k])setCard(null);
+  if(BD[k]||SUP[k])setCard(null);if(BD[k])baseMode(false);
   refreshHi();return;
  }
  const own=(ent&&ent.team===0&&ent.kind==='u')?ent:strict?null:((t.au&&t.au.team===0)?t.au:(t.gu&&t.gu.team===0)?t.gu:null);

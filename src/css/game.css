@@ -89,7 +89,7 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:Rajdhani,
 .dabil span.str{background:#10231c;border-color:#245442;color:#9dffd9}
 .dtog{text-align:center;font-size:15px;padding:9px}.dtog.rm{border-color:#5a3a2a;color:#ffb27a}
 .dsec{font-size:11px;letter-spacing:1.5px;color:var(--mu);margin-top:10px}
-.dslots{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:4px}
+.dslots{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:4px}
 .dslots div{height:44px;border:1px dashed var(--k-ln);border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:8.5px;color:#9fb0bf}
 .dslots div.f{border:1px solid var(--k-ln2);background:color-mix(in srgb,var(--c0) 12%,var(--pn));touch-action:none}.dslots div.cur{border-color:#fff}
 .dslots.rep div{animation:slg .8s infinite alternate;border-color:var(--c0)}.dslots div.hov{background:#1a3a4a!important;border-color:#fff!important;transform:scale(1.06)}
@@ -231,3 +231,43 @@ body.wide #homePlanet{left:calc(var(--hc) + 44px);top:0;width:calc(100% - var(--
 body.wide .hlogo{right:28px;top:26px;font-size:44px;letter-spacing:12px}body.wide .hlogo small{font-size:12px;letter-spacing:2px;margin-top:6px}
 body.wide .hworld{left:calc(var(--hc) + 44px);right:calc(var(--hr) + 52px);top:auto;bottom:26px;text-align:center;font-size:13px}body.wide .hworld b{font-size:22px;letter-spacing:4px}
 body.wide .hbig{left:auto;right:28px;width:var(--hr);top:auto;bottom:28px;height:min(430px,calc(100vh - 150px));gap:12px}
+
+/* ===== Celular (vertical): barra compacta, minimapa flotante, riel de poderes ===== */
+#view{flex:1 1 0}
+#hudx{color:#9fb0bf;font-size:12px}body.wide #hudx{display:none}
+body:not(.wide) #clock,body:not(.wide) #ucount{display:none}
+body{--mmw:min(46vw,210px)}
+body:not(.wide) #mapwrap{position:absolute;top:46px;right:8px;width:var(--mmw);height:calc(var(--mmw) / var(--mar,2.04) + 16px);flex:none;z-index:5;border:1px solid var(--k-ln2);border-radius:8px;overflow:hidden;background:color-mix(in srgb,var(--k-pn) 90%,transparent);box-shadow:0 4px 14px #0009}
+body:not(.wide) #mapLbl{display:none}
+body.mmoff #mapwrap{display:none}
+#mmX{position:absolute;top:2px;right:2px;width:24px;height:22px;border:0;border-radius:5px;background:#0b1016b3;color:#c9d6e1;font:700 13px Rajdhani,sans-serif;z-index:2}
+body.wide #mmX,#mmBtn{display:none}
+body.mmoff:not(.wide) #mmBtn{display:flex;position:absolute;top:46px;right:8px;width:38px;height:34px;padding:0;align-items:center;justify-content:center;z-index:5}
+#mmBtn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linejoin:round}
+#mmBtn.alr{border-color:#ff4a4a;color:#ff8a7a;animation:alr .45s infinite alternate}
+@keyframes alr{to{box-shadow:0 0 14px #ff4a4acc;background:#3a1010d0}}
+#atkArr{position:absolute;left:0;top:0;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;border:1.5px solid #ff4a4a;background:#2a0c0cd9;color:#ff8a7a;display:none;align-items:center;justify-content:center;z-index:6;padding:0;animation:alr .45s infinite alternate}
+#atkArr.on{display:flex}#atkArr svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+body:not(.wide) #pwr{position:absolute;right:6px;top:50%;transform:translateY(-50%);flex-direction:column;justify-content:center;gap:12px;padding:0;z-index:5}
+body:not(.wide) #pwr .pw span{font-size:10px;text-shadow:0 1px 3px #000,0 0 6px #000}
+body:not(.wide) #bar{position:relative;height:66px}
+#cards.cmp{grid-template-columns:42px repeat(8,minmax(0,1fr));grid-template-rows:54px;gap:3px;padding:5px}
+#cards.cmp .nm,#cards.cmp .tg{display:none}
+#cards.cmp .card{justify-content:center;gap:3px;padding:2px 0}
+#cards.cmp .card svg{width:22px;height:22px;margin:0}
+#cards.cmp .card .ct{font-size:11px}
+#bar:not(.base) #cards.cmp .bmode{display:none}
+#bar.base #cards.cmp .unit{display:none}
+#cards.cmp .basebt{border-color:var(--c0);color:var(--c0)}#cards.cmp .basebt .ct{color:var(--c0);font-size:9px;letter-spacing:.5px}
+#bar.base #cards.cmp .basebt{background:var(--c0);color:#0b1016}#bar.base #cards.cmp .basebt .ct{color:#0b1016}
+#cards.cmp .card.nob{opacity:.28}
+#cards.cmp .upc .ct{font-size:10px}
+body:not(.wide) #ctx{position:absolute;left:0;right:0;bottom:0;height:auto;z-index:6;border-top:1px solid var(--ln)}
+body:not(.wide) #ctx .cact{margin-top:6px}body:not(.wide) #ctx .cchips{margin-top:6px}
+body:not(.wide) #dropBar{left:0;right:0;top:0;bottom:0;transform:none;border-radius:0;justify-content:center;border:0;border-top:1px solid var(--c0);background:var(--pn);z-index:7}
+#app.intro #mapwrap,#app.intro #pwr,#app.intro #mmBtn{opacity:0;pointer-events:none}
+body:not(.wide) #ctx{padding:5px 8px 6px}body:not(.wide) #ctx .ch b{font-size:13px}body:not(.wide) #ctx .cx{width:34px;height:28px}
+body:not(.wide) #ctx .hpb{margin-top:4px;height:4px}
+body:not(.wide) #ctx .cchips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-top:5px}body:not(.wide) #ctx .cchips::-webkit-scrollbar{display:none}
+body:not(.wide) #ctx .cchips button{flex:0 0 auto;padding:4px 7px;font-size:11.5px}body:not(.wide) #ctx .cchips svg{width:17px;height:17px}
+body:not(.wide) #ctx .cact{margin-top:5px}body:not(.wide) #ctx .cact button{padding:7px;font-size:12px}

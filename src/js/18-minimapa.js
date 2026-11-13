@@ -1,5 +1,5 @@
 // ================= MODO HORIZONTAL · TECLADO Y MOUSE (computador) =================
-function applyWide(){const m=CFG.lay||'auto',w=innerWidth,h=innerHeight;document.body.classList.toggle('wide',m!=='v'&&w>h*1.2&&(m==='h'||w>=700));document.body.style.setProperty('--mar',((CX*2+2)/(CZ*2+2.2)).toFixed(3))}
+function applyWide(){const m=CFG.lay||'auto',w=innerWidth,h=innerHeight,was=document.body.classList.contains('wide');document.body.classList.toggle('wide',m!=='v'&&w>h*1.2&&(m==='h'||w>=700));if(was!==document.body.classList.contains('wide')&&UIREADY)buildCards();document.body.style.setProperty('--mar',((CX*2+2)/(CZ*2+2.2)).toFixed(3))}
 const KEYS={},KBD={},BKEYS='zxcvbn';
 function keyMap(){for(const k in KBD)delete KBD[k];let n=0,b=0;
  for(const[k,col,row]of makeLayout()){const el=cardEls[k];if(!el)continue;const key=UD[k]?String(++n):BD[k]?BKEYS[b++]:null;if(!key)continue;KBD[key]=k;el.dataset.k=key.toUpperCase()}}
@@ -49,7 +49,7 @@ function drawTerrMini(){
 }
 function drawContMini(c){c.strokeStyle='#0a0c0fcc';c.lineWidth=2.2;c.lineCap='round';c.beginPath();for(const[i,x0,z0,x1,z1]of CONT){if(!expl[i])continue;const A=w2m(x0,z0),B=w2m(x1,z1);c.moveTo(A[0],A[1]);c.lineTo(B[0],B[1])}c.stroke()}
 function drawMini(){
- const c=mctx;c.setTransform(MM.dpr,0,0,MM.dpr,0,0);c.clearRect(0,0,MM.w,MM.h);c.drawImage(terrCv,0,0,MM.w,MM.h);
+ if(!MM.w||!MM.h)return;const c=mctx;c.setTransform(MM.dpr,0,0,MM.dpr,0,0);c.clearRect(0,0,MM.w,MM.h);c.drawImage(terrCv,0,0,MM.w,MM.h);
  if(hiSet){c.fillStyle=TCS[0]+'26';for(const i of hiSet){const[x,y]=w2m(tiles[i].x,tiles[i].z);hexPath(c,x,y,MM.s*0.99);c.fill()}c.strokeStyle=TCS[0];c.lineWidth=2;c.lineCap='round';c.beginPath();for(const[x0,z0,x1,z1]of hiEdges){const a=w2m(x0,z0),b=w2m(x1,z1);c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1])}c.stroke()}
  for(const e of ents){
   if(e.dead||!visE(e))continue;const p=entPos(e);const[x,y]=w2m(p.x,p.z);
@@ -71,7 +71,7 @@ function drawMini(){
  if(pts.every(Boolean)){c.strokeStyle='#ffffffcc';c.lineWidth=1.5;c.beginPath();pts.forEach((p,k)=>k?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]));c.closePath();c.stroke();c.fillStyle='#ffffff0d';c.fill()}
 }
 let md=null;
-mini.addEventListener('pointerdown',e=>{mini.setPointerCapture(e.pointerId);md={sx:e.clientX,sy:e.clientY,moved:false}});
+mini.addEventListener('pointerdown',e=>{mmAuto=0;mini.setPointerCapture(e.pointerId);md={sx:e.clientX,sy:e.clientY,moved:false}});
 mini.addEventListener('pointermove',e=>{
  if(!md)return;if(!md.moved&&Math.hypot(e.clientX-md.sx,e.clientY-md.sy)>8)md.moved=true;
  if(md.moved){CAMF=null;const r=mini.getBoundingClientRect();const[x,z]=m2w(e.clientX-r.left,e.clientY-r.top);cam.x=x;cam.z=z-1.5*FL;updCam()}

@@ -1,14 +1,14 @@
 <div id="app">
   <div id="view">
     <div class="hud">
-      <div><div id="res"><span style="color:#ffd84d">⚡</span><b>0</b> <span id="inc"></span></div><div id="zones"></div><div id="keys"></div></div>
+      <div><div id="res"><span style="color:#ffd84d">⚡</span><b>0</b> <span id="inc"></span> <span id="hudx"></span></div><div id="zones"></div><div id="keys"></div></div>
       <div style="text-align:right"><button class="btn" id="mbtn">☰</button><div id="clock" style="margin-top:4px;font-size:13px;color:#9fb0bf"></div><div id="ucount" style="font-size:12px;color:#9fb0bf"></div></div>
     </div>
-    <div id="toast"></div><div id="mpBan"></div><div id="dropIcons"></div><div id="dropBar"></div><div id="selBox"></div><div id="kbHint">WASD / flechas: cámara · rueda: zoom · 1–8: tropas · Z X C V B N: edificios<br>Espacio: ir a la base · clic derecho: soltar selección · Esc: pausa</div>
+    <button class="btn" id="mmBtn" aria-label="Abrir minimapa"><svg viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg></button><button id="atkArr" aria-label="Ir al ataque"><svg viewBox="0 0 24 24"><path d="M4 12h13M12 6l7 6-7 6"/></svg></button><div id="toast"></div><div id="mpBan"></div><div id="dropIcons"></div><div id="dropBar"></div><div id="selBox"></div><div id="kbHint">WASD / flechas: cámara · rueda: zoom · 1–8: tropas · Z X C V B N: edificios<br>Espacio: ir a la base · clic derecho: soltar selección · Esc: pausa</div>
     <div id="intro"><div class="lb t"></div><div class="lb b"></div><div class="tt" id="introT"></div><div class="sk">TOCA PARA SALTAR ›</div></div>
   </div>
   <div id="bar"><div id="pwr"></div><div id="cards"></div><div id="ctx" class="hide"></div></div>
-  <div id="mapwrap"><canvas id="mini"></canvas><div id="mapLbl">MAPA · ARRASTRA PARA NAVEGAR</div></div>
+  <div id="mapwrap"><canvas id="mini"></canvas><button id="mmX" aria-label="Cerrar minimapa">✕</button><div id="mapLbl">MAPA · ARRASTRA PARA NAVEGAR</div></div>
 </div>
 
 <div class="ov scr" id="scrMain"><div class="home">

@@ -286,7 +286,7 @@ const ghMesh=new THREE.InstancedMesh(new THREE.CylinderGeometry(0.9,0.9,0.05,6),
 const ghRG=new THREE.RingGeometry(0.74,0.93,6,1,Math.PI/2);ghRG.rotateX(-Math.PI/2);
 const ghLines=new THREE.InstancedMesh(ghRG,new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:0.95,depthWrite:false,side:THREE.DoubleSide}),3);ghLines.count=0;ghLines.renderOrder=8;ghLines.visible=false;scene.add(ghLines);
 function setGhost(i){
- if(i==null||i<0||!selCard||!BD[selCard]){ghMesh.count=0;ghLines.visible=false;GH.i=-1;return}
+ if(i==null||i<0||!selCard||!(BD[selCard]||UD[selCard])){ghMesh.count=0;ghLines.visible=false;GH.i=-1;return}
  if(i===GH.i)return;GH.i=i;
  const ok=!why(0,selCard,i);let ft=[i];
  if(BIG3[selCard]){const f=footFor(0,i);if(f)ft=f;else{const t=tiles[i];for(const a of t.nb){const b=tiles[a].nb.find(n=>n!==i&&t.nb.includes(n));if(b!=null){ft=[i,a,b];break}}}}

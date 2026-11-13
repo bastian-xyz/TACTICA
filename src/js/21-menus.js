@@ -64,10 +64,10 @@ function renderDeck(){
  if(repMode){tg.textContent='CANCELAR REEMPLAZO'}
  tg.onclick=()=>{const m=$('deckMsg');m.textContent='';
   if(inD){if(DECK.length<=1){m.textContent='El mazo necesita al menos 1 carta';return}DECK=DECK.filter(x=>x!==deckSel)}
-  else if(DECK.length>=6){repMode=!repMode;renderDeck();return}else DECK.push(deckSel);
+  else if(DECK.length>=8){repMode=!repMode;renderDeck();return}else DECK.push(deckSel);
   store.set(deckKey(),DECK);renderDeck()};
  const sl=$('dSlots');sl.innerHTML='';sl.classList.toggle('rep',repMode);
- for(let i=0;i<6;i++){const k=DECK[i],d=document.createElement('div');d.dataset.slot=i;if(k){d.className='f'+(k===deckSel?' cur':'');d.innerHTML='<svg viewBox="0 0 24 24">'+ICON[k]+'</svg>'+UD[k].n;
+ for(let i=0;i<8;i++){const k=DECK[i],d=document.createElement('div');d.dataset.slot=i;if(k){d.className='f'+(k===deckSel?' cur':'');d.innerHTML='<svg viewBox="0 0 24 24">'+ICON[k]+'</svg>'+UD[k].n;
   d.onclick=()=>{if(dragDone)return;if(repMode){if(!DECK.includes(deckSel))DECK[i]=deckSel;repMode=false;store.set(deckKey(),DECK);renderDeck()}else{deckSel=k;renderDeck()}};dragify(d,k,i)}sl.appendChild(d)}
  const tb=$('dTabs');tb.innerHTML='';
  for(const b of PRODS){const bt=document.createElement('button');bt.className=b===deckTab?'on':'';const c=DECK.filter(x=>UD[x].req===b).length;

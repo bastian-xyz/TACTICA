@@ -92,6 +92,7 @@ function updHud(){
  $('inc').textContent='+'+inc*incMul()+'/s'+(incMul()>1?' ×2':'');
  const m=Math.floor(gameTime/60),s=Math.floor(gameTime%60);$('clock').textContent=m+':'+String(s).padStart(2,'0')+(gameTime<180?'  ·  ⚡×2 en '+Math.floor((180-gameTime)/60)+':'+String(Math.floor((180-gameTime)%60)).padStart(2,'0'):'');
  $('ucount').textContent='Tropas '+unitCount(0)+'/'+capOf(0);
+ {const hx=$('hudx');if(hx)hx.textContent=m+':'+String(s).padStart(2,'0')+(gameTime<180?' · ×2 en '+Math.floor((180-gameTime)/60)+':'+String(Math.floor((180-gameTime)%60)).padStart(2,'0'):'')+' · '+unitCount(0)+'/'+capOf(0)}
  zones.forEach((z,i)=>{const el=$('zc'+i);if(!el)return;const f=el.querySelector('i');const c=z.cap;f.style.background=c>=0?TCS[0]:TCS[1];f.style.opacity=0.55;f.style.width=Math.abs(c)*100+'%';f.style.left=c>=0?'0':'auto';f.style.right=c<0?'0':'auto';el.style.borderColor=z.own<0?'#33414f':TCS[z.own]});
  const hpq=t=>{const h=aliveOf(t,'b').find(b=>b.type==='hq');return h?Math.ceil(h.hp/h.max*100):0};
  $('keys').innerHTML='<span style="color:'+TCS[0]+'">◆ '+hpq(0)+'%</span> vs <span style="color:'+TCS[1]+'">◆ '+hpq(1)+'%</span>';

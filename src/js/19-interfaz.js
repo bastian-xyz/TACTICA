@@ -3,27 +3,34 @@ const $=id=>document.getElementById(id);
 const cardsEl=$('cards');const cardEls={};
 function makeLayout(){const L=[['barracks',1,3],['factory',2,3],['helipad',3,3],['ialab',4,3],['extractor',5,3],['turret',6,3]];const free=[];for(let r=1;r<=2;r++)for(let c=1;c<=4;c++)free.push([c,r]);const ord=[...DECK].sort((a,b)=>PRODS.indexOf(UD[a].req)-PRODS.indexOf(UD[b].req));for(const k of ord){const p=free.shift();if(p)L.push([k,p[0],p[1]])}for(const f of free)L.push(['_slot',f[0],f[1]]);return L}
 const pwrEls={};
-function buildPwr(){const box=cardsEl;$('pwr').style.display='none';const POS={missile:[5,1],sat:[6,1],dropper:[5,2],extract:[6,2]};for(const k of['missile','sat','dropper','extract']){const b=document.createElement('button');b.className='pw';b.style.gridColumn=POS[k][0];b.style.gridRow=POS[k][1];
+function mkPw(k){const b=document.createElement('button');b.className='pw';
  b.innerHTML='<svg class="ring" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" class="bg"/><circle cx="22" cy="22" r="19" class="rg" stroke-dasharray="119.4" stroke-dashoffset="119.4" transform="rotate(-90 22 22)"/></svg><svg class="ic" viewBox="0 0 24 24">'+ICON[k]+'</svg><span>'+SUP[k].n+'</span>';
- b.onclick=()=>{if(!started||over)return;setCard(selCard===k?null:k)};box.appendChild(b);pwrEls[k]=b}}
+ b.onclick=()=>{if(!started||over)return;setCard(selCard===k?null:k)};return b}
+function buildPwr(){const P=$('pwr');P.innerHTML='';P.style.display='none';for(const k in pwrEls)delete pwrEls[k];const POS={missile:[5,1],sat:[6,1],dropper:[5,2],extract:[6,2]};for(const k of['missile','sat','dropper','extract']){const b=mkPw(k);b.style.gridColumn=POS[k][0];b.style.gridRow=POS[k][1];cardsEl.appendChild(b);pwrEls[k]=b}}
+// una carta (tropa, edificio o apoyo): toque = elegir; arrastre al mapa = desplegar o construir en un solo gesto
+function mkCard(k){
+ const el=document.createElement('div');const sup=!!SUP[k];
+ el.className='card'+(sup?' sup':'')+(BD[k]?' bld':'');
+ const D=SUP[k]||BD[k]||UD[k];
+ const tag=sup?'APOYO':BD[k]?'':({inf:'INF',veh:'VEH',air:'AIRE',mec:'MEC'})[UD[k].cls];
+ el.innerHTML=(sup?'<div class="fill"></div>':'')+'<span class="tg">'+tag+'</span><svg viewBox="0 0 24 24">'+ICON[k]+'</svg><span class="nm">'+D.n+'</span><span class="ct">'+(sup?'0%':'⚡'+D.cost)+'</span>';
+ el.addEventListener('click',()=>{if(!started||over||performance.now()-cardDragT<350)return;setCard(selCard===k?null:k)});
+ if(BD[k]||UD[k])el.addEventListener('pointerdown',e=>{if(!started||over)return;const sx=e.clientX,sy=e.clientY;let on=false;
+  const end=()=>{window.removeEventListener('pointermove',mv);window.removeEventListener('pointerup',up);window.removeEventListener('pointercancel',cn)};
+  const mv=ev=>{if(!on&&Math.hypot(ev.clientX-sx,ev.clientY-sy)>12){on=true;if(selCard!==k)setCard(k);if(selCard!==k){end();return}}
+   if(on){ev.preventDefault();const r=cv.getBoundingClientRect(),y=ev.clientY-GHOFF(ev);setGhost(ev.clientX>=r.left&&ev.clientX<=r.right&&y>=r.top&&y<=r.bottom?tileAt(ev.clientX,y):-1)}};
+  const up=()=>{end();if(!on)return;cardDragT=performance.now();const i=GH.i;setGhost(null);if(i>=0){command(i,null);if(UD[k])setCard(null)}else setCard(null)};
+  const cn=()=>{end();setGhost(null)};
+  window.addEventListener('pointermove',mv,{passive:false});window.addEventListener('pointerup',up);window.addEventListener('pointercancel',cn)});
+ return el}
 function buildCards(){
- cardsEl.innerHTML='';for(const k in cardEls)delete cardEls[k];buildPwr();
+ cardsEl.innerHTML='';for(const k in cardEls)delete cardEls[k];placeUI();
+ if(!isWide()){buildCompact();keyMap();return}
+ cardsEl.classList.remove('cmp');buildPwr();
  for(const[k,col,row]of makeLayout()){
   if(UD[k]||k==='_slot'){const sl=document.createElement('div');sl.className='slot';sl.style.gridColumn=col;sl.style.gridRow=row;cardsEl.appendChild(sl)}
   if(k==='_slot')continue;
-  const el=document.createElement('div');const sup=!!SUP[k];
-  el.className='card'+(sup?' sup':'')+(BD[k]?' bld':'');el.style.gridColumn=col;el.style.gridRow=row;
-  const D=SUP[k]||BD[k]||UD[k];
-  const tag=sup?'APOYO':BD[k]?'':({inf:'INF',veh:'VEH',air:'AIRE',mec:'MEC'})[UD[k].cls];
-  el.innerHTML=(sup?'<div class="fill"></div>':'')+'<span class="tg">'+tag+'</span><svg viewBox="0 0 24 24">'+ICON[k]+'</svg><span class="nm">'+D.n+'</span><span class="ct">'+(sup?'0%':'⚡'+D.cost)+'</span>';
-  el.addEventListener('click',()=>{if(!started||over||performance.now()-cardDragT<350)return;setCard(selCard===k?null:k)});
-  if(BD[k])el.addEventListener('pointerdown',e=>{if(!started||over)return;const sx=e.clientX,sy=e.clientY;let on=false;
-   const end=()=>{window.removeEventListener('pointermove',mv);window.removeEventListener('pointerup',up);window.removeEventListener('pointercancel',cn)};
-   const mv=ev=>{if(!on&&Math.hypot(ev.clientX-sx,ev.clientY-sy)>12){on=true;if(selCard!==k)setCard(k);if(selCard!==k){end();return}}
-    if(on){ev.preventDefault();const r=cv.getBoundingClientRect(),y=ev.clientY-GHOFF(ev);setGhost(ev.clientX>=r.left&&ev.clientX<=r.right&&y>=r.top&&y<=r.bottom?tileAt(ev.clientX,y):-1)}};
-   const up=()=>{end();if(!on)return;cardDragT=performance.now();const i=GH.i;setGhost(null);if(i>=0)command(i,null);else setCard(null)};
-   const cn=()=>{end();setGhost(null)};
-   window.addEventListener('pointermove',mv,{passive:false});window.addEventListener('pointerup',up);window.addEventListener('pointercancel',cn)});
+  const el=mkCard(k);el.style.gridColumn=col;el.style.gridRow=row;
   cardsEl.appendChild(el);cardEls[k]=el;
  }
  keyMap();
@@ -46,7 +53,8 @@ function updCards(){
  for(const k in cardEls){
   const el=cardEls[k];
   if(SUP[k]){const c=charge[0][k]||0;el.querySelector('.fill').style.height=(c*100)+'%';el.querySelector('.ct').textContent=c>=1?'LISTO':Math.floor(c*100)+'%';el.classList.toggle('rdy',c>=1);el.classList.toggle('off',c<=0)}
-  else{if(UD[k]){const has=aliveOf(0,'b').some(b=>b.type===UD[k].req&&b.built);el.classList.toggle('hid',!has);if(!has&&selCard===k)setCard(null)}el.classList.toggle('off',!cardUsable(0,k));if(k==='turret'){const ct=el.querySelector('.ct'),tx='⚡'+costOf(0,k);if(ct&&ct.textContent!==tx)ct.textContent=tx}}
+  else{if(UD[k]){const has=aliveOf(0,'b').some(b=>b.type===UD[k].req&&b.built);el.classList.toggle(isWide()?'hid':'nob',!has);if(!has&&selCard===k)setCard(null)}el.classList.toggle('off',!cardUsable(0,k));if(k==='turret'){const ct=el.querySelector('.ct'),tx='⚡'+costOf(0,k);if(ct&&ct.textContent!==tx)ct.textContent=tx}}
  }
+ updCompact();
 }
 
