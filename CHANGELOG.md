@@ -1,5 +1,11 @@
 # Registro de cambios
 
+## 0.74.0 BETA · 13-11-2026
+- Versus: nuevo menú Forma del mapa. Cada planeta tiene sus propias formas, con una miniatura de ejemplo: Kepler-442b (Praderas, Valle, Altiplano), LP 791-18 d (Caldera, Cordillera, Mar de lava), LHS 1140 b (Tundra, Glaciar, Deshielo) y Kepler-186f (Cuenca, Cañón, Pozas). Variado mantiene el relieve libre de siempre.
+- Tamaño del mapa: Pequeño (46 × 26), Mediano (58 × 32) y Gigante (72 × 40). Lagos, aldeas, rampas y relieve se reparten según la superficie.
+- La partida guardada recuerda la forma y el tamaño. En el 1v1 los elige quien crea la partida y el invitado recibe el mismo mapa.
+- Las partidas guardadas en versiones anteriores no se pueden continuar.
+
 ## 0.73.0 BETA · 13-11-2026
 - Mapa más grande: pasa de 46 × 26 a 58 × 32 casillas (un 55 % más de terreno), con un grupo extra de campos de energía por lado y una aldea más.
 - Más planicies sin perder el relieve: los niveles 1 y 2 forman terrazas anchas para maniobrar, y las hondonadas, mesetas y cumbres quedan como accidentes que marcan el terreno. Las manchas chicas de desnivel se funden con la terraza vecina.

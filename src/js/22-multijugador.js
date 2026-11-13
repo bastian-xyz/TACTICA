@@ -83,8 +83,9 @@ function mpBegin(){
  const ks=Object.keys(PLANETS);NET.pl=PLANETS[CFG.planet]?CFG.planet:ks[Math.floor(Math.random()*ks.length)];
  NET.seed=Math.floor(Math.random()*1e9);NET.gid=1+Math.floor(Math.random()*1e9);
  NET.on=true;NET.wait=false;NET.frame=0;NET.evq=[];NET.evId=0;NET.done=[];NET.ak=[];FL=1;
- showScr(null);buildCards();newGame({mp:1,seed:NET.seed,pl:NET.pl,fs:NET.oppSp});started=true;paused=false;over=false;last=performance.now();
- mpLobbyPres();toast('Partida contra '+NET.oppN+' · '+PL.n);mpBan('Esperando a '+NET.oppN+'…');
+ NET.sz=SIZES[CFG.size]?CFG.size:'m';NET.sh=shapeFor(NET.pl,CFG.shape);
+ showScr(null);buildCards();newGame({mp:1,seed:NET.seed,pl:NET.pl,sz:NET.sz,sh:NET.sh,fs:NET.oppSp});started=true;paused=false;over=false;last=performance.now();
+ mpLobbyPres();toast('Partida contra '+NET.oppN+' · '+PL.n+' · '+shapeName(PLK,MSH)+' · '+SIZES[MSZ].n);mpBan('Esperando a '+NET.oppN+'…');
 }
 function mpOnStart(m){
  const d=m.data;if(!d||!Number.isInteger(d.seed)||!PLANETS[d.pl])return;
@@ -92,7 +93,7 @@ function mpOnStart(m){
  if(NET.on&&NET.gid===d.gid&&NET.host===m.peer){NET.R.presence({ready:d.gid}).catch(()=>{});return}
  NET.host=m.peer;NET.gid=d.gid;NET.oppN=mpSafe(d.hn)||'Rival';
  NET.on=true;NET.synced=false;NET.map.clear();NET.gone.clear();NET.buf={};NET.lastFull=0;NET.evSeen.clear();NET.pend=[];NET.lastSnap=0;NET.goneT=0;FL=-1;
- showScr(null);buildCards();newGame({mp:1,guest:1,seed:d.seed,pl:d.pl,fs:mpSpOk(d.hs)});started=true;paused=false;over=false;last=performance.now();
+ showScr(null);buildCards();newGame({mp:1,guest:1,seed:d.seed,pl:d.pl,sz:SIZES[d.sz]?d.sz:'m',sh:shapeFor(d.pl,d.sh),fs:mpSpOk(d.hs)});started=true;paused=false;over=false;last=performance.now();
  NET.R.presence({ready:d.gid}).catch(()=>{});mpBan('Sincronizando con '+NET.oppN+'…');toast('Partida contra '+NET.oppN+' · '+PL.n);
 }
 // ---------- instantáneas (anfitrión → invitado)
@@ -214,7 +215,7 @@ function mpTick(dt){
  if(!NET.on||!NET.R)return;const now=performance.now();
  if(NET.role==='host'){
   const op=NET.opp&&mpPeer(NET.opp),ready=!!(op&&op.presence&&op.presence.ready===NET.gid);
-  if(op&&!ready&&now-(NET.startT||0)>1000){NET.startT=now;NET.R.emit('start',{gid:NET.gid,seed:NET.seed,pl:NET.pl,hs:CFG.species||0,gs:NET.oppSp,hn:mpName()}).catch(e=>{if(e&&e.code==='not_permitted')mpBan('Sin permiso para crear partidas: pide acceso de colaborador al dueño del juego')})}
+  if(op&&!ready&&now-(NET.startT||0)>1000){NET.startT=now;NET.R.emit('start',{gid:NET.gid,seed:NET.seed,pl:NET.pl,sz:NET.sz,sh:NET.sh,hs:CFG.species||0,gs:NET.oppSp,hn:mpName()}).catch(e=>{if(e&&e.code==='not_permitted')mpBan('Sin permiso para crear partidas: pide acceso de colaborador al dueño del juego')})}
   if(ready&&NET.wait){NET.wait=false;last=now;mpLobbyPres()}
   if(ready&&$('mpBan').classList.contains('on')&&!NET.wait)mpBan('');
   NET.snapT-=dt;if(NET.snapT<=0&&op){NET.snapT=over?1:0.15;mpSnap()}

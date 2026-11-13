@@ -1,7 +1,7 @@
 // ================= CAMERA / INPUT =================
 const cam={x:0,z:0,dist:30,pitch:0.98};
 const ray=new THREE.Raycaster(),ndc=new THREE.Vector2(),gp=new THREE.Plane(new THREE.Vector3(0,1,0),-(0.25+2*LV)),tmpV=new THREE.Vector3();
-const bounds={x0:-CX-1,x1:CX+1,z0:-CZ-1,z1:CZ+1};
+const bounds={x0:-CX-1,x1:CX+1,z0:-CZ-1,z1:CZ+1}; // se actualiza en setMapSize()
 function updCam(){
  cam.x=clamp(cam.x,bounds.x0,bounds.x1);cam.z=clamp(cam.z,bounds.z0,bounds.z1);cam.dist=clamp(cam.dist,11,52);
  const sx=shake?(Math.random()-.5)*shake:0,sz=shake?(Math.random()-.5)*shake:0;

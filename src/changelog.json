@@ -1,5 +1,15 @@
 [
  {
+  "v": "0.74.0 BETA",
+  "d": "13-11-2026",
+  "items": [
+   "Versus: nuevo menú Forma del mapa. Cada planeta tiene sus propias formas, con una miniatura de ejemplo: Kepler-442b (Praderas, Valle, Altiplano), LP 791-18 d (Caldera, Cordillera, Mar de lava), LHS 1140 b (Tundra, Glaciar, Deshielo) y Kepler-186f (Cuenca, Cañón, Pozas). Variado mantiene el relieve libre de siempre.",
+   "Tamaño del mapa: Pequeño (46 × 26), Mediano (58 × 32) y Gigante (72 × 40). Lagos, aldeas, rampas y relieve se reparten según la superficie.",
+   "La partida guardada recuerda la forma y el tamaño. En el 1v1 los elige quien crea la partida y el invitado recibe el mismo mapa.",
+   "Las partidas guardadas en versiones anteriores no se pueden continuar."
+  ]
+ },
+ {
   "v": "0.73.0 BETA",
   "d": "13-11-2026",
   "items": [

@@ -11,6 +11,7 @@ function newGame(sv){
  {const pl=SPECIES.map((S,i)=>S.st?i:-1).filter(i=>i>=0),f=CFG.foe;FOESP=sv&&sv.fs!=null?sv.fs:(typeof f==='number'&&SPECIES[f]&&SPECIES[f].st?f:pl[Math.floor(Math.random()*pl.length)])}
  if(sv&&sv.mp){PLK=sv.pl;PL=PLANETS[PLK]}else pickPlanet();applyPlanet();
  teamColors();
+ setMapSize(sv?sv.sz:CFG.size);MSH=shapeFor(PLK,sv?sv.sh:CFG.shape);
  SEED=sv?sv.seed:Math.floor(Math.random()*1e9);genMap(SEED);
  vis=new Uint8Array(tiles.length);expl=new Uint8Array(tiles.length);revealT=0;
  buildTerrain();buildZoneChips();
@@ -24,7 +25,7 @@ function newGame(sv){
 function saveGame(){
  if(!started||over||NET.on)return;
  try{const ai={};for(const k in AI){const v=AI[k];if(v instanceof Set)continue;if(k==='prof'){ai.prof=Object.keys(AIPROF).find(p=>AIPROF[p]===v);continue}ai[k]=v}
-  const st={v:VERSION,mg:MAPGEN,t:Date.now(),seed:SEED,pl:PLK,sp:CFG.species||0,fs:FOESP,gt:gameTime,x2,money,charge,mu:mslUsed,ai,
+  const st={v:VERSION,mg:MAPGEN,t:Date.now(),seed:SEED,pl:PLK,sz:MSZ,sh:MSH,sp:CFG.species||0,fs:FOESP,gt:gameTime,x2,money,charge,mu:mslUsed,ai,
    amt:tiles.map(t=>t.type==='litio'?Math.round(t.amt):-1),expl:Array.from(expl).join(''),zones:zones.map(z=>[z.own,z.cap]),
    ents:ents.filter(e=>!e.dead).map(e=>e.kind==='b'?{k:'b',ty:e.type,tm:e.team,ti:e.tile,f:e.foot||null,hp:e.hp,mx:e.max,b:e.built?1:0,p:e.prog,l:e.lvl||1}
     :{k:'u',ty:e.type,tm:e.team,ti:e.tile,hp:e.hp,mx:e.max,ps:e.post})};

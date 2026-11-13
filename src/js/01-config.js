@@ -1,6 +1,25 @@
 // ================= CONFIG =================
-const MAPGEN=2; // versión del generador: las partidas guardadas con otra no se pueden continuar
-const LV=0.68,W=58,H=32,SQ3=Math.sqrt(3),CX=SQ3*(W-0.5)/2,CZ=1.5*(H-1)/2;
+const MAPGEN=3; // versión del generador: las partidas guardadas con otra no se pueden continuar
+const LV=0.68,SQ3=Math.sqrt(3);
+// Tamaños de mapa (casillas). El mapa se dimensiona en cada partida con setMapSize().
+const SIZES={p:{n:'Pequeño',w:46,h:26,d:'Partidas cortas'},m:{n:'Mediano',w:58,h:32,d:'Estándar'},g:{n:'Gigante',w:72,h:40,d:'Partidas largas'}};
+let MSZ='m',W=58,H=32,CX=SQ3*(W-0.5)/2,CZ=1.5*(H-1)/2;
+function setMapSize(k){MSZ=SIZES[k]?k:'m';W=SIZES[MSZ].w;H=SIZES[MSZ].h;CX=SQ3*(W-0.5)/2;CZ=1.5*(H-1)/2;Object.assign(bounds,{x0:-CX-1,x1:CX+1,z0:-CZ-1,z1:CZ+1});applyWide()}
+// Formas de mapa: una figura grande (m) que se suma al relieve al generar. u y v van de −1 a 1 (ancho y alto del mapa)
+// y la figura debe ser igual en (u,v) y (−u,−v) para que el mapa quede parejo para los dos lados.
+const SHAPES={
+ var:{n:'Variado',d:'Relieve libre: terrazas, mesetas y hondonadas repartidas.'},
+ llano:{d:'Casi todo llano y abierto, con pocos accidentes. Manda la movilidad.',bk:0.7,q:[0.05,0.48,0.35,0.09,0.03]},
+ valle:{d:'Un valle bajo une las dos bases en diagonal, flanqueado por tierras altas.',amp:1.9,m:(u,v)=>Math.min(1,Math.abs(u+v)/1.1)},
+ meseta:{d:'Una gran meseta domina el centro: quien la toma ve y dispara más lejos.',amp:2.1,m:(u,v)=>Math.exp(-(u*u+v*v*1.3)/0.2)},
+ cuenca:{d:'Una hondonada en el centro rodeada por un anillo de altura.',amp:2.1,lk:1.5,m:(u,v)=>{const r=Math.hypot(u,v);return -Math.exp(-r*r/0.11)+0.75*Math.exp(-((r-0.6)**2)/0.03)}},
+ cordillera:{d:'Una cadena de cumbres separa las dos mitades; se cruza por los pasos.',amp:2.3,m:(u,v)=>Math.exp(-((u-v)**2)/0.09)*(0.45+0.55*Math.cos((u+v)*5))},
+ lagos:{d:'Terreno bajo salpicado de lagos que cortan el paso por tierra.',lk:3.5,bk:0.85,q:[0.12,0.42,0.30,0.11,0.05]}
+};
+let MSH='var';
+const shapesOf=pk=>(PLANETS[pk]&&PLANETS[pk].shapes)||[];
+const shapeFor=(pk,k)=>shapesOf(pk).some(s=>s[0]===k)&&SHAPES[k]?k:'var';
+const shapeName=(pk,k)=>{const s=shapesOf(pk).find(s=>s[0]===k);return s?s[1]:SHAPES.var.n};
 const DIRS=[[1,0],[1,-1],[0,-1],[-1,0],[-1,1],[0,1]];
 const TC=[0x2ad4ff,0xff7a2a],TCS=['#2ad4ff','#ff7a2a'];
 const CAP=40;const baseLvl=tm=>{const h=ents.find(e=>!e.dead&&e.kind==='b'&&e.type==='hq'&&e.team===tm);return h?(h.lvl||1):1};const capOf=tm=>POPCAP[baseLvl(tm)-1]||10;
@@ -49,7 +68,7 @@ const SUP={
 const ZN=['O','E','C'];
 const BASEUP=[0,650,1150],POPCAP=[10,15,20],INTR=6;let mslUsed=[0,0];const ARRIVE=[];
 for(const D of[...Object.values(UD),...Object.values(BD)])for(const A of[D.atk,D.atk2])if(A&&A.vs.mec===undefined)A.vs.mec=A.vs.veh;
-const CFG=(()=>{let c={};try{c=JSON.parse(localStorage.getItem('tactica.cfg')||'{}')}catch(e){}return Object.assign({diff:'normal',quality:'alta',grid:true,planet:'verdea',lay:'auto'},c)})();
+const CFG=(()=>{let c={};try{c=JSON.parse(localStorage.getItem('tactica.cfg')||'{}')}catch(e){}return Object.assign({diff:'normal',quality:'alta',grid:true,planet:'verdea',lay:'auto',size:'m',shape:'var'},c)})();
 let DECK=(()=>{let d=null;try{d=JSON.parse(localStorage.getItem('tactica.deck')||'null')}catch(e){}const D0=['rifle','rocket','grenadier','tank','drone','heli','android','mech'];d=(d||D0).filter(k=>UD[k]).slice(0,8);return d.length?d:D0})();
 const PLANETS={
  verdea:{n:'Kepler-442b',sub:'Templado',d:'Mundo de los Humanos. Súper-Tierra templada de una enana naranja, a ~1.200 años luz: praderas, bosques y ríos con vado.',ball:'radial-gradient(circle at 35% 35%,#8fd16a,#2f6a2a 55%,#16301a)',
@@ -57,7 +76,7 @@ const PLANETS={
   col:{grass:0x2f4424,dirt:0x4c3a29,stone:0x46494d,rock:0x5c544b},
   mini:{grass:'#2f4424',dirt:'#4c3a29',stone:'#46494d',rock:'#857a6e',liq:'#123a5e',ford:'#24566a',ramp:'#4d4636',vil:'#a8763e'},
   liq:{bed:0x1c2c2a,ford:0x3a3a2c,top:0x15384f,cau:[0.07,0.13,0.16],glow:[0,0,0],op:0.86,f1:[0.16,0.42,0.6],f2:[0.85,0.95,1.0],foam:0xe8f6ff,fish:0xb8c4c8},
-  gen:{blobs:5,sg0:5,sgR:6,smooth:2,lakes:1,rocks:0.08,rockPair:0.5,villages:3},
+  gen:{blobs:5,sg0:5,sgR:6,smooth:2,lakes:1,rocks:0.08,rockPair:0.5,villages:3},shapes:[['llano','Praderas'],['valle','Valle'],['meseta','Altiplano']],
   deco:{tuft:[0x5f8a3e,0x7a9a48],tree:'crown',trunk:0x4a3624,crown:[0x2f5a2a,0x3d6b30],bush:0x47703a,flowers:[0xf2f0e6,0xffd84a,0xb07ad8,0xe0535a,0x6fa8ff,0xff9a3c],reed:0x8a9a52,peb:[0x8a7258,0x8b8f94,0x6f7378],boulder:0x8f8578,edge:[0x55803a,0x6b8f42],treeP:0.16},
   fauna:'deer',bird:0x2a2d30,part:{n:70,col:0xfff2b8,size:0.09,vy:0.06,op:0.4,drift:0.35},
   vil:{style:'cabin',wall:0x8a6a48,roof:0x6b3a2a,cloth:[0x7a5a3a,0x4a6a8a,0x9a4a3a,0x5a7a3a],skin:[0xe0b090,0xb07850,0x7a4a30]}},
@@ -66,7 +85,7 @@ const PLANETS={
   col:{grass:0x2e2826,dirt:0x3e2a22,stone:0x383433,rock:0x2c2826},
   mini:{grass:'#2e2826',dirt:'#4a2c22',stone:'#3d3838',rock:'#141110',liq:'#d2500e',ford:'#5a2a14',ramp:'#4a3426',vil:'#8a8478'},
   liq:{bed:0x4a1003,ford:0x4a2414,top:0xff520e,cau:[0.55,0.2,0.02],glow:[1.0,0.34,0.06],op:1,f1:[1.0,0.32,0.03],f2:[1.0,0.86,0.32],foam:0xffa040,fish:0xffb030},
-  gen:{blobs:8,sg0:3.5,sgR:4.5,smooth:2,lakes:2,rocks:0.12,rockPair:0.7,villages:3,q:[0.09,0.31,0.28,0.19,0.13]},
+  gen:{blobs:8,sg0:3.5,sgR:4.5,smooth:2,lakes:2,rocks:0.12,rockPair:0.7,villages:3,q:[0.09,0.31,0.28,0.19,0.13]},shapes:[['cuenca','Caldera'],['cordillera','Cordillera'],['lagos','Mar de lava']],
   deco:{tuft:[0x5a4a3a,0x4a3a30],tree:'dead',trunk:0x1c1816,crown:[0x1c1816],bush:0x3a2e28,flowers:null,reed:0x4a2a1a,peb:[0x2a2422,0x3a3230,0x1e1a19],boulder:0x2a2523,edge:[0x3a302a,0x4a3a2e],treeP:0.12,spike:0x16131a,ember:0xff6a1a,fum:1},
   fauna:'salamander',bird:0x3a1410,part:{n:220,col:0xff7a2a,size:0.11,vy:0.55,op:0.85,drift:0.45,glow:1},
   vil:{style:'dome',wall:0x6a625a,roof:0x45403c,cloth:[0xc28a2a,0x5a5a5a,0xa04a1a,0x3a4a5a],skin:[0xd0a080,0x9a6a48,0x6a4028],lamp:0xffb040}},
@@ -75,7 +94,7 @@ const PLANETS={
   col:{grass:0x96a2ae,dirt:0x5e646a,stone:0x66717e,rock:0x8aa6bc},
   mini:{grass:'#a6b2be',dirt:'#5e646a',stone:'#6a7684',rock:'#d4e6f2',liq:'#2a5a7a',ford:'#5a8aa8',ramp:'#7a7f84',vil:'#f0f6fa'},
   liq:{bed:0x1a3448,ford:0x6a8aa0,top:0x3a6e8c,cau:[0.12,0.18,0.22],glow:[0,0,0],op:0.82,f1:[0.4,0.6,0.75],f2:[0.95,0.98,1.0],foam:0xffffff,fish:0xd0dce4},
-  gen:{blobs:4,sg0:8,sgR:6,smooth:3,lakes:3,rocks:0.05,rockPair:0.5,villages:3,q:[0.08,0.42,0.32,0.12,0.06]},
+  gen:{blobs:4,sg0:8,sgR:6,smooth:3,lakes:3,rocks:0.05,rockPair:0.5,villages:3,q:[0.08,0.42,0.32,0.12,0.06]},shapes:[['llano','Tundra'],['meseta','Glaciar'],['lagos','Deshielo']],
   deco:{tuft:[0xb8c4cc,0x9aa8a0],tree:'snowpine',trunk:0x3a2e26,crown:[0x24382e,0x2c4034],bush:0xc8d2da,flowers:null,reed:0x8a9aa0,peb:[0xa8b4c0,0x8894a0,0xc8d4e0],boulder:0xb0cce0,edge:[0xd8e2ea,0xb8c4cc],treeP:0.2,spike:0x9fd4f0},
   fauna:'mammoth',bird:0xe8eef2,part:{n:320,col:0xffffff,size:0.12,vy:-0.55,op:0.85,drift:0.6},
   vil:{style:'igloo',wall:0xe8f0f6,roof:0xc8d8e4,cloth:[0x8a5a3a,0x6a4a3a,0xb07040,0x4a5a6a],skin:[0xd8b090,0xa87850,0x7a5034],lamp:0xffd080}},
@@ -84,7 +103,7 @@ const PLANETS={
   col:{grass:0x3a2a52,dirt:0x3a2a30,stone:0x2a3a40,rock:0x34284a},
   mini:{grass:'#3a2a52',dirt:'#3a2a30',stone:'#2a3a40',rock:'#7a3a9a',liq:'#0fbf9a',ford:'#1a6a5a',ramp:'#4a3a5a',vil:'#2affc8'},
   liq:{bed:0x062a24,ford:0x1a4a40,top:0x0a5a4a,cau:[0.05,0.42,0.32],glow:[0.0,0.38,0.28],op:0.88,f1:[0.05,0.7,0.55],f2:[0.6,1.0,0.9],foam:0x80ffe0,fish:0x7affd8},
-  gen:{blobs:6,sg0:4.5,sgR:5,smooth:2,lakes:3,rocks:0.10,rockPair:0.75,villages:3},
+  gen:{blobs:6,sg0:4.5,sgR:5,smooth:2,lakes:3,rocks:0.10,rockPair:0.75,villages:3},shapes:[['cuenca','Cuenca'],['valle','Cañón'],['lagos','Pozas']],
   deco:{tuft:[0x7a4ab0,0x5a8a9a],tree:'mush',trunk:0xd8c8e8,crown:[0x2affc8,0xff4ad8,0x8a6aff],bush:0x5a3a8a,flowers:[0x2affc8,0xff4ad8,0xffe14d,0x8affff],reed:0x4affb0,peb:[0x4a3a5a,0x2a3a40,0x3a2a4a],boulder:0x3a2a50,edge:[0x6a3a9a,0x3a7a8a],treeP:0.22,glow:1},
   fauna:'crawler',bird:0x6affe0,birdGlow:1,part:{n:180,col:0x8affd8,size:0.11,vy:0.12,op:0.75,drift:0.5,glow:1},
   vil:{style:'pod',wall:0x5a3a7a,roof:0x2affc8,cloth:[0x8a6aff,0x2affc8,0xff4ad8,0x5a8aff],skin:[0x7a9a6a,0x5a8a7a,0x8a7aa0],lamp:0x2affc8}}
